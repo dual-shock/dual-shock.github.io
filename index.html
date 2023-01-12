@@ -6,58 +6,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        body{
-            background-color: antiquewhite;
-            display:flex;
-            align-items: center;
-            justify-content: center;
-            height:100vh;
-            width:100vw;
-            padding-left:45%;
+        html{
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            width:100%;
+            height:100%;
         }
-        input{
+        body{
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            width:100%;
 
+          /*height:100%;        for only filling the viewport*/
 
-    border-width: 0px;
-    border-style: none;
-    border-color: none;
-    border-image: none;
+            /*                  for page longer than viewport*/
+            min-height:100vh;
 
-    color:black;
-    width:7%;
-    padding:0 0 0 0;
-    background-color:rgba(255, 0, 0, 0);
-    outline: none;
+            /**/
+        }
+        #main{
+            box-sizing: border-box;
+            margin: 0;
+            width:100%;
+            height:120vh;
 
-    border-bottom: 0px solid #faebd7;
-
-
-
-
-
-
-
-    writing-mode: horizontal-tb !important;
-
-    text-rendering: auto;
-    letter-spacing: normal;
-    word-spacing: normal;
-    line-height:100%;
-    text-transform: none;
-    text-indent: 0px;
-    text-shadow: none;
-    display: inline-block;
-    text-align: start;
-    appearance: auto;
-    -webkit-rtl-ordering: logical;
-    cursor: text;
-    margin: 0em;
-    border: 0px solid red;
-}
+        }
 
     </style>
 </head>
 <body>
-    <input type="text">
+    <div id="main">
+        </div>
 </body>
 </html>
