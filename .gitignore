@@ -1,0 +1,8 @@
+**/envs
+**/__pycache__
+**/env
+**/.env
+**/data/large
+**/config
+*.env
+*__pycache__.py
