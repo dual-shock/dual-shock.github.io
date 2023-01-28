@@ -1,1 +1,119 @@
-/*      */
+html{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    width:100%;
+    height:100%;
+}
+body{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    width:100%;
+
+  /*height:100%;        for only filling the viewport*/
+
+    /*                  for page longer than viewport*/
+    min-height:100vh;
+
+    /**/
+}
+#main{
+    box-sizing: border-box;
+    margin: 0;
+    width:100%;
+    height:120vh;
+
+}
+
+/* * MEDIA QUERIES */
+
+
+@media only screen and (max-width: 43rem){ /* <- 688, (375x812)
+    /*   XTRA SMALL DEVICES   */
+    /*   MOBILE   */
+    #main{
+        background-color: red;
+    } 
+}
+
+@media only screen and (min-width: 43rem){ /* 688 -> , (768x1024)
+    /*  tablets  */
+    #main{
+        background-color: red;
+    } 
+}
+
+@media only screen and (min-width: 62rem){ /* 992 ->, (1280x720)
+    /*   LAPTOPS, DESKTOPS   */
+    #main{
+        background-color: blue;
+    } 
+}
+
+@media only screen and (min-width: 82rem){ /* 1312w ->, (1920x1080)
+    /*   ULTRAWIDES   */
+
+    #main{
+        background-color: purple;
+    } 
+}
+
+/* website design flow is unoptimized fr this 
+
+
+
+/* TODO
+ 
+? WHO ACCESSES WHAT??
+* * 2 pages
+    *   Page 1, "business":
+        *   coding projects portfolio
+            *   add individually
+        *   profile, with actual contact info
+        *   and experience (when aquired)
+
+
+
+
+
+
+
+? CONTENT
+*   header:
+    *   social links?
+    *   name, logo?
+    *   
+
+*   main content
+    *   gallery (photographs)
+    *   developer portfolio (programs)
+        *   developer profile
+        *   prøvesvar
+        *   gallery itself
+        *   rust stuff
+            *   boom calc
+            *   connect script
+                *   connect script download
+        *   firebase site
+        *   traffic sys
+    *   profile
+        *   picture, description, social links, etc
+    
+    *   "Support my art friends!"
+        *maddie, olivia, crest, bewwy, 
+    
+
+? LAYOUT
+*
+* home
+    * folio
+    *   dropdown with gradient colors?
+    * gallery
+    * profile
+    *
+
+
+
+*/
+
