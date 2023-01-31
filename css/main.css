@@ -1,65 +1,95 @@
-html{
+@font-face{
+    font-family:"pixelfont";
+    src: url("../fonts/VT323-Regular.ttf") format("truetype")
+}
+
+html, body{
     box-sizing: border-box;
     margin: 0;
     padding: 0;
     width:100%;
     height:100%;
 }
+
 body{
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    width:100%;
-
-  /*height:100%;        for only filling the viewport*/
-
-    /*                  for page longer than viewport*/
     min-height:100vh;
-
-    /**/
 }
+
 #main{
     box-sizing: border-box;
     margin: 0;
-    width:100%;
-    height:120vh;
-
+    height:100vh;
 }
-
-/* * MEDIA QUERIES */
+div {
+    background-color: rgba(0, 0, 0, 0.215);
+}
 
 
 @media only screen and (max-width: 43rem){ /* <- 688, (375x812)
-    /*   XTRA SMALL DEVICES   */
-    /*   MOBILE   */
+    /*   MOBILE/SMALL    */
     #main{
-        background-color: red;
+        background-color: rgba(0, 255, 238, 0.37);
+        /*  height:fit-content;   */
+
     } 
+    #header{
+        box-sizing: border-box;
+        width:100vw;
+        height:7vh;
+        display:flex;
+        font-family: pixelfont;
+        display: flex;
+        align-items: center;
+        
+        padding-left:3%;
+        font-size: 1.8rem;
+    }
+    #burger{
+        box-sizing: border-box;
+        margin-right:2%;
+        margin-left: auto;
+        cursor:pointer;
+    }
+    #burger:hover, #burger:focus{
+
+    }
+
+    #dropdown{
+        display:none;
+        z-index: 1;
+    }
+
+    #content{
+        box-sizing: border-box;
+        margin-top: 1vh;
+        width:100vw;
+        height:fit-content;
+        padding:3%;
+
+        
+    }
 }
 
 @media only screen and (min-width: 43rem){ /* 688 -> , (768x1024)
     /*  tablets  */
     #main{
-        background-color: red;
+        background-color: rgba(0, 128, 19, 0.549);
     } 
 }
 
 @media only screen and (min-width: 62rem){ /* 992 ->, (1280x720)
     /*   LAPTOPS, DESKTOPS   */
     #main{
-        background-color: blue;
+        background-color: rgba(140, 255, 0, 0.509);
     } 
 }
 
 @media only screen and (min-width: 82rem){ /* 1312w ->, (1920x1080)
     /*   ULTRAWIDES   */
-
     #main{
-        background-color: purple;
+        background-color: rgba(70, 128, 0, 0.634);
     } 
 }
-
-/* website design flow is unoptimized fr this 
 
 
 
@@ -72,10 +102,6 @@ body{
             *   add individually
         *   profile, with actual contact info
         *   and experience (when aquired)
-
-
-
-
 
 
 
