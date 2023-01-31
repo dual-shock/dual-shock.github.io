@@ -35,20 +35,22 @@ div {
     #header{
         box-sizing: border-box;
         width:100vw;
-        height:7vh;
+        height:7vmax;
         display:flex;
         font-family: pixelfont;
         display: flex;
         align-items: center;
         
         padding-left:3%;
-        font-size: 1.8rem;
+        font-size: 8vmin;
     }
     #burger{
         box-sizing: border-box;
         margin-right:2%;
         margin-left: auto;
         cursor:pointer;
+        font-size: 8vmin;
+        
     }
     #burger:hover, #burger:focus{
 
@@ -61,7 +63,7 @@ div {
 
     #content{
         box-sizing: border-box;
-        margin-top: 1vh;
+        margin-top: 1vmax;
         width:100vw;
         height:fit-content;
         padding:3%;
