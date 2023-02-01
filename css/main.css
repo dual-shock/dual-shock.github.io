@@ -20,8 +20,10 @@ body{
     margin: 0;
     height:100vh;
 }
-div {
-    background-color: rgba(0, 0, 0, 0.215);
+div, div > div, div > svg, svg > path {
+     
+    background-color: rgba(0, 0, 0, 0.2); 
+    
 }
 
 
@@ -30,7 +32,6 @@ div {
     #main{
         background-color: rgba(0, 255, 238, 0.37);
         /*  height:fit-content;   */
-
     } 
     #header{
         box-sizing: border-box;
@@ -40,25 +41,41 @@ div {
         font-family: pixelfont;
         display: flex;
         align-items: center;
-        
         padding-left:3%;
         font-size: 8vmin;
     }
-    #burger{
-        box-sizing: border-box;
-        margin-right:2%;
+    #dropdown-container{
+        float:right;
+        display:inline-block;
+        position: relative;
+        width:15%;
+        height:7vmax;
         margin-left: auto;
+        padding:0;
+    }
+    .burger{
+        box-sizing: border-box;
         cursor:pointer;
-        font-size: 8vmin;
-        
     }
-    #burger:hover, #burger:focus{
-
+    .burger:hover, #burger:focus{
+        /*TODO ADD STYLES*/
     }
-
-    #dropdown{
+    .dropdown-content{
         display:none;
         z-index: 1;
+        position: absolute;
+        top:7vmax;
+        
+        width:fit-content;
+        right:0;
+    }
+    .dropdown-content > a {
+        display: block;
+        width:100%; 
+        /*TODO ADD STYLES*/
+    }
+    .show-dropdown {
+        display: block;
     }
 
     #content{
