@@ -134,9 +134,9 @@ body{min-height:100vh;}
 
 
 .gallery-image > li{
-    height: 100px;
-
     flex: 1 1 auto;
+    height: 300px;
+    
     cursor:pointer;
     position: relative;
 }
