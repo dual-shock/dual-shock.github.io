@@ -30,15 +30,17 @@ fetch("https://api.github.com/repos/dual-shock/dual-shock.github.io/git/trees/ma
   .then(data => {
       trees = data.tree
       console.log(data.tree)
+      let imglinks = []
       
       for(let i=0;i<trees.length;i++){
           tree = trees[i]
-          if(tree.type!="blob"){
-              console.log("tree",i,"not blob")
-              trees.splice(i, 1)
-              i = i - 1
+          if(tree.path.substring(0,12)=="imgs/gallery"){
+            console.log("tree",i,"is img")
+            imglinks.push(trees[i])
+            //trees.splice(i,1)
+            //i = i - 1
+            //continue
           }
-          
       }
 
       console.log(trees)
