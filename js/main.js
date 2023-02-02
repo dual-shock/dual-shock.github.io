@@ -17,34 +17,34 @@ window.onclick = function(event) {
     }
 }
 
+let gallery = document.getElementById("gallery-list")
 
-function addImagesToGallery(amtOfImgs) {
-    let imgs = fs.readDir('./imgs/')
-    for(let i = 0; i < amtOfImgs; i++){
-        console.log(imgs)
-}
-}
-
+function addImagesToGallery(){
 fetch("https://api.github.com/repos/dual-shock/dual-shock.github.io/git/trees/main?recursive=1")
-  .then((response) => response.json())
-  .then(data => {
-      trees = data.tree
-      console.log(data.tree)
-      let imglinks = []
+    .then((response) => response.json())
+    .then(data => {
+        trees = data.tree
+        console.log(data.tree)
       
-      for(let i=0;i<trees.length;i++){
-          tree = trees[i]
-          if(tree.path.substring(0,12)=="imgs/gallery"){
-            console.log("tree",i,"is img")
-            imglinks.push(trees[i])
-            //trees.splice(i,1)
-            //i = i - 1
-            //continue
-          }
-      }
-
-      console.log(trees)
+        for(let i=0;i<trees.length;i++){
+            tree = trees[i]
+            if(tree.path.substring(0,13)=="imgs/gallery/"){
+                console.log("tree",i,"is img")
+                
+                //trees.splice(i,1)
+                //i = i - 1
+                //continue
+                let galleryImage = `
+                <li>
+                    <img src="${tree.path}" />
+                    <!--div class="gallery-overlay"><span>${tree.path.slice(13)}</span></div-->
+                </li>
+                `
+                gallery.innerHTML += galleryImage
+            }
+        }
     })
+}
 
-
+addImagesToGallery()
 

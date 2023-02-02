@@ -118,6 +118,37 @@ body{min-height:100vh;}
     height:20vh;
 }
 
+
+.gallery-image{
+
+    display:flex;
+    flex-wrap: wrap;
+    list-style: none;
+
+    margin-block-start: 0%;
+    margin-block-end: 0%;
+    margin-inline-start: 0%;
+    margin-inline-end: 0%;
+    padding-inline-start: 0%;
+}
+
+
+.gallery-image > li{
+    flex: 1 1 auto;
+    height: 13vh;
+    cursor:pointer;
+    position: relative;
+}
+.gallery-image li img {
+    object-fit: cover;
+    width:100%;
+    height:100%;
+    vertical-align: middle;
+
+}
+
+
+
 }
 
 @media only screen and (min-width: 43rem){ /* 688 -> , (768x1024) tablets  */
