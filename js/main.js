@@ -30,10 +30,6 @@ fetch("https://api.github.com/repos/dual-shock/dual-shock.github.io/git/trees/ma
             tree = trees[i]
             if(tree.path.substring(0,13)=="imgs/gallery/"){
                 console.log("tree",i,"is img")
-                
-                //trees.splice(i,1)
-                //i = i - 1
-                //continue
                 let galleryImage = `
                 <li>
                     <img src="${tree.path}" />
