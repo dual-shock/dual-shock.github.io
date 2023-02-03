@@ -1,7 +1,6 @@
-function toggleDropdownShow(){
-    document.getElementById("dropdown").classList.toggle("show-dropdown")
-    console.log("toggled dropdown")
-}
+let loadImages = false
+
+
 window.onclick = function(event) {
     if (!event.target.matches(".burger, #dropdown-container, #burgersvgpath")){
         console.log("somewhere not burger clicked, hiding dropdown content")
@@ -16,6 +15,10 @@ window.onclick = function(event) {
         }
     }
 }
+function toggleDropdownShow(){
+    document.getElementById("dropdown").classList.toggle("show-dropdown")
+    console.log("toggled dropdown")
+}
 
 let gallery = document.getElementById("gallery-list")
 
@@ -25,6 +28,7 @@ fetch("https://api.github.com/repos/dual-shock/dual-shock.github.io/git/trees/ma
     .then(data => {
         trees = data.tree
         console.log(data.tree)
+        let gallery = document.getElementById("gallery-list")
       
         for(let i=0;i<trees.length;i++){
             tree = trees[i]
@@ -32,8 +36,10 @@ fetch("https://api.github.com/repos/dual-shock/dual-shock.github.io/git/trees/ma
                 console.log("tree",i,"is img")
                 let galleryImage = `
                 <li>
-                    <img src="${tree.path}" />
+                <a href="./gallery/gallery.html">
+                    <img src="${tree.path}""/>
                     <!--div class="gallery-overlay"><span>${tree.path.slice(13)}</span></div-->
+                </a>
                 </li>
                 `
                 gallery.innerHTML += galleryImage
@@ -41,6 +47,5 @@ fetch("https://api.github.com/repos/dual-shock/dual-shock.github.io/git/trees/ma
         }
     })
 }
-
-addImagesToGallery()
+if(loadImages){addImagesToGallery()}
 
