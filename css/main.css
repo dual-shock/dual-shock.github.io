@@ -201,31 +201,42 @@ body{
 #portfolio{
     height: fit-content;
     width:100%;}
-.portfolio-folder{
+
+
+
+/*TODO FIXXXXX THE FUCJIBG FILE EXLORER
+
+.portfolio-folder-l1{
     width:100%;
-    display: flex;
-    align-items: center;
-    height:2.7vmax;}
+    
+    
+    height:fit-content;}
 .folder-svg{
     float:left;
-    width:6%;
-    height:2.3vmax;
+    padding-top: 0.5%;
+    padding-bottom: 0.5%;
+    width:5%;
+    opacity: 0.8;
     box-sizing: border-box;}
 .arrow-svg{
     float:left;
-    width:6%;
-    height:2.3vmax;
+    width:4.5%;
+    padding-top: 0.75%;
+    padding-bottom: 0.75%;
+    
+    opacity: 0.8;
     box-sizing: border-box;}
 .folder-text{
+    padding-left: 0.5%;
     float:left;
-    font-size: 2.3vmax;
-    flex-grow: 100;
-    height:100%;
+    font-size: 2.1vmax;
+    
+    height:6%;
+    width:90%;
     display: flex;
-    align-items: center;}
-
+    align-items: flex-start;}
+*/
 }
-
 
 @media only screen and (min-width: 43rem){ /* 688 -> , (768x1024) tablets  */
     #main{background-color: rgba(0, 128, 19, 0.549);} }

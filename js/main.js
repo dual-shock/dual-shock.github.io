@@ -1,4 +1,4 @@
-let loadImages = false
+let loadImages = true
 
 
 window.onclick = function(event) {
@@ -29,7 +29,8 @@ fetch("https://api.github.com/repos/dual-shock/dual-shock.github.io/git/trees/ma
         trees = data.tree
         console.log(data.tree)
         let gallery = document.getElementById("gallery-list")
-      
+        let portfolio = document.getElementById("")
+
         for(let i=0;i<trees.length;i++){
             tree = trees[i]
             if(tree.path.substring(0,13)=="imgs/gallery/"){
@@ -44,8 +45,15 @@ fetch("https://api.github.com/repos/dual-shock/dual-shock.github.io/git/trees/ma
                 `
                 gallery.innerHTML += galleryImage
             }
+            //* GET ALL FOLDERS N FILES IN /PORTFOLIO
+            //* MAKE OBJECT WITH CORRECT FOLDER STRUCTURE 
+            //* 
+            //*
+
+
         }
     })
 }
 if(loadImages){addImagesToGallery()}
+
 
