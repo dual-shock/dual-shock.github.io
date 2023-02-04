@@ -22,7 +22,7 @@ function toggleDropdownShow(){
 
 let gallery = document.getElementById("gallery-list")
 
-function addImagesToGallery(){
+function loadGithubSources(){
 fetch("https://api.github.com/repos/dual-shock/dual-shock.github.io/git/trees/main?recursive=1")
     .then((response) => response.json())
     .then(data => {
@@ -33,7 +33,7 @@ fetch("https://api.github.com/repos/dual-shock/dual-shock.github.io/git/trees/ma
 
         for(let i=0;i<trees.length;i++){
             tree = trees[i]
-            if(tree.path.substring(0,13)=="imgs/gallery/"){
+            if(tree.path.substring(0,'imgs/gallery/'.length)=='imgs/gallery/'){
                 console.log("tree",i,"is img")
                 let galleryImage = `
                 <li>
@@ -45,15 +45,29 @@ fetch("https://api.github.com/repos/dual-shock/dual-shock.github.io/git/trees/ma
                 `
                 gallery.innerHTML += galleryImage
             }
-            //* GET ALL FOLDERS N FILES IN /PORTFOLIO
-            //* MAKE OBJECT WITH CORRECT FOLDER STRUCTURE 
-            //* 
-            //*
+            if(tree.path.substring(0,'portfolio/'.length)=='portfolio/'){
+                console.log("tree",i,"is portfolio")
+            }
+
+
 
 
         }
     })
 }
-if(loadImages){addImagesToGallery()}
+if(loadImages){loadGithubSources()}
+
+
+
+
+var toggler = document.getElementsByClassName("caret");
+var i;
+
+for (i = 0; i < toggler.length; i++) {
+  toggler[i].addEventListener("click", function() {
+    this.parentElement.querySelector(".nested").classList.toggle("active");
+    this.classList.toggle("caret-down");
+  });
+}
 
 

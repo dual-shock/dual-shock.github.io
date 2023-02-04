@@ -178,8 +178,7 @@ body{
     height:fit-content;
     display:flex;
     flex-wrap: wrap;
-    font-family: pixelfont;
-}
+    font-family: pixelfont;}
 #portfolio-title{
     font-size: 4vmax;
     height: 7vmax;
@@ -203,12 +202,39 @@ body{
     width:100%;}
 
 
+    
+ul, #myUL {
+list-style-type: none;}
+    
+#myUL {
+margin: 0;
+padding: 0;}
+    
+.caret {
+cursor: pointer;
+user-select: none;}
+    
+.caret::before {
+content: "\25B6";
+color: black;
+display: inline-block;
+margin-right: 6px;}
+    
+.caret-down::before {
+transform: rotate(90deg);}
+    
+.nested {
+display: none;}
+    
+.active {
+display: block;}
+
 
 /*TODO FIXXXXX THE FUCJIBG FILE EXLORER
 
 .portfolio-folder-l1{
     width:100%;
-    
+    3131
     
     height:fit-content;}
 .folder-svg{
