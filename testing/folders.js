@@ -11,6 +11,13 @@ let folders = [
     type:"tree"},
     {path:"portfolio/python-dev/converters/layer/con3.pk",
     type:"blob"},
+    {path:"portfolio/python-dev/traffsys",
+    type:"blob"},
+    {path:"portfolio/python-dev/traffsys/folder",
+    type:"blob"},
+    {path:"portfolio/python-dev/traffsys/folder/file.py",
+    type:"blob"},
+
 
     {path:"portfolio/web-dev",
     type:"tree"},
@@ -27,18 +34,19 @@ let folders = [
 ]
 
 
-let folioContainer = document.createElement('div')
-let lastItem = document.createElement('ul')
-lastItem.id = 'myUL'
-let lastItemPath = ["portfolio"]
+
+let portfolio = document.createElement('ul')
+portfolio.id = 'myUL'
 
 
+
+let elements = []
 
 for(let i=0;i<folders.length;i++){
 
     let item = folders[i]
-
     let itemPath = item.path.split('/')
+
     if(item.type=='tree'){
         //console.log(item.path.split('/'))
         let folderPath = itemPath
@@ -48,7 +56,7 @@ for(let i=0;i<folders.length;i++){
         folderName.className = 'caret'
         folderName.innerHTML = folderPath[folderPath.length - 1]
         folder.appendChild(folderName)
-        
+        elements.push(folder)
         //console.log(folder.outerHTML)
         console.log(folderPath)
     }
@@ -56,25 +64,22 @@ for(let i=0;i<folders.length;i++){
         let filePath = itemPath
         let file = document.createElement('li')
         file.innerHTML = filePath[filePath.length - 1]
+        elements.push(file)
         //console.log(file.outerHTML)
         console.log(filePath)
     }
-    console.log(lastItemPath[lastItemPath.length - 1], itemPath[itemPath.length - 2])
-    if(lastItemPath[lastItemPath.length - 1] == itemPath[itemPath.length - 2]){
-        //console.log("belkongs to top")
-        console.log("add bottom to above")
-    }
-    else{
-        //go thru all folders and find 
-        //the matching one and append to that
-        
-    }
-    else{
 
-    }
-    lastItem = folders[i]
-    lastItemPath = lastItem.path.split('/')
 
 }
+
+console.log(portfolio.outerHTML)
+for(let i=0;i<elements.length;i++){
+    console.log(elements[i].outerHTML)
+}
+
+
+let testFolio = document.getElementById("myUL")
+console.log(testFolio.outerHTML)
+
 
 
