@@ -46,7 +46,7 @@ fetch("https://api.github.com/repos/dual-shock/dual-shock.github.io/git/trees/ma
                 gallery.innerHTML += galleryImage
             }
             if(tree.path.substring(0,'portfolio/'.length)=='portfolio/'){
-                console.log("tree",i,"is portfolio")
+                //console.log("tree",i,"is portfolio")
             }
 
 
