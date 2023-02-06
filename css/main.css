@@ -230,38 +230,6 @@ display: none;}
 display: block;}
 
 
-/*TODO FIXXXXX THE FUCJIBG FILE EXLORER
-
-.portfolio-folder-l1{
-    width:100%;
-    3131
-    
-    height:fit-content;}
-.folder-svg{
-    float:left;
-    padding-top: 0.5%;
-    padding-bottom: 0.5%;
-    width:5%;
-    opacity: 0.8;
-    box-sizing: border-box;}
-.arrow-svg{
-    float:left;
-    width:4.5%;
-    padding-top: 0.75%;
-    padding-bottom: 0.75%;
-    
-    opacity: 0.8;
-    box-sizing: border-box;}
-.folder-text{
-    padding-left: 0.5%;
-    float:left;
-    font-size: 2.1vmax;
-    
-    height:6%;
-    width:90%;
-    display: flex;
-    align-items: flex-start;}
-*/
 }
 
 @media only screen and (min-width: 43rem){ /* 688 -> , (768x1024) tablets  */
@@ -275,16 +243,6 @@ display: block;}
 
 /* TODO
  
-? WHO ACCESSES WHAT??
-* * 2 pages
-    *   Page 1, "business":
-        *   coding projects portfolio
-            *   add individually
-        *   profile, with actual contact info
-        *   and experience (when aquired)
-
-
-
 ? CONTENT
 *   header:
     *   social links?
@@ -309,17 +267,5 @@ display: block;}
     *   "Support my art friends!"
         *maddie, olivia, crest, bewwy, 
     
-
-? LAYOUT
-*
-* home
-    * folio
-    *   dropdown with gradient colors?
-    * gallery
-    * profile
-    *
-
-
-
 */
 
