@@ -20,6 +20,7 @@ function toggleDropdownShow(){
 }
 
 let folderSvg = document.getElementById("folder-svg")
+
 let arrowSvg = document.getElementById("arrow-svg")
 
 function hierarchy(listOfPaths){
@@ -56,8 +57,14 @@ function hierarchy(listOfPaths){
             titleSpan = document.createElement('span')
             titleSpan.className = "caret"
             
-            titleSpan.appendChild(arrowSvg.cloneNode(true))
-            titleSpan.appendChild(folderSvg.cloneNode(true))
+            arrowCopy = arrowSvg.cloneNode(true)
+            arrowCopy.classList.remove("hide-svgs")
+            folderCopy = folderSvg.cloneNode(true)
+            folderCopy.classList.remove("hide-svgs")
+
+
+            titleSpan.appendChild(arrowCopy)
+            titleSpan.appendChild(folderCopy)
 
             titleSpan.innerHTML += filePath[filePath.length - 1]
 

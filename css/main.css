@@ -16,7 +16,7 @@ body{
 #main{box-sizing: border-box;
     margin: 0;
     min-height:100vh;}
-*{background-color: rgba(0, 0, 0, 0.075);border:0px solid red;}
+*{background-color: rgba(0, 0, 0, 0.0);border:0px solid red;}
 @media only screen and (max-width: 43rem){ /* <- 688, (375x812) MOBILE/SMALL    */
 #main{
     background-color: rgba(0, 255, 238, 0.37);
@@ -103,7 +103,6 @@ body{
     display: flex;
     align-items: center;}
 .social-link > img{
-    /* * IMG MUST BE 120x120*/
     box-sizing: border-box;
     float:left;
     height:5vmax;}
@@ -250,6 +249,9 @@ border-left:0px solid black;
     
 }
 
+.hide-svgs{
+    display:none;
+}
 
 
 
