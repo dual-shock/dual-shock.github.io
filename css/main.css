@@ -199,7 +199,9 @@ body{
     visibility: hidden;}
 #portfolio{
     height: fit-content;
-    width:100%;}
+    width:100%;
+    font-size: 3vmax;
+}
 
 
     
@@ -212,25 +214,53 @@ padding: 0;}
     
 .caret {
 cursor: pointer;
-user-select: none;}
-    
-.caret::before {
-content: "\25B6";
-color: black;
-display: inline-block;
-margin-right: 6px;}
-    
-.caret-down::before {
-transform: rotate(90deg);}
-    
+user-select: none;
+display:flex;
+width:100%;
+min-height:4vmax;
+align-items: center;
+
+}
+.caret-down > .arrow-svg{
+    transform: rotate(90deg);
+}
+        
 .nested {
 display: none;}
     
 .active {
-display: block;}
+display: block;
+padding-inline-start: 0vmax;
+margin-inline-start: 2vmax;
+border-left:0px solid black;
+}
+
+.portfolio-list{
+    min-height:4vmax;
+    
+}
+
+.arrow-svg{
+    height:2.2vmax;
+    
+    
+}
+.folder-svg{
+    height:3vmax;
+    
+}
+
+
+
+
+
 
 
 }
+
+
+
+
 
 @media only screen and (min-width: 43rem){ /* 688 -> , (768x1024) tablets  */
     #main{background-color: rgba(0, 128, 19, 0.549);} }

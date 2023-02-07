@@ -19,6 +19,9 @@ function toggleDropdownShow(){
     //! console.log("toggled dropdown")
 }
 
+let folderSvg = document.getElementById("folder-svg")
+let arrowSvg = document.getElementById("arrow-svg")
+
 function hierarchy(listOfPaths){
 
     let containerList = document.createElement('ul')
@@ -52,8 +55,11 @@ function hierarchy(listOfPaths){
             nestedList.className = "nested"
             titleSpan = document.createElement('span')
             titleSpan.className = "caret"
+            
+            titleSpan.appendChild(arrowSvg.cloneNode(true))
+            titleSpan.appendChild(folderSvg.cloneNode(true))
 
-            titleSpan.innerHTML = filePath[filePath.length - 1]
+            titleSpan.innerHTML += filePath[filePath.length - 1]
 
             child.elm.appendChild(titleSpan)
             child.elm.appendChild(nestedList)
@@ -71,6 +77,7 @@ function hierarchy(listOfPaths){
             child.elm.innerHTML = filePath[filePath.length - 1]
             elementObjs.push(child)
         }
+        child.elm.className = "portfolio-list"
 
         parentElm = elementObjs.find(item => item.id == child.parentId).elm
 
@@ -83,6 +90,8 @@ function hierarchy(listOfPaths){
 }
 
 let gallery = document.getElementById("gallery-list")
+
+
 
 function loadGithubSources(){
 fetch("https://api.github.com/repos/dual-shock/dual-shock.github.io/git/trees/main?recursive=1")
@@ -130,4 +139,16 @@ fetch("https://api.github.com/repos/dual-shock/dual-shock.github.io/git/trees/ma
 }
 
 if(loadImages){loadGithubSources()}
+else{
+
+var toggler = document.getElementsByClassName("caret")
+var i
+
+for (i = 0; i < toggler.length; i++) {
+    toggler[i].addEventListener("click", function() {
+    this.parentElement.querySelector(".nested").classList.toggle("active");
+    this.classList.toggle("caret-down");
+    });
+}
+}
 
