@@ -220,10 +220,23 @@ min-height:4vmax;
 align-items: center;
 
 }
+
+.caret:hover{
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
 .caret-down > .arrow-svg{
     transform: rotate(90deg);
 }
-        
+
+
+/* .caret > #new-tab-svg, .caret > .folder-link{
+    display:none;
+}
+.caret-down > #new-tab-svg, .caret-down > .folder-link{
+    display:flex;
+}
+         */
 .nested {
 display: none;}
     
@@ -248,8 +261,17 @@ border-left:0px solid black;
     height:3vmax;
     
 }
+.folder-link{
+    margin-left:auto;
+    margin-right:0.5vmax;
+}
+.new-tab-svg{
+    margin-top:0.4vmax;
+    height:2.5vmax;
+    
+}
 
-.hide-svgs{
+.hide{
     display:none;
 }
 
@@ -276,10 +298,6 @@ border-left:0px solid black;
 /* TODO
  
 ? CONTENT
-*   header:
-    *   social links?
-    *   name, logo?
-    *   
 
 *   main content
     *   gallery (photographs)
@@ -297,7 +315,7 @@ border-left:0px solid black;
         *   picture, description, social links, etc
     
     *   "Support my art friends!"
-        *maddie, olivia, crest, bewwy, 
+        *maddie, olivia, crest, bewwy, cres, 
     
 */
 

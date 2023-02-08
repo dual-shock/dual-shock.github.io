@@ -1,9 +1,13 @@
 let loadImages = true
 
+
+let oldElm
+let newElm
+
 window.onclick = function(event) {
     if (!event.target.matches(".burger, #dropdown-container, #burgersvgpath")){
-        //! console.log("somewhere not burger clicked, hiding dropdown content")
-        //! console.log(event.target)
+        //  console.log("somewhere not burger clicked, hiding dropdown content")
+        //  console.log(event.target)
         var dropdowns = document.getElementsByClassName("dropdown-content");
         var i;
         for (i=0; i < dropdowns.length; i++) {
@@ -12,6 +16,13 @@ window.onclick = function(event) {
                 openDropdown.classList.remove("show-dropdown")
             }
         }
+    }
+    if(event.target.matches(".caret")){
+        newElm = event.target
+        console.log(event.target)
+        if(newElm==oldElm){console.log("same elm, dont do anuything to link")}
+        else{console.log("diff elms, add link to this")}
+        oldElm = event.target
     }
 }
 function toggleDropdownShow(){
@@ -22,6 +33,8 @@ function toggleDropdownShow(){
 let folderSvg = document.getElementById("folder-svg")
 
 let arrowSvg = document.getElementById("arrow-svg")
+
+let newtabSvg = document.getElementById("new-tab-svg")
 
 function hierarchy(listOfPaths){
 
@@ -58,9 +71,9 @@ function hierarchy(listOfPaths){
             titleSpan.className = "caret"
             
             arrowCopy = arrowSvg.cloneNode(true)
-            arrowCopy.classList.remove("hide-svgs")
+            arrowCopy.classList.remove("hide")
             folderCopy = folderSvg.cloneNode(true)
-            folderCopy.classList.remove("hide-svgs")
+            folderCopy.classList.remove("hide")
 
 
             titleSpan.appendChild(arrowCopy)
@@ -68,23 +81,57 @@ function hierarchy(listOfPaths){
 
             titleSpan.innerHTML += filePath[filePath.length - 1]
 
+            //TODO MAKE GITHUB LINKS ALMOST TRANSPARENT
+            //TODO ADD STYLING FOR PORTFOLIO FOLDER LINES, MAKE LIKE vsCODE
+            //TODO ADD STYLING TO SOCIAL LINKS, SOLID COLOR SHADOW TO IMAGES
+            //TODO ON HOVER / ACTIVE / HIGHLIGTHED FIND IT OUT FOR THE PORTFOLIO
+
+            githubLink = document.createElement('a')
+            githubLink.href = "https://github.com/dual-shock/dual-shock.github.io/tree/main/"+filePath.join('/')
+            githubLink.target = "_blank"
+            githubLink.innerHTML = "github"
+            githubLink.classList.add("folder-link", "hide")
+
+            newtabCopy = newtabSvg.cloneNode(true)
+            //newtabCopy.classList.remove("hide")
+            newtabCopy.className = "new-tab-svg"
+            newtabCopy.children[0].href = "https://github.com/dual-shock/dual-shock.github.io/tree/main/"+filePath.join('/')
+            newtabCopy.children[0].target = "_blank"
+
+            titleSpan.appendChild(githubLink)
+            titleSpan.appendChild(newtabCopy)
+
             child.elm.appendChild(titleSpan)
             child.elm.appendChild(nestedList)
 
+            console.log("https://github.com/dual-shock/dual-shock.github.io/tree/main/"+filePath.join('/'))
+
             elementObjs.push(child)
 
+            child.elm.className = "portfolio-list"
+
         } else {
+
+
+            
             child = {
-                elm: document.createElement('li'),
+                elm: document.createElement('a'),
                 path: filePath,
                 id: id,
                 parentId: parentId
-            }
+            }   
+            child.elm.href = "https://github.com/dual-shock/dual-shock.github.io/blob/main/"+filePath.join('/')
+            child.elm.target = "_blank"
+            child.elm.appendChild(document.createElement('li'))
+            child.elm.children[0].innerHTML = filePath[filePath.length - 1]
+            child.elm.children[0].className = "portfolio-list"
+            
 
-            child.elm.innerHTML = filePath[filePath.length - 1]
+            //console.log(child.elm)
+            //console.log("https://github.com/dual-shock/dual-shock.github.io/blob/main/"+filePath.join('/'))
             elementObjs.push(child)
         }
-        child.elm.className = "portfolio-list"
+
 
         parentElm = elementObjs.find(item => item.id == child.parentId).elm
 
@@ -105,6 +152,7 @@ fetch("https://api.github.com/repos/dual-shock/dual-shock.github.io/git/trees/ma
     .then((response) => response.json())
     .then(data => {
         trees = data.tree
+        //console.log(data)
         
         let gallery = document.getElementById("gallery-list")
         let portfolio = document.getElementById("portfolio")
