@@ -1,13 +1,10 @@
 let loadImages = true
 
+let oldElm, newElm
 
-let oldElm
-let newElm
 
 window.onclick = function(event) {
     if (!event.target.matches(".burger, #dropdown-container, #burgersvgpath")){
-        //  console.log("somewhere not burger clicked, hiding dropdown content")
-        //  console.log(event.target)
         var dropdowns = document.getElementsByClassName("dropdown-content");
         var i;
         for (i=0; i < dropdowns.length; i++) {
@@ -19,18 +16,24 @@ window.onclick = function(event) {
     }
     if(event.target.matches(".caret")){
         newElm = event.target
-        console.log(event.target)
-        if(newElm==oldElm){console.log("same elm, dont do anuything to link")}
-        else{console.log("diff elms, add link to this")}
+        if(newElm!=oldElm){
+
+            for(let i of newElm.getElementsByClassName("hide")){i.classList.add("show-flex")}        
+            if(oldElm != undefined){
+                for(let i of oldElm.getElementsByClassName("hide")){
+                    i.classList.remove("show-flex")}  
+            }
+        }
         oldElm = event.target
     }
 }
 function toggleDropdownShow(){
     document.getElementById("dropdown").classList.toggle("show-dropdown")
-    //! console.log("toggled dropdown")
+
 }
 
 let folderSvg = document.getElementById("folder-svg")
+let folderSvgFilled = document.getElementById("folder-svg-filled")
 
 let arrowSvg = document.getElementById("arrow-svg")
 
@@ -79,7 +82,7 @@ function hierarchy(listOfPaths){
             titleSpan.appendChild(arrowCopy)
             titleSpan.appendChild(folderCopy)
 
-            titleSpan.innerHTML += filePath[filePath.length - 1]
+            titleSpan.innerHTML += filePath[filePath.length - 1] + "&nbsp"
 
             //TODO MAKE GITHUB LINKS ALMOST TRANSPARENT
             //TODO ADD STYLING FOR PORTFOLIO FOLDER LINES, MAKE LIKE vsCODE
@@ -104,7 +107,7 @@ function hierarchy(listOfPaths){
             child.elm.appendChild(titleSpan)
             child.elm.appendChild(nestedList)
 
-            console.log("https://github.com/dual-shock/dual-shock.github.io/tree/main/"+filePath.join('/'))
+            //console.log("https://github.com/dual-shock/dual-shock.github.io/tree/main/"+filePath.join('/'))
 
             elementObjs.push(child)
 
@@ -123,7 +126,7 @@ function hierarchy(listOfPaths){
             child.elm.href = "https://github.com/dual-shock/dual-shock.github.io/blob/main/"+filePath.join('/')
             child.elm.target = "_blank"
             child.elm.appendChild(document.createElement('li'))
-            child.elm.children[0].innerHTML = filePath[filePath.length - 1]
+            child.elm.children[0].innerHTML = filePath[filePath.length - 1] 
             child.elm.children[0].className = "portfolio-list"
             
 

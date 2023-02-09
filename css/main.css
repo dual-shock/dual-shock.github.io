@@ -5,23 +5,26 @@ html{
     margin: 0;
     padding: 0;
     width:100%;
-    height:100%;}
+    height:100%;
+
+}
 body{
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    width:100%;
+    width:100vw;
     min-height:100vh;
-    height:fit-content}
+    height:fit-content;
+
+    
+}
 #main{box-sizing: border-box;
     margin: 0;
     min-height:100vh;}
 *{background-color: rgba(0, 0, 0, 0.0);border:0px solid red;}
+
 @media only screen and (max-width: 43rem){ /* <- 688, (375x812) MOBILE/SMALL    */
-#main{
-    background-color: rgba(0, 255, 238, 0.37);
-    min-height:100vh;
-    /*  height:fit-content;   */} 
+
 #header{
     box-sizing: border-box;
     width:100vw;
@@ -59,11 +62,46 @@ body{
 .show-dropdown {
     display: block;}
 
+
+/* * CHANGEs UNTIL HERE*/
+
+
+/* div.parallax {
+    width: 100vw;
+    max-height: fit-content;
+    position: relative;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+}
+div.parallax:after {
+	background-image: url("/dual-shock.github.io/imgs/bgimg.png");
+	
+	background-position-x: center;
+    background-position-y:top;
+	background-size: 100%;
+    background-repeat: repeat;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	z-index: -1;
+	content: "";
+    
+	transform: translateZ(-1px) scale(2);
+	-webkit-transform: translateZ(-1px) scale(2);
+} */
+
+
+
+
+/* * CHANGEs END HERE*/
+
 #content{
     box-sizing: border-box;
     margin-top: 2vmax;
     width:100vw;
-    height:400vh;
+    height:fit-content;
     padding:3vmin;}
 .content-item{
     margin-bottom:4vmax;}
@@ -199,84 +237,52 @@ body{
 #portfolio{
     height: fit-content;
     width:100%;
-    font-size: 3vmax;
-}
-
-
+    font-size: 3vmax;}
     
 ul, #myUL {
-list-style-type: none;}
-    
+list-style-type: none;}   
 #myUL {
 margin: 0;
 padding: 0;}
-    
 .caret {
 cursor: pointer;
 user-select: none;
 display:flex;
 width:100%;
 min-height:4vmax;
-align-items: center;
-
-}
-
+align-items: center;}
+.arrow-svg{
+    transition: all 0.35s;}
 .caret:hover{
-    background-color: rgba(0, 0, 0, 0.2);
-}
-
+    background-color: rgba(0, 0, 0, 0.2);}
 .caret-down > .arrow-svg{
-    transform: rotate(90deg);
-}
-
-
-/* .caret > #new-tab-svg, .caret > .folder-link{
-    display:none;
-}
-.caret-down > #new-tab-svg, .caret-down > .folder-link{
-    display:flex;
-}
-         */
+    transform: rotate(90deg);}
 .nested {
 display: none;}
-    
 .active {
 display: block;
 padding-inline-start: 0vmax;
 margin-inline-start: 2vmax;
-border-left:0px solid black;
-}
-
+border-left:0px solid black;}
 .portfolio-list{
-    min-height:4vmax;
-    
-}
-
+    min-height:4vmax;}
+a > .portfolio-list{
+    padding-left: 0.4vmax;}
 .arrow-svg{
-    height:2.2vmax;
-    
-    
-}
+    height:2.2vmax;}
 .folder-svg{
-    height:3vmax;
-    
-}
+    height:3vmax;}
+.folder-svg-filled{
+    height:3vmax;}
 .folder-link{
     margin-left:auto;
-    margin-right:0.5vmax;
-}
+    margin-right:0.5vmax;}
 .new-tab-svg{
     margin-top:0.4vmax;
-    height:2.5vmax;
-    
-}
+    height:2.5vmax;   }
 
-.hide{
-    display:none;
-}
-
-
-
+.hide{display:none;}
+.show-flex{display:flex;}
 
 
 
@@ -287,11 +293,11 @@ border-left:0px solid black;
 
 
 @media only screen and (min-width: 43rem){ /* 688 -> , (768x1024) tablets  */
-    #main{background-color: rgba(0, 128, 19, 0.549);} }
+    #main{background-color: rgba(123, 0, 255, 0.549);} }
 @media only screen and (min-width: 62rem){ /* 992 ->, (1280x720) LAPTOPS, DESKTOPS   */
-    #main{background-color: rgba(140, 255, 0, 0.509);} }
+    #main{background-color: rgba(255, 0, 0, 0.509);} }
 @media only screen and (min-width: 82rem){ /* 1312w ->, (1920x1080) ULTRAWIDES   */
-    #main{background-color: rgba(70, 128, 0, 0.634);} }
+    #main{background-color: rgba(128, 0, 109, 0.634);} }
 
 
 

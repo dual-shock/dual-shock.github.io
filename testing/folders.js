@@ -95,5 +95,3 @@ function filepathsToHierarchy(listOfPaths){
     }
     return containerList
 }
-console.log(folders)
-console.log(filepathsToHierarchy(folders).outerHTML)
