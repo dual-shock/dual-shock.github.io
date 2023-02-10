@@ -11,18 +11,20 @@
 </head>
 <body>
 
-    
     <div id="main">
 
         <div id="header">
-            <!-- <div id="title">SIEGE[SB] \\ NØKKEN \\  </div> -->
-            <div id="title">TESTING \\ TESTING \\  </div>
+            <div id="title">SIEGE[SB] \\ NØKKEN \\  </div>
+            
             <div id="dropdown-container">
-                <svg onclick="toggleDropdownShow()" class="burger" xmlns="http://www.w3.org/2000/svg" 
-                    width="100%" height="7vmax" viewBox="0 0 48 48">
-                    <path id="burgersvgpath" d="M6 36.2v-3.3h36.05v3.3Zm0-10.55v-3.3h36.05v3.3ZM6 15.1v-3.3h36.05v3.3Z"/>
+                <svg onclick="toggleDropdownShow()" id="burger-svg" 
+                        xmlns="http://www.w3.org/2000/svg" width="100%" 
+                        height="7vmax" viewBox="0 0 48 48">
+                    <path id="burger-svg-path" 
+                        d="M6 36.2v-3.3h36.05v3.3Zm0-10.55v-3.3h36.05v3.3ZM6 
+                        15.1v-3.3h36.05v3.3Z"/>
                 </svg>
-                <div id="dropdown" class="dropdown-content">
+                <div class="dropdown">
                     <a href="#">test</a>
                     <a href="#">test</a>
                     <a href="#">test</a>
@@ -31,113 +33,69 @@
         </div>
         
         <div id="content">
-            <div id="gallery-container" class="content-item">
-                <div id="gallery-title"><img src="./imgs/socialicons/nokkenlogo.png" alt="testlogo"><div id="gallery-title-text">G:\ALLERY</div></div>
-                <div id="gallery">
-                    <ul id="gallery-list" class="gallery-image">
 
+            <div id="gallery-container" class="content-item">
+                <div class="content-title">G:\ALLERY</div>
+                <div id="gallery">
+                    <ul class="gallery-ul">
+                        <!-- ? gets filled by javascript -->
                     </ul>
                 </div>
             </div>
             
-            <div id="socials-container" class="content-item">
-                <div id="socials-title">
-                    <img src="./imgs/socialicons/nokkenlogo.png" alt="">
-                    <div id="socials-title-text">S:\OCIALS</div>
-                </div>
-
+            <div class="content-item">
+                <div class="content-title">S:\OCIALS</div>
 
                 <div class="social-link">
-                    <img src="./imgs/socialicons/nokkenlogo.png" alt="">
-                    <a href="#">testing</a>
-                </div>
-                <div class="social-link">
-                    <img src="./imgs/socialicons/nokkenlogo.png" alt="">
-                    <a href="#">testing</a>
-                </div>
-                <div class="social-link">
-                    <img src="./imgs/socialicons/nokkenlogo.png" alt="">
-                    <a href="#">testing</a>
-                </div>
-                <div class="social-link">
-                    <img src="./imgs/socialicons/nokkenlogo.png" alt="">
-                    <a href="#">testing</a>
-                </div>
-                <div class="social-link">
-                    <img src="./imgs/socialicons/nokkenlogo.png" alt="">
-                    <a href="#">testing</a>
-                </div>
-                <div class="social-link">
-                    <img src="./imgs/socialicons/nokkenlogo.png" alt="">
-                    <a href="#">testing</a>
-                </div>
-                <div class="social-link">
-                    <img src="./imgs/socialicons/nokkenlogo.png" alt="">
-                    <a href="#">testing</a>
-                </div>
-                <div class="social-link">
-                    <img src="./imgs/socialicons/nokkenlogo.png" alt="">
-                    <a href="#">testing</a>
-                </div>
-
-
-                <!-- <div class="social-link">
-                    <img src="./imgs/socialicons/instagram.png" alt="testlogo">
+                    <img src="./imgs/socialicons/instagram.png" >
                     <a target="_blank" href="https://www.instagram.com/angelboycybertrash/">instagram</a>
                 </div>
                 <div class="social-link">
-                    <img src="./imgs/socialicons/youtubetwitter.png" alt="testlogo">
+                    <img src="./imgs/socialicons/youtubetwitter.png" >
                     <a target="_blank" href="https://www.youtube.com/@SiegeSB">youtube</a>
                 </div>
                 <div class="social-link">
-                    <img src="./imgs/socialicons/spotify.png" alt="testlogo">
+                    <img src="./imgs/socialicons/spotify.png" >
                     <a target="_blank" href="https://open.spotify.com/user/aajk5e9txobgt5mvxqrnj7ctj?si=f4109cdecf164d07">spotify</a>
                 </div>
                 <div class="social-link">
-                    <img src="./imgs/socialicons/lastfm.png" alt="testlogo">
+                    <img src="./imgs/socialicons/lastfm.png" >
                     <a target="_blank" href="https://www.last.fm/user/Offdeezboy">last.fm</a>
                 </div>
                 <div class="social-link">
-                    <img src="./imgs/socialicons/youtubetwitter.png" alt="testlogo">
+                    <img src="./imgs/socialicons/youtubetwitter.png" >
                     <a target="_blank" href="https://twitter.com/SiegeSB">twitter</a>
                 </div>
                 <div class="social-link">
-                    <img src="./imgs/socialicons/twitch.png" alt="testlogo">
+                    <img src="./imgs/socialicons/twitch.png" >
                     <a target="_blank" href="https://www.twitch.tv/siegesb">twitch</a>
                 </div>
                 <div class="social-link">
-                    <img src="./imgs/socialicons/githubsteam.png" alt="testlogo">
+                    <img src="./imgs/socialicons/githubsteam.png" >
                     <a target="_blank" href="https://github.com/dual-shock">github</a>
                 </div>
                 <div class="social-link">
-                    <img src="./imgs/socialicons/githubsteam.png" alt="testlogo">
+                    <img src="./imgs/socialicons/githubsteam.png" >
                     <a target="_blank" href="https://steamcommunity.com/id/siegesb/">steam</a>
-                </div> -->
-
-
-
+                </div>
             </div>
 
-            <div id="portfolio-container" class="content-item">
-                <div id="portfolio-title">
-                    <img src="./imgs/socialicons/nokkenlogo.png" alt="">
-                    <div id="portfolio-title-text">P:\ORTFOLIO</div>
+            <div class="content-item">
+                <div class="content-title">P:\ORTFOLIO</div>
+
+                <div id="portfolio">
+                    <!-- ? gets filled by javascript -->
                 </div>
-                <div id="portfolio"></div>
             </div>
         </div>
-
-    
-
-    
     </div>
 
 
 
 <!-- only here to be grabbed by html, too lazy to conv. to JS-->
-<svg id="arrow-svg" class="arrow-svg hide" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 48 48"><path d="m15.15 44.6-3.4-3.45 17.3-17.3-17.3-17.3 3.4-3.4 20.7 20.7Z"/></svg>
-<svg id="folder-svg" class="folder-svg hide" version="1.1" viewBox="0 0 700 550" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path id="folderpath" d="m500.77 172.31h-172.31v43.078h172.31v172.31h-301.54v-215.38h129.23v-43.078h-172.31v301.54h387.69v-258.46z"/></svg>
-<svg id="new-tab-svg" class="new-tab-svg hide" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24"><a href="#"><path d="M 3 3 L 3 21 L 21 21 L 21 12 L 19 12 L 19 19 L 5 19 L 5 5 L 12 5 L 12 3 L 3 3 z M 14 3 L 14 5 L 17.585938 5 L 8.2929688 14.292969 L 9.7070312 15.707031 L 19 6.4140625 L 19 10 L 21 10 L 21 3 L 14 3 z"/></a></svg>
+<svg class="arrow-svg display-none" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 48 48"><path d="m15.15 44.6-3.4-3.45 17.3-17.3-17.3-17.3 3.4-3.4 20.7 20.7Z"/></svg>
+<svg class="folder-svg display-none" version="1.1" viewBox="0 0 700 550" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path id="folderpath" d="m500.77 172.31h-172.31v43.078h172.31v172.31h-301.54v-215.38h129.23v-43.078h-172.31v301.54h387.69v-258.46z"/></svg>
+<svg class="new-tab-svg display-none" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24"><a href="#"><path d="M 3 3 L 3 21 L 21 21 L 21 12 L 19 12 L 19 19 L 5 19 L 5 5 L 12 5 L 12 3 L 3 3 z M 14 3 L 14 5 L 17.585938 5 L 8.2929688 14.292969 L 9.7070312 15.707031 L 19 6.4140625 L 19 10 L 21 10 L 21 3 L 14 3 z"/></a></svg>
 
 <script src="js/main.js"></script>
 </body>

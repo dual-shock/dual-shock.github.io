@@ -1,43 +1,42 @@
 let loadImages = true
 
-let oldElm, newElm
+let filePath, id, 
+    parentId, nestedList, titleSpan, child, 
+    childElm, parentElm
 
 
+let oldElm
 window.onclick = function(event) {
-    if (!event.target.matches(".burger, #dropdown-container, #burgersvgpath")){
-        var dropdowns = document.getElementsByClassName("dropdown-content");
-        var i;
-        for (i=0; i < dropdowns.length; i++) {
-            var openDropdown = dropdowns[i];
-            if (openDropdown.classList.contains("show-dropdown")) {
-                openDropdown.classList.remove("show-dropdown")
-            }
-        }
+    if (!event.target.matches(".burger, #dropdown-container, " + 
+                                "#burger-svg-path, #burger-svg")){
+        let dropdowns = document.getElementsByClassName("dropdown")
+        
+        for(let i = 0; i < dropdowns.length; i++){
+            let openDropdown = dropdowns[i]
+            if(openDropdown.classList.contains("display-block")){
+                openDropdown.classList.remove("display-block")}}
     }
-    if(event.target.matches(".caret")){
-        newElm = event.target
-        if(newElm!=oldElm){
 
-            for(let i of newElm.getElementsByClassName("hide")){i.classList.add("show-flex")}        
+    if(event.target.matches(".caret")){
+        let newElm = event.target
+        if(newElm!=oldElm){
+            for(let i of newElm.getElementsByClassName("display-none")){
+                i.classList.add("display-flex")}
+
             if(oldElm != undefined){
-                for(let i of oldElm.getElementsByClassName("hide")){
-                    i.classList.remove("show-flex")}  
-            }
+                for(let i of oldElm.getElementsByClassName("display-none")){
+                    i.classList.remove("display-flex")}}
         }
         oldElm = event.target
     }
 }
 function toggleDropdownShow(){
-    document.getElementById("dropdown").classList.toggle("show-dropdown")
-
+    document.getElementsByClassName("dropdown")[0].classList.toggle("display-block")
 }
 
-let folderSvg = document.getElementById("folder-svg")
-let folderSvgFilled = document.getElementById("folder-svg-filled")
-
-let arrowSvg = document.getElementById("arrow-svg")
-
-let newtabSvg = document.getElementById("new-tab-svg")
+let folderSvg = document.getElementsByClassName("folder-svg")[0]
+let arrowSvg = document.getElementsByClassName("arrow-svg")[0]
+let newtabSvg = document.getElementsByClassName("new-tab-svg")[0]
 
 function hierarchy(listOfPaths){
 
@@ -49,12 +48,9 @@ function hierarchy(listOfPaths){
         id: listOfPaths[0].path.split('/')[0]
     }]
 
-
-    let file, filePath, id, parentId, nestedList, titleSpan, child, childElm, parentElm
-
     for(let i = 0; i < listOfPaths.length; i++){
 
-        file = listOfPaths[i]
+        let file = listOfPaths[i]
         filePath = file.path.split('/')
 
         id = filePath.slice(0,filePath.length).join('')
@@ -74,9 +70,9 @@ function hierarchy(listOfPaths){
             titleSpan.className = "caret"
             
             arrowCopy = arrowSvg.cloneNode(true)
-            arrowCopy.classList.remove("hide")
+            arrowCopy.classList.remove("display-none")
             folderCopy = folderSvg.cloneNode(true)
-            folderCopy.classList.remove("hide")
+            folderCopy.classList.remove("display-none")
 
 
             titleSpan.appendChild(arrowCopy)
@@ -93,10 +89,10 @@ function hierarchy(listOfPaths){
             githubLink.href = "https://github.com/dual-shock/dual-shock.github.io/tree/main/"+filePath.join('/')
             githubLink.target = "_blank"
             githubLink.innerHTML = "github"
-            githubLink.classList.add("folder-link", "hide")
+            githubLink.classList.add("folder-link", "display-none")
 
             newtabCopy = newtabSvg.cloneNode(true)
-            //newtabCopy.classList.remove("hide")
+            //newtabCopy.classList.remove("display-none")
             newtabCopy.className = "new-tab-svg"
             newtabCopy.children[0].href = "https://github.com/dual-shock/dual-shock.github.io/tree/main/"+filePath.join('/')
             newtabCopy.children[0].target = "_blank"
@@ -157,7 +153,7 @@ fetch("https://api.github.com/repos/dual-shock/dual-shock.github.io/git/trees/ma
         trees = data.tree
         //console.log(data)
         
-        let gallery = document.getElementById("gallery-list")
+        let gallery = document.getElementsByClassName("gallery-ul")[0]
         let portfolio = document.getElementById("portfolio")
         let listOfPaths = []
 
