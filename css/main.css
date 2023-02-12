@@ -17,6 +17,8 @@ body{
 }
 #main{
     background-image: url("../imgs/bgimg.png");
+    background-color: rgba(0, 0, 0, 0.651);
+    background-blend-mode: multiply;
     background-repeat: repeat-y;
     background-position-y: top;
     background-position-x: center;
@@ -29,6 +31,7 @@ ul{
 
 
 @media only screen and (max-width: 43rem){ /* <- 688, (375x812) MOBILE/SMALL    */
+
 
 #header{
     width:100vw;
@@ -53,6 +56,9 @@ ul{
     top:7vmax;
     width:fit-content;
     right:0;
+}
+.display-dropdown{
+    display: block;
 }
 .dropdown > a{
     display: block;
@@ -82,8 +88,18 @@ ul{
     justify-content: center;
     align-items: center;
     padding-left:5vmax;
+    color:rgba(46, 240, 182, 0.849);
+    text-shadow:
+    0 0 0.4vmax rgba(46, 240, 182, 0.2),
+    0 0 0.80vmax rgba(46, 240, 182, 0.2),
+    0 0 1.20vmax rgba(46, 240, 182, 0.2),
+    0 0 1.50vmax rgba(46, 240, 182, 0.1),
+    0 0 1.70vmax rgba(46, 240, 182, 0.1),
+    0 0 1.90vmax rgba(46, 240, 182, 0.1),
+    0 0 2vmax rgba(46, 240, 182, 0.1),
+    0 0 2.5vmax rgba(46, 240, 182, 0.1);
+    
 }
-
 
 .social-link{
     height:6vmax;
@@ -96,19 +112,50 @@ ul{
 .social-link > img{
     float:left;
     height:5vmax;
+    box-shadow: rgba(46, 240, 182, 0.4) 0.2vmax 0.2vmax, 
+                rgba(46, 240, 182, 0.3) 0.4vmax 0.4vmax, 
+                rgba(46, 240, 182, 0.2) 0.6vmax 0.6vmax, 
+                rgba(46, 240, 182, 0.1) 0.8vmax 0.8vmax, 
+                rgba(46, 240, 182, 0.05) 1vmax 1vmax;
+    filter:brightness(80%);
+
 }
+
 .social-link > a{
     
     font-size: 3vmax;
-    color:black;
+    color:rgba(46, 240, 182, 0.712);
     padding-right:5%;
+    text-shadow:
+    0 0 0.4vmax rgba(46, 240, 182, 0.3),
+    0 0 0.80vmax rgba(46, 240, 182, 0.3),
+    0 0 1.20vmax rgba(46, 240, 182, 0.3),
+    0 0 1.50vmax rgba(46, 240, 182, 0.2),
+    0 0 1.70vmax rgba(46, 240, 182, 0.2),
+    0 0 1.90vmax rgba(46, 240, 182, 0.2),
+    0 0 2vmax rgba(46, 240, 182, 0.2),
+    0 0 2.5vmax rgba(46, 240, 182, 0.2);
 
     display: flex;
     text-decoration: none;
     flex-grow: 100;
     justify-content: center;
     align-items: center;
-    height:100%;}
+    height:100%;
+}
+.social-link > a:active{
+    text-shadow:
+    0 0 0.4vmax rgba(46, 240, 182, 0.6),
+    0 0 0.80vmax rgba(46, 240, 182, 0.6),
+    0 0 1.20vmax rgba(46, 240, 182, 0.6),
+    0 0 1.50vmax rgba(46, 240, 182, 0.5),
+    0 0 1.70vmax rgba(46, 240, 182, 0.5),
+    0 0 1.90vmax rgba(46, 240, 182, 0.5),
+    0 0 2vmax rgba(46, 240, 182, 0.5),
+    0 0 2.5vmax rgba(46, 240, 182, 0.5);
+}
+
+
 
 
 #gallery-container{
@@ -145,14 +192,11 @@ ul{
 }
 
 
-
 #portfolio{
     height: fit-content;
     width:100%;
     font-size: 3vmax;
 }
-    
-
 .caret {
     cursor: pointer;
     user-select: none;
@@ -161,42 +205,54 @@ ul{
     min-height:4vmax;
     align-items: center;
 }
+.display-caret{
+    display:flex;
+}
+.hide-caret{
+    display:none;
+}
 .arrow-svg{
-    transition: all 0.35s;}
+    transition: all 0.35s;
+}
 .caret:hover{
-    background-color: rgba(0, 0, 0, 0.2);}
+    background-color: rgba(0, 0, 0, 0.2);
+}
 .caret-down > .arrow-svg{
-    transform: rotate(90deg);}
-.nested {
-display: none;}
+    transform: rotate(90deg);
+}
+.hide-folder{
+    display: none;
+}
 .active {
-display: block;
-padding-inline-start: 0vmax;
-margin-inline-start: 2vmax;
-border-left:0px solid black;}
+    display: block;
+    padding-inline-start: 0vmax;
+    margin-inline-start: 2vmax;
+    border-left:
+    0px solid black;
+}
 .portfolio-list{
-    min-height:4vmax;}
+    min-height:4vmax;
+}
 a > .portfolio-list{
-    padding-left: 0.4vmax;}
+    padding-left: 0.4vmax;
+}
 .arrow-svg{
-    height:2.2vmax;}
+    height:2.2vmax;
+}
 .folder-svg{
-    height:3vmax;}
-
+    height:3vmax;
+}
 .folder-link{
     margin-left:auto;
-    margin-right:0.5vmax;}
+    margin-right:0.5vmax;
+}
 .new-tab-svg{
     margin-top:0.4vmax;
-    height:2.5vmax;   }
-
-
-
-
+    height:2.5vmax;   
+}
 
 
 }
-
 
 
 
@@ -209,15 +265,7 @@ a > .portfolio-list{
 
 
 
-.display-none{
-    display:none;
-}
-.display-block {
-    display: block;
-}
-.display-flex{
-    display:flex;
-}
+
 
 
 

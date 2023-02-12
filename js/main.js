@@ -1,45 +1,39 @@
 let loadImages = true
 
-let filePath, id, 
-    parentId, nestedList, titleSpan, child, 
-    childElm, parentElm
+function toggleDropdownShow(){
+    document.getElementsByClassName("dropdown")[0].classList.toggle("display-dropdown")
+}
 
-
-let oldElm
 window.onclick = function(event) {
+    let oldElm
     if (!event.target.matches(".burger, #dropdown-container, " + 
                                 "#burger-svg-path, #burger-svg")){
         let dropdowns = document.getElementsByClassName("dropdown")
         
         for(let i = 0; i < dropdowns.length; i++){
             let openDropdown = dropdowns[i]
-            if(openDropdown.classList.contains("display-block")){
-                openDropdown.classList.remove("display-block")}}
+            if(openDropdown.classList.contains("display-dropdown")){
+                openDropdown.classList.remove("display-dropdown")}}
     }
 
     if(event.target.matches(".caret")){
         let newElm = event.target
         if(newElm!=oldElm){
-            for(let i of newElm.getElementsByClassName("display-none")){
-                i.classList.add("display-flex")}
+            for(let i of newElm.getElementsByClassName("hide-caret")){
+                i.classList.add("display-caret")}
 
             if(oldElm != undefined){
-                for(let i of oldElm.getElementsByClassName("display-none")){
-                    i.classList.remove("display-flex")}}
+                for(let i of oldElm.getElementsByClassName("hide-caret")){
+                    i.classList.remove("display-caret")}}
         }
         oldElm = event.target
     }
 }
-function toggleDropdownShow(){
-    document.getElementsByClassName("dropdown")[0].classList.toggle("display-block")
-}
-
-let folderSvg = document.getElementsByClassName("folder-svg")[0]
-let arrowSvg = document.getElementsByClassName("arrow-svg")[0]
-let newtabSvg = document.getElementsByClassName("new-tab-svg")[0]
 
 function hierarchy(listOfPaths){
-
+    let folderSvg = document.getElementsByClassName("folder-svg")[0]
+    let arrowSvg = document.getElementsByClassName("arrow-svg")[0]
+    let newtabSvg = document.getElementsByClassName("new-tab-svg")[0]
     let containerList = document.createElement('ul')
     containerList.id = "myUL"
 
@@ -49,12 +43,12 @@ function hierarchy(listOfPaths){
     }]
 
     for(let i = 0; i < listOfPaths.length; i++){
-
+        let child
         let file = listOfPaths[i]
-        filePath = file.path.split('/')
+        let filePath = file.path.split('/')
 
-        id = filePath.slice(0,filePath.length).join('')
-        parentId = filePath.slice(0,filePath.length-1).join('')
+        let id = filePath.slice(0,filePath.length).join('')
+        let parentId = filePath.slice(0,filePath.length-1).join('')
 
         if(file.type=="tree"){
             child = {
@@ -64,35 +58,29 @@ function hierarchy(listOfPaths){
                 parentId: parentId
             }
 
-            nestedList = document.createElement('ul')
-            nestedList.className = "nested"
-            titleSpan = document.createElement('span')
+            let nestedList = document.createElement('ul')
+            nestedList.className = "hide-folder"
+
+            let titleSpan = document.createElement('span')
             titleSpan.className = "caret"
             
             arrowCopy = arrowSvg.cloneNode(true)
-            arrowCopy.classList.remove("display-none")
-            folderCopy = folderSvg.cloneNode(true)
-            folderCopy.classList.remove("display-none")
+            arrowCopy.classList.remove("hide-caret")
 
+            folderCopy = folderSvg.cloneNode(true)
+            folderCopy.classList.remove("hide-caret")
 
             titleSpan.appendChild(arrowCopy)
             titleSpan.appendChild(folderCopy)
-
             titleSpan.innerHTML += filePath[filePath.length - 1] + "&nbsp"
-
-            //TODO MAKE GITHUB LINKS ALMOST TRANSPARENT
-            //TODO ADD STYLING FOR PORTFOLIO FOLDER LINES, MAKE LIKE vsCODE
-            //TODO ADD STYLING TO SOCIAL LINKS, SOLID COLOR SHADOW TO IMAGES
-            //TODO ON HOVER / ACTIVE / HIGHLIGTHED FIND IT OUT FOR THE PORTFOLIO
 
             githubLink = document.createElement('a')
             githubLink.href = "https://github.com/dual-shock/dual-shock.github.io/tree/main/"+filePath.join('/')
             githubLink.target = "_blank"
             githubLink.innerHTML = "github"
-            githubLink.classList.add("folder-link", "display-none")
+            githubLink.classList.add("folder-link", "hide-caret")
 
             newtabCopy = newtabSvg.cloneNode(true)
-            //newtabCopy.classList.remove("display-none")
             newtabCopy.className = "new-tab-svg"
             newtabCopy.children[0].href = "https://github.com/dual-shock/dual-shock.github.io/tree/main/"+filePath.join('/')
             newtabCopy.children[0].target = "_blank"
@@ -103,36 +91,29 @@ function hierarchy(listOfPaths){
             child.elm.appendChild(titleSpan)
             child.elm.appendChild(nestedList)
 
-            //console.log("https://github.com/dual-shock/dual-shock.github.io/tree/main/"+filePath.join('/'))
-
             elementObjs.push(child)
 
             child.elm.className = "portfolio-list"
 
-        } else {
-
-
-            
+        } 
+        else {            
             child = {
                 elm: document.createElement('a'),
                 path: filePath,
                 id: id,
                 parentId: parentId
             }   
+
             child.elm.href = "https://github.com/dual-shock/dual-shock.github.io/blob/main/"+filePath.join('/')
             child.elm.target = "_blank"
             child.elm.appendChild(document.createElement('li'))
             child.elm.children[0].innerHTML = filePath[filePath.length - 1] 
             child.elm.children[0].className = "portfolio-list"
             
-
-            //console.log(child.elm)
-            //console.log("https://github.com/dual-shock/dual-shock.github.io/blob/main/"+filePath.join('/'))
             elementObjs.push(child)
         }
 
-
-        parentElm = elementObjs.find(item => item.id == child.parentId).elm
+        let parentElm = elementObjs.find(item => item.id == child.parentId).elm
 
         if(parentElm.children[1] != undefined){
             parentElm = parentElm.children[1]
@@ -142,17 +123,11 @@ function hierarchy(listOfPaths){
     return containerList
 }
 
-let gallery = document.getElementById("gallery-list")
-
-
-
 function loadGithubSources(){
 fetch("https://api.github.com/repos/dual-shock/dual-shock.github.io/git/trees/main?recursive=1")
-    .then((response) => response.json())
-    .then(data => {
+    .then((response) => response.json()).then(data => {
         trees = data.tree
-        //console.log(data)
-        
+
         let gallery = document.getElementsByClassName("gallery-ul")[0]
         let portfolio = document.getElementById("portfolio")
         let listOfPaths = []
@@ -179,12 +154,11 @@ fetch("https://api.github.com/repos/dual-shock/dual-shock.github.io/git/trees/ma
             }
         }
         portfolio.appendChild(hierarchy(listOfPaths))
-        var toggler = document.getElementsByClassName("caret")
-        var i
+        let toggler = document.getElementsByClassName("caret")
         
-        for (i = 0; i < toggler.length; i++) {
+        for (let i = 0; i < toggler.length; i++) {
           toggler[i].addEventListener("click", function() {
-            this.parentElement.querySelector(".nested").classList.toggle("active");
+            this.parentElement.querySelector(".hide-folder").classList.toggle("active");
             this.classList.toggle("caret-down");
           });
         }
@@ -193,16 +167,15 @@ fetch("https://api.github.com/repos/dual-shock/dual-shock.github.io/git/trees/ma
 }
 
 if(loadImages){loadGithubSources()}
+
 else{
+    let toggler = document.getElementsByClassName("caret")
 
-var toggler = document.getElementsByClassName("caret")
-var i
-
-for (i = 0; i < toggler.length; i++) {
-    toggler[i].addEventListener("click", function() {
-    this.parentElement.querySelector(".nested").classList.toggle("active");
-    this.classList.toggle("caret-down");
-    });
-}
+    for (let i = 0; i < toggler.length; i++) {
+        toggler[i].addEventListener("click", function() {
+        this.parentElement.querySelector(".hide-folder").classList.toggle("active");
+        this.classList.toggle("caret-down");
+        });
+    }
 }
 
