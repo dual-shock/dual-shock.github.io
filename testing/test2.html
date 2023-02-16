@@ -10,12 +10,11 @@
 <style>
 
 
-* {
+/* * {
     margin:0;
+    box-sizing: border-box;
     padding:0;
 }
-
-
 
 
 .item {
@@ -25,6 +24,77 @@
     justify-content: center;
     align-items: center;
     height:60vh;
+    border: 1px solid red;
+    background-color:rgba(0, 0, 0, 0.335) ;
+} */
+
+body{
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("../imgs/bgfallback.png");
+}
+#prlx h1 {
+    text-align: center;
+    width: 100%;
+    font-family: sans-serif;
+    
+    color:rgba(0, 255, 255, 0.263);
+    height:25vh;
+}
+
+*{
+    box-sizing: border-box;
+    margin:0;
+    padding:0;
+
+}
+
+
+
+main {
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  perspective: 8px;
+  border:2px solid red;
+    
+}
+
+#prlx {
+  transform-style: preserve-3d;
+  position: relative;
+
+  height:fit-content;
+
+  color: white;
+  border:2px solid rgb(85, 128, 0);
+}
+
+#prlx-bg {
+
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+
+  width:100vw;
+
+  transform: translateZ(-4px) scale(1.5);
+
+  z-index: -999;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("../imgs/bgimg.png");
+
+    background-position-x: center;
+    background-position-y: top;
+  background-size: 100vw;
+  border:2px solid blue;
+  margin-bottom:30vh;
+}
+#btn, #btn2{
+    height:10vh;
+    width:100vw;
 }
 
 
@@ -32,17 +102,158 @@
 </head>
 <body>
 
-<div class="parallax">
-    <div class="item">This is a Parallax Scroll Example</div>
-    <div class="item">This is a Parallax Scroll Example</div>
-    <div class="item">This is a Parallax Scroll Example</div>
-    <div class="item">This is a Parallax Scroll Example</div>
-    <div class="item">This is a Parallax Scroll Example</div>
-</div>
+    <main id="main">
 
-<script src="https://cdn.jsdelivr.net/npm/simple-parallax-js@5.5.1/dist/simpleParallax.min.js"></script>
+        <div id="prlx">
+            <div id="prlx-bg">
+                <div id="test">        </div>
+            </div>
+
+            <h1>The sound that occurs when you snap your fingers is made by your middle finger hitting your palm!</h1>
+            <h1>The sound that occurs when you snap your fingers is made by your middle finger hitting your palm!</h1>
+            <h1>The sound that occurs when you snap your fingers is made by your middle finger hitting your palm!</h1>
+            <h1>The sound that occurs when you snap your fingers is made by your middle finger hitting your palm!</h1>
+            <p style="text-align: center;" id="output">Waiting on scroll events...</p><h1>The sound that occurs when you snap your fingers is made by your middle finger hitting your palm!</h1>
+            <h1>The sound that occurs when you snap your fingers is made by your middle finger hitting your palm!</h1>
+            <h1>The sound that occurs when you snap your fingers is made by your middle finger hitting your palm!</h1>
+            <h1>The sound that occurs when you snap your fingers is made by your middle finger hitting your palm!</h1>
+            <h1>The sound that occurs when you snap your fingers is made by your middle finger hitting your palm!</h1>
+            <h1>The sound that occurs when you snap your fingers is made by your middle finger hitting your palm!</h1>
+            <h1>The sound that occurs when you snap your fingers is made by your middle finger hitting your palm!</h1>
+            <h1>The sound that occurs when you snap your fingers is made by your middle finger hitting your palm!</h1>
+            <h1>The sound that occurs when you snap your fingers is made by your middle finger hitting your palm!</h1>
+            <h1>The sound that occurs when you snap your fingers is made by your middle finger hitting your palm!</h1>
+            <h1>The sound that occurs when you snap your fingers is made by your middle finger hitting your palm!</h1>
+            <h1>The sound that occurs when you snap your fingers is made by your middle finger hitting your palm!</h1>
+            <h1>The sound that occurs when you snap your fingers is made by your middle finger hitting your palm!</h1>
+            <button id="btn" onclick="btn()">
+            <button id="btn2" onclick="btn2()"></button>
+
+            </button>
+
+            
+        </div>
+        
+      </main>
+
+
+
 <script>
+
+let main = document.querySelector("#main");
+let prlx = document.querySelector("#prlx");
+let prlxbg = document.querySelector("#prlx-bg")
+
+function btn(){document.getElementById("btn").style.height = "30vh"}
+function btn2(){document.getElementById("btn").style.height = "5vh"}
+
+
+// * DIS/EN -ABLE SCROLLING SCRIPT TAKEN FROM glazex ON STACKOVERFLOW
+// * src : https://stackoverflow.com/a/4770179
+
+// left: 37, up: 38, right: 39, down: 40,
+// spacebar: 32, pageup: 33, pagedown: 34, end: 35, home: 36
+var keys = {37: 1, 38: 1, 39: 1, 40: 1};
+
+function preventDefault(e) {
+  e.preventDefault();
+  e.stopPropagation();
+}
+
+function preventDefaultForScrollKeys(e) {
+  if (keys[e.keyCode]) {
+    preventDefault(e);
+    return false;
+  }
+}
+
+// modern Chrome requires { passive: false } when adding event
+var supportsPassive = false;
+try {
+  main.addEventListener("test", null, Object.defineProperty({}, 'passive', {
+    get: function () { supportsPassive = true; } 
+  }));
+} catch(e) {}
+
+var wheelOpt = supportsPassive ? { passive: false } : false;
+var wheelEvent = 'onwheel' in document.createElement('div') ? 'wheel' : 'mousewheel';
+
+// call this to Disable
+function disableScroll() {
+  console.log("scroll ")
+  main.addEventListener('DOMMouseScroll', preventDefault, false); // older FF
+  main.addEventListener(wheelEvent, preventDefault, wheelOpt); // modern desktop
+  main.addEventListener('touchmove', preventDefault, wheelOpt); // mobile
+  main.addEventListener('keydown', preventDefaultForScrollKeys, false);
+}
+
+// call this to Enable
+function enableScroll() {
+  main.removeEventListener('DOMMouseScroll', preventDefault, false);
+  main.removeEventListener(wheelEvent, preventDefault, wheelOpt); 
+  main.removeEventListener('touchmove', preventDefault, wheelOpt);
+  main.removeEventListener('keydown', preventDefaultForScrollKeys, false);
+}
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+// *
+
+
+
+function calcLimit(){
+    return Math.abs(1.25 * main.offsetHeight - main.scrollHeight)
+}
+
+
+let limit
+disableScroll()
+sleep(200).then(() => {enableScroll()})
+
+const resize_ob = new ResizeObserver(function(entries) {
+
+	let rect = entries[0].contentRect;
+
+	// current width & height
+
+	let height = rect.height;
+
+	console.log('Current Height : ' + height);
+
+    limit = calcLimit()
+
+    console.log(limit)
+
+
+});
+
+resize_ob.observe(document.querySelector("#prlx"));
+let moved = false
+
+main.addEventListener("scroll", (event) => {
     
+    if(main.scrollTop > limit){
+        //disableScroll()
+        if(!moved){
+            moved = true
+            main.scrollTo({top: limit, behavior: 'auto'});
+            sleep().then(() => {moved = false})
+        }
+        
+        
+
+    }
+    else{
+        enableScroll()
+    }
+    
+
+}, {passive: true});
+
+
+
 </script>
 </body>
 </html>
