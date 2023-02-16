@@ -114,7 +114,6 @@ ul{
 .social-link > img{
     float:left;
     height:5vmax;
-
     box-shadow: rgb(46, 240, 182, 0.4) 0.2vmax 0.2vmax, 
                 rgba(46, 240, 182, 0.3) 0.4vmax 0.4vmax, 
                 rgba(46, 240, 182, 0.2) 0.6vmax 0.6vmax, 
@@ -123,11 +122,9 @@ ul{
     filter:brightness(80%);
 
 }
-
 .social-link > a{
     padding-right:5%;
     font-size: 3vmax;
-
     display: flex;
     text-decoration: none;
     flex-grow: 100;
@@ -156,12 +153,7 @@ ul{
     0 0 2vmax rgba(46, 240, 182, 0.3),
     0 0 2.5vmax rgba(46, 240, 182, 0.3);
     text-decoration-line: underline;
-    
 }
-
-
-
-
 
 #gallery-container{
     min-height:7vmax;
