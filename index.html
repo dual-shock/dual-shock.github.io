@@ -4,608 +4,98 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Parallax ver.</title>
     <link type="image/png" sizes="120x120" rel="icon" href="nokkenlogo.png">
     <meta http-equiv="ScreenOrientation" content="autoRotate:disabled">
-<style>
-@font-face{font-family:"pixelfont";
-src: url("./fonts/VT323-Regular.ttf") format("truetype")}
-*{
-    box-sizing: border-box;
-    margin:0;
-    padding:0;
-}
-main {
-    font-family: pixelfont;
-    height: 100vh;
-    overflow-x: hidden;
-    overflow-y: auto;
-    perspective: 8px;
-    /* border:2px solid red; */
-    color:rgba(46, 240, 182, 0.849);
-    /* text-shadow:
-    0 0 0.4vmax rgba(46, 240, 182, 0.2),
-    0 0 0.80vmax rgba(46, 240, 182, 0.2),
-    0 0 1.20vmax rgba(46, 240, 182, 0.2),
-    0 0 1.50vmax rgba(46, 240, 182, 0.1),
-    0 0 1.70vmax rgba(46, 240, 182, 0.1),
-    0 0 1.90vmax rgba(46, 240, 182, 0.1),
-    0 0 2vmax rgba(46, 240, 182, 0.1),
-    0 0 2.5vmax rgba(46, 240, 182, 0.1); */
-}
-#prlx {
-    transform-style: preserve-3d;
-    position: relative;
-    height:fit-content;
-    /* border:2px solid rgb(85, 128, 0); */
-    margin-bottom:30vh;
-}
-#prlx-bg {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    width:100vw;
-    transform: translateZ(-4px) scale(1.5);
-    z-index: -999;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("./imgs/bgimg.png");
-    background-position: center top;
-    background-size: 100vw;
-    /* border:2px solid blue; */
-}
-ul{
-    list-style-type: none;
-}
-
-@media only screen and (max-width: 43rem){
-
-#header{
-    width:100vw;
-    height:7vmax;
-    display: flex;
-    align-items: center;
-    padding-left:3%;
-    font-size: 4vmax;
-}
-#dropdown-container{
-    float:right;
-    position: relative;
-    width:15%;
-    height:7vmax;
-    margin-left: auto;
-    cursor:pointer;
-}
-.svg-cyan{
-    filter: invert(65%) sepia(20%) saturate(5120%) hue-rotate(123deg) brightness(96%) contrast(102%);
-}
-.dropdown{
-    display:none;
-    z-index: 1;
-    position: absolute;
-    top:7vmax;
-    width:fit-content;
-    right:0;
-}
-.display-dropdown{
-    display: block;
-}
-.dropdown > a{
-    display: block;
-    width:100%; 
-}
-
-#content{
-    margin-top: 2vmax;
-    height:fit-content;
-    padding:3vmin;
-}
-.content-item{
-    margin-bottom:4vmax;
-    width:100%;
-    display:flex;
-    flex-wrap: wrap;
-    height:fit-content;
-}
-.content-title{
-    font-size: 4vmax;
-    height:7vmax;
-    padding-right:5%;
-    width:100%;
-    display: flex;
-    flex-grow: 100;
-    justify-content: center;
-    align-items: center;
-    padding-left:5vmax;
-    
-}
-
-
-.social-link{
-    height:6vmax;
-    margin-top: 1vmax;
-    padding:0.5vmax;
-    flex: 0 0 100%;
-    display: flex;
-    align-items: center;
-}
-.social-link > img{
-    float:left;
-    height:5vmax;
-    box-shadow: rgb(46, 240, 182, 0.4) 0.2vmax 0.2vmax, 
-                rgba(46, 240, 182, 0.3) 0.4vmax 0.4vmax, 
-                rgba(46, 240, 182, 0.2) 0.6vmax 0.6vmax, 
-                rgba(46, 240, 182, 0.1) 0.8vmax 0.8vmax, 
-                rgba(46, 240, 182, 0.05) 1vmax 1vmax;
-    filter:brightness(80%);
-
-}
-.social-link > a{
-    padding-right:5%;
-    font-size: 3vmax;
-    display: flex;
-    flex-grow: 100;
-    justify-content: center;
-    align-items: center;
-    height:100%;
-
-    text-decoration: none;
-    color:rgba(46, 240, 182, 0.712);
-    /* text-shadow:
-    0 0 0.4vmax rgba(46, 240, 182, 0.3),
-    0 0 0.80vmax rgba(46, 240, 182, 0.3),
-    0 0 1.20vmax rgba(46, 240, 182, 0.3),
-    0 0 1.50vmax rgba(46, 240, 182, 0.2),
-    0 0 1.70vmax rgba(46, 240, 182, 0.2),
-    0 0 1.90vmax rgba(46, 240, 182, 0.2),
-    0 0 2vmax rgba(46, 240, 182, 0.2),
-    0 0 2.5vmax rgba(46, 240, 182, 0.2); */
-}
-.social-link > a:active{
-    /* text-shadow:
-    0 0 0.4vmax rgba(46, 240, 182, 0.4),
-    0 0 0.80vmax rgba(46, 240, 182, 0.4),
-    0 0 1.20vmax rgba(46, 240, 182, 0.4),
-    0 0 1.50vmax rgba(46, 240, 182, 0.3),
-    0 0 1.70vmax rgba(46, 240, 182, 0.3),
-    0 0 1.90vmax rgba(46, 240, 182, 0.3),
-    0 0 2vmax rgba(46, 240, 182, 0.3),
-    0 0 2.5vmax rgba(46, 240, 182, 0.3);
-    text-decoration-line: underline; */
-}
-
-#gallery-container{
-    min-height:7vmax;
-    max-height:29.5vmax;
-}
-#gallery{
-    height:fit-content;
-    max-height:22.5vmax;
-    overflow-y: scroll;
-}
-.gallery-ul{
-    display:flex;
-    flex-wrap: wrap;
-    gap:0.5vmax;
-    list-style: none;
-    margin-block-start: 0;
-    margin-block-end: 0;
-    margin-inline-start: 0;
-    margin-inline-end: 0;
-    padding-inline-start: 0;
-}
-.gallery-ul > li{
-    flex: 1 1 auto;
-    height: 11vmax;
-    cursor:pointer;
-    position: relative;
-}
-.gallery-ul li img{
-    object-fit: cover;
-    width:100%;
-    height:100%;
-    vertical-align: middle;
-}
-
-#portfolio{
-    height: fit-content;
-    width:100%;
-    font-size: 3vmax;
-}
-.caret {
-    cursor: pointer;
-    user-select: none;
-    display:flex;
-    width:100%;
-    min-height:4vmax;
-    align-items: center;
-}
-.display-caret{
-    display:flex;
-}
-.hide-caret{
-    display:none;
-}
-.arrow-svg{
-    transition: all 0.35s;
-}
-.caret:hover{
-    background-color: rgba(0, 0, 0, 0.2);
-}
-.caret-down > .arrow-svg{
-    transform: rotate(90deg);
-}
-.hide-folder{
-    display: none;
-}
-.active {
-    display: block;
-    padding-inline-start: 0vmax;
-    margin-inline-start: 2vmax;
-    border-left:
-    0px solid black;
-}
-.active > a{
-    text-decoration: none;
-    color:rgba(46, 240, 182, 0.712);
-    /* text-shadow:
-    0 0 0.4vmax rgba(46, 240, 182, 0.3),
-    0 0 0.80vmax rgba(46, 240, 182, 0.3),
-    0 0 1.20vmax rgba(46, 240, 182, 0.3),
-    0 0 1.50vmax rgba(46, 240, 182, 0.2),
-    0 0 1.70vmax rgba(46, 240, 182, 0.2),
-    0 0 1.90vmax rgba(46, 240, 182, 0.2),
-    0 0 2vmax rgba(46, 240, 182, 0.2),
-    0 0 2.5vmax rgba(46, 240, 182, 0.2); */
-}
-.active > a:active{
-    /* text-shadow:
-    0 0 0.4vmax rgba(46, 240, 182, 0.4),
-    0 0 0.80vmax rgba(46, 240, 182, 0.4),
-    0 0 1.20vmax rgba(46, 240, 182, 0.4),
-    0 0 1.50vmax rgba(46, 240, 182, 0.3),
-    0 0 1.70vmax rgba(46, 240, 182, 0.3),
-    0 0 1.90vmax rgba(46, 240, 182, 0.3),
-    0 0 2vmax rgba(46, 240, 182, 0.3),
-    0 0 2.5vmax rgba(46, 240, 182, 0.3);
-    text-decoration-line: underline; */
-}
-
-.portfolio-list{
-    min-height:4vmax;
-}
-a > .portfolio-list{
-    padding-left: 0.4vmax;
-}
-.arrow-svg{
-    height:2.2vmax;
-}
-.folder-svg{
-    height:3vmax;
-}
-.folder-link{
-    margin-left:auto;
-    margin-right:0.5vmax;
-}
-.new-tab-svg{
-    margin-top:0.4vmax;
-    height:2.5vmax;   
-}
-
-}
-
-
-
-</style>
-
+    <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
 <svg class="arrow-svg hide-caret svg-cyan" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 48 48"><path d="m15.15 44.6-3.4-3.45 17.3-17.3-17.3-17.3 3.4-3.4 20.7 20.7Z"/></svg>
 <svg class="folder-svg hide-caret svg-cyan" version="1.1" viewBox="0 0 700 550" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path id="folderpath" d="m500.77 172.31h-172.31v43.078h172.31v172.31h-301.54v-215.38h129.23v-43.078h-172.31v301.54h387.69v-258.46z"/></svg>
-<svg class="new-tab-svg hide-caret  svg-cyan" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24"><a href="#"><path d="M 3 3 L 3 21 L 21 21 L 21 12 L 19 12 L 19 19 L 5 19 L 5 5 L 12 5 L 12 3 L 3 3 z M 14 3 L 14 5 L 17.585938 5 L 8.2929688 14.292969 L 9.7070312 15.707031 L 19 6.4140625 L 19 10 L 21 10 L 21 3 L 14 3 z"/></a></svg>
+<svg class="new-tab-svg hide-caret svg-cyan" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24"><a href="#"><path d="M 3 3 L 3 21 L 21 21 L 21 12 L 19 12 L 19 19 L 5 19 L 5 5 L 12 5 L 12 3 L 3 3 z M 14 3 L 14 5 L 17.585938 5 L 8.2929688 14.292969 L 9.7070312 15.707031 L 19 6.4140625 L 19 10 L 21 10 L 21 3 L 14 3 z"/></a></svg>
 
-    <main id="main">
-        <div id="prlx">
-            <div id="prlx-bg">
-                <div id="test"></div>
-            </div>
-            <div id="header">
-                <div id="title">SIEGE[SB] \\ NØKKEN \\  </div>
-                <div id="dropdown-container">
-                    <svg onclick="toggleDropdownShow()" id="burger-svg" 
-                            xmlns="http://www.w3.org/2000/svg" width="100%" 
-                            height="7vmax" viewBox="0 0 48 48" class="svg-cyan">
-                        <path id="burger-svg-path" 
-                            d="M6 36.2v-3.3h36.05v3.3Zm0-10.55v-3.3h36.05v3.3ZM6 
-                            15.1v-3.3h36.05v3.3Z"/>
-                    </svg>
-                    <div class="dropdown">
-                        <a href="#">test</a>
-                        <a href="#">test</a>
-                        <a href="#">test</a>
-                    </div>
+<main id="main">
+    <div id="prlx">
+        <div id="prlx-bg">
+            <div id="test"></div>
+        </div>
+        <div id="header">
+            <div id="title">SIEGE[SB] \\ NØKKEN \\  </div>
+            <div id="dropdown-container">
+                <svg onclick="toggleDropdownShow()" id="burger-svg" 
+                        xmlns="http://www.w3.org/2000/svg" width="100%" 
+                        height="7vmax" viewBox="0 0 48 48" class="svg-cyan">
+                    <path id="burger-svg-path" 
+                        d="M6 36.2v-3.3h36.05v3.3Zm0-10.55v-3.3h36.05v3.3ZM6 
+                        15.1v-3.3h36.05v3.3Z"/>
+                </svg>
+                <div class="dropdown">
+                    <a href="#">test</a>
+                    <a href="#">test</a>
+                    <a href="#">test</a>
                 </div>
             </div>
-            <div id="content">
+        </div>
+        <div id="content">
 
-                <div id="gallery-container" class="content-item">
-                    <div class="content-title">G:\ALLERY</div>
-                    <div id="gallery">
-                        <ul class="gallery-ul">
-                            <!--? gets filled by javascript --> 
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="content-item">
-                    <div class="content-title">S:\OCIALS</div>
-    
-                    <div class="social-link">
-                        <img src="./imgs/socialicons/instagram.png" >
-                        <a target="_blank" href="https://www.instagram.com/angelboycybertrash/">\instagram</a>
-                    </div>
-                    <div class="social-link">
-                        <img src="./imgs/socialicons/youtubetwitter.png" >
-                        <a target="_blank" href="https://www.youtube.com/@SiegeSB">\youtube</a>
-                    </div>
-                    <div class="social-link">
-                        <img src="./imgs/socialicons/spotify.png" >
-                        <a target="_blank" href="https://open.spotify.com/user/aajk5e9txobgt5mvxqrnj7ctj?si=f4109cdecf164d07">\spotify</a>
-                    </div>
-                    <div class="social-link">
-                        <img src="./imgs/socialicons/lastfm.png" >
-                        <a target="_blank" href="https://www.last.fm/user/Offdeezboy">\last.fm</a>
-                    </div>
-                    <div class="social-link">
-                        <img src="./imgs/socialicons/youtubetwitter.png" >
-                        <a target="_blank" href="https://twitter.com/SiegeSB">\twitter</a>
-                    </div>
-                    <div class="social-link">
-                        <img src="./imgs/socialicons/twitch.png" >
-                        <a target="_blank" href="https://www.twitch.tv/siegesb">\twitch</a>
-                    </div>
-                    <div class="social-link">
-                        <img src="./imgs/socialicons/githubsteam.png" >
-                        <a target="_blank" href="https://github.com/dual-shock">\github</a>
-                    </div>
-                    <div class="social-link">
-                        <img src="./imgs/socialicons/githubsteam.png" >
-                        <a target="_blank" href="https://steamcommunity.com/id/siegesb/">\steam</a>
-                    </div>
-                </div>
-
-                <div class="content-item">
-                    <div class="content-title">P:\ORTFOLIO</div>
-                    <div id="portfolio">
+            <div id="gallery-container" class="content-item">
+                <div class="content-title">G:\ALLERY</div>
+                <div id="gallery">
+                    <ul class="gallery-ul">
                         <!--? gets filled by javascript --> 
-                    </div>
+                    </ul>
                 </div>
-
             </div>
 
-            <div style="height:20vh"></div><!--! DO NOT REMOVE, DO NOT ADD ANYTHING--> 
+            <div class="content-item">
+                <div class="content-title">S:\OCIALS</div>
+                <div class="social-link">
+                    <img src="./imgs/socialicons/instagram.png" >
+                    <a target="_blank" href="https://www.instagram.com/angelboycybertrash/">\instagram</a>
+                </div>
+                <div class="social-link">
+                    <img src="./imgs/socialicons/youtubetwitter.png" >
+                    <a target="_blank" href="https://www.youtube.com/@SiegeSB">\youtube</a>
+                </div>
+                <div class="social-link">
+                    <img src="./imgs/socialicons/spotify.png" >
+                    <a target="_blank" href="https://open.spotify.com/user/aajk5e9txobgt5mvxqrnj7ctj?si=f4109cdecf164d07">\spotify</a>
+                </div>
+                <div class="social-link">
+                    <img src="./imgs/socialicons/lastfm.png" >
+                    <a target="_blank" href="https://www.last.fm/user/Offdeezboy">\last.fm</a>
+                </div>
+                <div class="social-link">
+                    <img src="./imgs/socialicons/youtubetwitter.png" >
+                    <a target="_blank" href="https://twitter.com/SiegeSB">\twitter</a>
+                </div>
+                <div class="social-link">
+                    <img src="./imgs/socialicons/twitch.png" >
+                    <a target="_blank" href="https://www.twitch.tv/siegesb">\twitch</a>
+                </div>
+                <div class="social-link">
+                    <img src="./imgs/socialicons/githubsteam.png" >
+                    <a target="_blank" href="https://github.com/dual-shock">\github</a>
+                </div>
+                <div class="social-link">
+                    <img src="./imgs/socialicons/githubsteam.png" >
+                    <a target="_blank" href="https://steamcommunity.com/id/siegesb/">\steam</a>
+                </div>
+            </div>
+
+            <div class="content-item">
+                <div class="content-title">P:\ORTFOLIO</div>
+                <div id="portfolio">
+                    <!--? gets filled by javascript --> 
+                </div>
+            </div>
 
         </div>
-    </main>
+        <div style="height:50vh"></div><!--! DO NOT REMOVE, DO NOT ADD ANYTHING--> 
+    </div>
+</main>
 
-<script>
-
-let main = document.querySelector("#main");
-let prlx = document.querySelector("#prlx");
-
-function sleep(ms) {return new Promise(resolve => setTimeout(resolve, ms));}
-
-let limit, oldHeight
-
-const resize_ob = new ResizeObserver(function(entries) {
-	let rect = entries[0].contentRect;
-	let height = rect.height;
-	//console.log(`Height change: ${oldHeight} -> ${height}`)
-    oldHeight = rect.height;
-    limit = calcLimit()});
-
-function calcLimit(){return Math.abs(1.5 * main.offsetHeight - main.scrollHeight)}
-
-resize_ob.observe(document.querySelector("#prlx"));
-
-main.addEventListener("scroll", (event) => {
-    if(main.scrollTop > limit){
-        main.style.overflowY = "hidden"
-        sleep(0.1)
-            .then(()=>{
-                main.scrollTo(0, limit)
-            })
-            .then(()=>{
-                main.style.overflowY="auto"
-            })
-    }}, {passive: true});
-
-
-
-
-let loadImages = true
-
-function toggleDropdownShow(){
-    document.getElementsByClassName("dropdown")[0].classList.toggle("display-dropdown")
-}
-
-window.onclick = function(event) {
-    let oldElm
-    if (!event.target.matches(".burger, #dropdown-container, " + 
-                                "#burger-svg-path, #burger-svg")){
-        let dropdowns = document.getElementsByClassName("dropdown")
-        
-        for(let i = 0; i < dropdowns.length; i++){
-            let openDropdown = dropdowns[i]
-            if(openDropdown.classList.contains("display-dropdown")){
-                openDropdown.classList.remove("display-dropdown")}}
-    }
-
-    if(event.target.matches(".caret")){
-        let newElm = event.target
-        if(newElm!=oldElm){
-            for(let i of newElm.getElementsByClassName("hide-caret")){
-                i.classList.add("display-caret")}
-
-            if(oldElm != undefined){
-                for(let i of oldElm.getElementsByClassName("hide-caret")){
-                    i.classList.remove("display-caret")}}
-        }
-        oldElm = event.target
-    }
-}
-
-function hierarchy(listOfPaths){
-    let folderSvg = document.getElementsByClassName("folder-svg")[0]
-    let arrowSvg = document.getElementsByClassName("arrow-svg")[0]
-    let newtabSvg = document.getElementsByClassName("new-tab-svg")[0]
-    let containerList = document.createElement('ul')
-    containerList.id = "myUL"
-
-    let elementObjs = [{
-        elm: containerList,
-        id: listOfPaths[0].path.split('/')[0]
-    }]
-
-    for(let i = 0; i < listOfPaths.length; i++){
-        let child
-        let file = listOfPaths[i]
-        let filePath = file.path.split('/')
-
-        let id = filePath.slice(0,filePath.length).join('')
-        let parentId = filePath.slice(0,filePath.length-1).join('')
-
-        if(file.type=="tree"){
-            child = {
-                elm: document.createElement('li'),
-                path: filePath,
-                id: id,
-                parentId: parentId
-            }
-
-            let nestedList = document.createElement('ul')
-            nestedList.className = "hide-folder"
-
-            let titleSpan = document.createElement('span')
-            titleSpan.className = "caret"
-            
-            arrowCopy = arrowSvg.cloneNode(true)
-            arrowCopy.classList.remove("hide-caret")
-
-            folderCopy = folderSvg.cloneNode(true)
-            folderCopy.classList.remove("hide-caret")
-
-            titleSpan.appendChild(arrowCopy)
-            titleSpan.appendChild(folderCopy)
-            titleSpan.innerHTML += filePath[filePath.length - 1] + "&nbsp"
-
-            githubLink = document.createElement('a')
-            githubLink.href = "https://github.com/dual-shock/dual-shock.github.io/tree/main/"+filePath.join('/')
-            githubLink.target = "_blank"
-            githubLink.innerHTML = "github"
-            githubLink.classList.add("folder-link", "hide-caret")
-
-            newtabCopy = newtabSvg.cloneNode(true)
-            newtabCopy.className = "new-tab-svg"
-            newtabCopy.children[0].href = "https://github.com/dual-shock/dual-shock.github.io/tree/main/"+filePath.join('/')
-            newtabCopy.children[0].target = "_blank"
-
-            titleSpan.appendChild(githubLink)
-            titleSpan.appendChild(newtabCopy)
-
-            child.elm.appendChild(titleSpan)
-            child.elm.appendChild(nestedList)
-
-            elementObjs.push(child)
-
-            child.elm.className = "portfolio-list"
-
-        } 
-        else {            
-            child = {
-                elm: document.createElement('a'),
-                path: filePath,
-                id: id,
-                parentId: parentId
-            }   
-
-            child.elm.href = "https://github.com/dual-shock/dual-shock.github.io/blob/main/"+filePath.join('/')
-            child.elm.target = "_blank"
-            child.elm.appendChild(document.createElement('li'))
-            child.elm.children[0].innerHTML = filePath[filePath.length - 1] 
-            child.elm.children[0].className = "portfolio-list"
-            
-            elementObjs.push(child)
-        }
-
-        let parentElm = elementObjs.find(item => item.id == child.parentId).elm
-
-        if(parentElm.children[1] != undefined){
-            parentElm = parentElm.children[1]
-        }
-        parentElm.appendChild(child.elm)   
-    }
-    return containerList
-}
-
-function loadGithubSources(){
-fetch("https://api.github.com/repos/dual-shock/dual-shock.github.io/git/trees/main?recursive=1")
-    .then((response) => response.json()).then(data => {
-        trees = data.tree
-
-        let gallery = document.getElementsByClassName("gallery-ul")[0]
-        let portfolio = document.getElementById("portfolio")
-        let listOfPaths = []
-
-        for(let i=0;i<trees.length;i++){
-            let tree = trees[i]
-            if(tree.path.substring(0,'imgs/gallery/'.length)=='imgs/gallery/'){
-                //! console.log("tree",i,"is img")
-                let galleryImage = `
-                <li>
-                <a href="./gallery/gallery.html">
-                    <img src="${tree.path}""/>
-                    <!--div class="gallery-overlay"><span>${tree.path.slice(13)}</span></div-->
-                </a>
-                </li>
-                `
-                gallery.innerHTML += galleryImage
-            }
-            if(tree.path.split('/')[1]=="portfolio" && tree.path.split('/').length > 1){
-                listOfPaths.push({
-                    path: tree.path,
-                    type: tree.type
-                })
-            }
-        }
-        portfolio.appendChild(hierarchy(listOfPaths))
-        let toggler = document.getElementsByClassName("caret")
-        
-        for (let i = 0; i < toggler.length; i++) {
-          toggler[i].addEventListener("click", function() {
-            this.parentElement.querySelector(".hide-folder").classList.toggle("active");
-            this.classList.toggle("caret-down");
-          });
-        }
-        
-    })
-}
-
-if(loadImages){loadGithubSources()}
-
-else{
-    let toggler = document.getElementsByClassName("caret")
-
-    for (let i = 0; i < toggler.length; i++) {
-        toggler[i].addEventListener("click", function() {
-        this.parentElement.querySelector(".hide-folder").classList.toggle("active");
-        this.classList.toggle("caret-down");
-        });
-    }
-}
-
-</script>
+<script src="js/utils.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>
