@@ -1,14 +1,27 @@
+function sleep(ms){
+    return new Promise(resolve => setTimeout(resolve, ms))
+}
+
 function toggleDropdownShow(){
-    document.getElementsByClassName("dropdown")[0].classList.toggle("display-dropdown")
+    if(document.querySelector(".dropdown").classList.contains("display-dropdown")){
+        document.querySelector("#content").style.filter = "brightness(100%)"
+        document.querySelector(".dropdown").classList.toggle("display-dropdown")
+    }
+    else{
+        document.querySelector("#content").style.filter = "brightness(50%)"        
+        document.querySelector(".dropdown").classList.toggle("display-dropdown")         
+    }
 }
 
 function calcLimit(){
     return Math.abs(1.5 * main.offsetHeight - main.scrollHeight)
 }
-
-function sleep(ms){
-    return new Promise(resolve => setTimeout(resolve, ms))
+function smoothScroll(selector){
+    document.querySelector(selector).scrollIntoView({
+        behavior: 'smooth'
+    });
 }
+
 
 function hierarchy(listOfPaths){
     let folderSvg = document.getElementsByClassName("folder-svg")[0]

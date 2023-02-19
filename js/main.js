@@ -1,11 +1,13 @@
 let main = document.querySelector("#main"),
-    prlx = document.querySelector("#prlx")
+    prlx = document.querySelector("#prlx"),
+    dropdown = document.querySelector(".dropdown")
 
 let limit, oldHeight, 
     loadGitSources = true
 
 
 height_ob.observe(document.querySelector("#prlx"))
+
 
 
 main.addEventListener("scroll", (event) => {
@@ -24,12 +26,12 @@ window.addEventListener("click", (event) => {
     let oldElm
     if (!event.target.matches(".burger, #dropdown-container, " + 
                               "#burger-svg-path, #burger-svg")){
-        let dropdowns = document.getElementsByClassName("dropdown")
         
-        for(let i = 0; i < dropdowns.length; i++){
-            let openDropdown = dropdowns[i]
-            if(openDropdown.classList.contains("display-dropdown")){
-                openDropdown.classList.remove("display-dropdown")}}
+        if(document.querySelector(".dropdown").classList.contains("display-dropdown")){
+            dropdown.classList.toggle("display-dropdown")
+            document.querySelector("#content").style.filter = "brightness(100%)"
+        }                        
+        
     }
 
     if(event.target.matches(".caret")){

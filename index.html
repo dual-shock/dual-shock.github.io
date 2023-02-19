@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Parallax ver.</title>
-    <link type="image/png" sizes="120x120" rel="icon" href="nokkenlogo.png">
+    <link type="image/png" sizes="120x120" rel="icon" href="imgs/socialicons/nokkenlogo.png">
     <meta http-equiv="ScreenOrientation" content="autoRotate:disabled">
     <link rel="stylesheet" href="css/main.css">
 </head>
@@ -30,25 +30,18 @@
                         15.1v-3.3h36.05v3.3Z"/>
                 </svg>
                 <div class="dropdown">
-                    <a href="#">test</a>
-                    <a href="#">test</a>
-                    <a href="#">test</a>
+                    <div id="jumpto">JUMP TO:</div>
+                    <div class="jumptoitem" onclick="smoothScroll('#socials-container')">S:\OCIALS</div>
+                    <div class="jumptoitem" onclick="smoothScroll('#portfolio-container')">P:\ORTFOLIO</div>
+                    <div class="jumptoitem" onclick="smoothScroll('#gallery-container')">G:\ALLERY</div>
                 </div>
             </div>
         </div>
         <div id="content">
 
-            <div id="gallery-container" class="content-item">
-                <div class="content-title">G:\ALLERY</div>
-                <div id="gallery">
-                    <ul class="gallery-ul">
-                        <!--? gets filled by javascript --> 
-                    </ul>
-                </div>
-            </div>
-
-            <div class="content-item">
+            <div class="content-item" id="socials-container">
                 <div class="content-title">S:\OCIALS</div>
+                <div class="content-subtitle">links to the various social platforms im on ^-^</div>
                 <div class="social-link">
                     <img src="./imgs/socialicons/instagram.png" >
                     <a target="_blank" href="https://www.instagram.com/angelboycybertrash/">\instagram</a>
@@ -83,15 +76,27 @@
                 </div>
             </div>
 
-            <div class="content-item">
+            <div class="content-item" id="portfolio-container">
                 <div class="content-title">P:\ORTFOLIO</div>
+                <div class="content-subtitle">an integrated file explorer of my coding projects :3 (more coming soon as i polish/document old projects!)</div>
+                
                 <div id="portfolio">
                     <!--? gets filled by javascript --> 
                 </div>
             </div>
 
+            <div id="gallery-container" class="content-item">
+                <div class="content-title">G:\ALLERY</div>
+                <div class="content-subtitle">some pictures ive taken! im by no means a photographer, but i enjoy documenting my surroundings :></div>
+                <div id="gallery">
+                    <ul class="gallery-ul">
+                        <!--? gets filled by javascript --> 
+                    </ul>
+                </div>
+            </div>
+
         </div>
-        <div style="height:50vh"></div><!--! DO NOT REMOVE, DO NOT ADD ANYTHING--> 
+        <div style="height:70vh"></div><!--! DO NOT REMOVE, DO NOT ADD ANYTHING--> 
     </div>
 </main>
 
