@@ -6,6 +6,18 @@
     padding:0;
     transition:all 0.2s ease-in-out;
 }
+html {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;    
+}
+html:focus{
+    outline: none !important;
+}
 main {
     font-family: pixelfont;
     height: 100vh;
