@@ -4,7 +4,6 @@
     box-sizing: border-box;
     margin:0;
     padding:0;
-    transition:all 0.2s ease-in-out;
 }
 html {
     -webkit-tap-highlight-color: transparent;
@@ -20,13 +19,21 @@ html:focus{
 }
 main {
     font-family: pixelfont;
+    color:rgba(46, 240, 182, 0.849);
+}
+
+
+ul{
+    list-style-type: none;
+}
+
+@media only screen and (max-width: 43rem){
+
+main {
     height: 100vh;
     overflow-x: hidden;
     overflow-y: auto;
     perspective: 16px;
-
-    color:rgba(46, 240, 182, 0.849);
-
 }
 #prlx {
     transform-style: preserve-3d;
@@ -48,12 +55,6 @@ main {
     background-position: center top;
     background-size: 100vw;
 }
-ul{
-    list-style-type: none;
-}
-
-@media only screen and (max-width: 43rem){
-
 #header{
     width:100vw;
     height:7vmax;
