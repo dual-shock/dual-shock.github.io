@@ -2,12 +2,13 @@ let main = document.querySelector("#main"),
     prlx = document.querySelector("#prlx"),
     dropdown = document.querySelector(".dropdown")
 
-let limit, oldHeight, 
+let limit, oldHeight,
     loadGitSources = true
 
 
-height_ob.observe(document.querySelector("#prlx"))
 
+
+height_ob.observe(document.querySelector("#prlx"))
 
 
 main.addEventListener("scroll", (event) => {
@@ -22,7 +23,9 @@ main.addEventListener("scroll", (event) => {
             })
     }
 }, {passive: true})
+
 window.addEventListener("click", (event) => {
+    
     let oldElm
     if (!event.target.matches(".burger, #dropdown-container, " + 
                               "#burger-svg-path, #burger-svg")){
@@ -30,12 +33,17 @@ window.addEventListener("click", (event) => {
         if(document.querySelector(".dropdown").classList.contains("display-dropdown")){
             dropdown.classList.toggle("display-dropdown")
             document.querySelector("#content").style.filter = "brightness(100%)"
+        }
+        if(event.target.matches(".jumptoitem")){
+           smoothScroll(event.target.dataset.scrollto)
         }                        
         
     }
 
+
     if(event.target.matches(".caret")){
         let newElm = event.target
+        
         if(newElm!=oldElm){
             for(let i of newElm.getElementsByClassName("hide-caret")){
                 i.classList.add("display-caret")}
@@ -44,12 +52,14 @@ window.addEventListener("click", (event) => {
                 for(let i of oldElm.getElementsByClassName("hide-caret")){
                     i.classList.remove("display-caret")}}
         }
+        
         oldElm = event.target
     }
 }) 
 
 
 if(loadGitSources){
+    
     loadGithubSources()
 }
 else{

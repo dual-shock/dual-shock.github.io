@@ -1,7 +1,6 @@
 function sleep(ms){
     return new Promise(resolve => setTimeout(resolve, ms))
 }
-
 function toggleDropdownShow(){
     if(document.querySelector(".dropdown").classList.contains("display-dropdown")){
         document.querySelector("#content").style.filter = "brightness(100%)"
@@ -12,7 +11,6 @@ function toggleDropdownShow(){
         document.querySelector(".dropdown").classList.toggle("display-dropdown")         
     }
 }
-
 function calcLimit(){
     return Math.abs(1.5 * main.offsetHeight - main.scrollHeight)
 }
@@ -21,9 +19,10 @@ function smoothScroll(selector){
         behavior: 'smooth'
     });
 }
-
-
 function hierarchy(listOfPaths){
+    
+    //TODO Change Portfolio source from dual-shock to nøkkenrepo
+
     let folderSvg = document.getElementsByClassName("folder-svg")[0]
     let arrowSvg = document.getElementsByClassName("arrow-svg")[0]
     let newtabSvg = document.getElementsByClassName("new-tab-svg")[0]
@@ -112,10 +111,11 @@ function hierarchy(listOfPaths){
         }
         parentElm.appendChild(child.elm)   
     }
+    
     return containerList
 }
-
 function loadGithubSources(){
+    
     fetch("https://api.github.com/repos/dual-shock/dual-shock.github.io/git/trees/main?recursive=1")
         .then((response) => response.json()).then(data => {
             trees = data.tree
@@ -156,19 +156,20 @@ function loadGithubSources(){
             }
             
         })
+    
 }
-
 const height_ob = new ResizeObserver((entries) => {
     for(const entry of entries){
         
         let height = entry.contentRect.height
 
-        console.log(`Height change: ${oldHeight} -> ${height}`)
+        //console.log(`Height change: ${oldHeight} -> ${height}`)
 
         oldHeight = entry.contentRect.height
 
         limit = calcLimit()
     }
 })
+
 
 
