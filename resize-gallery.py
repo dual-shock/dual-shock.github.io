@@ -27,7 +27,7 @@ for img in list_of_imgs:
         image = Image.open(f'{cur_dir}\\imgs\\gallery\\{img}')
         image = ImageOps.exif_transpose(image)  #correct quirk with images 
                                                 #not rotating correctly
-        image.thumbnail((200,200))
+        image.thumbnail((400,400))
         image.save(f'{cur_dir}\\imgs\\gallery\\thumbs\\{img}')
 
 
