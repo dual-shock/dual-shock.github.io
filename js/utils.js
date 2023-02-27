@@ -127,13 +127,12 @@ function loadGithubSources(){
     
             for(let i=0;i<trees.length;i++){
                 let tree = trees[i]
-                if(tree.path.substring(0,'imgs/gallery/'.length)=='imgs/gallery/'){
-                    //! console.log("tree",i,"is img")
+                if(tree.path.substring(0,'imgs/gallery/thumbs/'.length)=='imgs/gallery/thumbs/' && tree.type == "blob"){
+                    console.log(tree.path)
                     let galleryImage = `
                     <li>
-                    <a href="./gallery/gallery.html">
-                        <img src="${tree.path}""/>
-                        <!--div class="gallery-overlay"><span>${tree.path.slice(13)}</span></div-->
+                    <a href="https://raw.githubusercontent.com/dual-shock/dual-shock.github.io/main/imgs/gallery/${tree.path.split('/')[tree.path.split('/').length - 1]}">
+                        <img src="${tree.path}"/>
                     </a>
                     </li>
                     `
