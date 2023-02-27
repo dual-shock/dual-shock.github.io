@@ -17,6 +17,7 @@ function calcLimit(){
 function smoothScroll(selector){
     document.querySelector(selector).scrollIntoView({
         behavior: 'smooth'
+        // TODO SOMETHING WRONG HERE
     });
 }
 function hierarchy(listOfPaths){
