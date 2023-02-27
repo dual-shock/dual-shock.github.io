@@ -1,0 +1,51 @@
+@font-face{font-family:"pixelfont";
+    src: url("../resources/fonts/VT323-Regular.ttf") format("truetype")}
+*{
+    box-sizing: border-box;
+    margin:0;
+    padding:0;
+}
+html {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;   
+    height: 100%;
+    width:100%; 
+}
+html:focus{
+    outline: none !important;
+}
+body{
+    height: 100%;
+    width: 100%;
+}
+main {
+    font-family: pixelfont;
+    color:rgba(46, 240, 182, 0.849);
+}
+
+ul{
+    list-style-type: none;
+}
+
+@media only screen and (max-width: 43rem){
+
+    main{
+        height:100%;
+        width: 100%;
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url("../imgs/bgimg.png");
+        background-position: center top;
+        background-size: 100vw;
+    }
+}
+@media only screen and (min-width: 43rem){ /* 688 -> , (768x1024) tablets  */
+    #main{background-color: rgba(0, 128, 19, 0.549);} }
+@media only screen and (min-width: 62rem){ /* 992 ->, (1280x720) LAPTOPS, DESKTOPS   */
+    #main{background-color: rgba(140, 255, 0, 0.509);} }
+@media only screen and (min-width: 82rem){ /* 1312w ->, (1920x1080) ULTRAWIDES   */
+    #main{background-color: rgba(70, 128, 0, 0.634);} }   

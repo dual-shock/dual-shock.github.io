@@ -278,6 +278,11 @@ a > .portfolio-list{
 }
 
 }
-    
+@media only screen and (min-width: 43rem){ /* 688 -> , (768x1024) tablets  */
+    #main{background-color: rgba(0, 128, 19, 0.549);} }
+@media only screen and (min-width: 62rem){ /* 992 ->, (1280x720) LAPTOPS, DESKTOPS   */
+    #main{background-color: rgba(140, 255, 0, 0.509);} }
+@media only screen and (min-width: 82rem){ /* 1312w ->, (1920x1080) ULTRAWIDES   */
+    #main{background-color: rgba(70, 128, 0, 0.634);} }   
     
     
