@@ -22,30 +22,79 @@ html:focus{
 body{
     height: 100%;
     width: 100%;
-}
-main {
     font-family: pixelfont;
     color:rgba(46, 240, 182, 0.849);
 }
-
-ul{
-    list-style-type: none;
+#backbutton{
+    opacity: 50%;
+    color:black;
+    position: fixed;
+    min-height:15%;
+    height: fit-content;
+    min-width:12vw;
+    max-width: 20vw;
+    right:0;
+    top:-2vh;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content:center ;
+    border:0px solid red;
+    font-size: 12vw;
 }
 
-@media only screen and (max-width: 43rem){
-
-    main{
-        height:100%;
-        width: 100%;
-        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-        url("../imgs/bgimg.png");
-        background-position: center top;
-        background-size: 100vw;
-    }
+.svg-cyan{
+    filter: invert(65%) sepia(20%) saturate(5120%) hue-rotate(123deg) brightness(96%) contrast(102%);
 }
-@media only screen and (min-width: 43rem){ /* 688 -> , (768x1024) tablets  */
-    #main{background-color: rgba(0, 128, 19, 0.549);} }
-@media only screen and (min-width: 62rem){ /* 992 ->, (1280x720) LAPTOPS, DESKTOPS   */
-    #main{background-color: rgba(140, 255, 0, 0.509);} }
-@media only screen and (min-width: 82rem){ /* 1312w ->, (1920x1080) ULTRAWIDES   */
-    #main{background-color: rgba(70, 128, 0, 0.634);} }   
+
+main{
+    height:100%;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+#img-bg{
+    height:100%;
+    width:100%;
+    filter:brightness(70%) blur(10px);
+    transform: scale(1.2);
+    overflow:hidden;
+}
+#img-fg{
+    position: fixed;
+    width: 78vw;
+    height:100%;
+    left:10%;
+
+    object-fit: contain;
+} 
+#clickleft{
+    min-width: 12vw;
+    max-width:20vw;
+    height:100%;
+    position: fixed;
+    left:0;
+    top:0;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 50%;
+    text-decoration: none;
+    color: black;
+    font-size: 18vw;
+}
+#clickright{
+    min-width: 12vw;
+    max-width:20vw;
+    height:100%;
+    position: fixed;
+    right:0;
+    top:0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 50%;
+    text-decoration: none;
+    color: black;
+    font-size: 18vw;
+}

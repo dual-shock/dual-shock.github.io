@@ -131,7 +131,7 @@ function loadGithubSources(){
                     console.log(tree.path)
                     let galleryImage = `
                     <li>
-                    <a href="https://raw.githubusercontent.com/dual-shock/dual-shock.github.io/main/imgs/gallery/${tree.path.split('/')[tree.path.split('/').length - 1]}" target="_blank">
+                    <a href="./imgs/gallery/pages/${tree.path.split('/')[tree.path.split('/').length - 1]}.html" target="_blank">
                         <img src="${tree.path}"/>
                     </a>
                     </li>
