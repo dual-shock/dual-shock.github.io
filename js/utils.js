@@ -131,7 +131,7 @@ function loadGithubSources(){
                     console.log(tree.path)
                     let galleryImage = `
                     <li>
-                    <a href="./imgs/gallery/pages/${tree.path.split('/')[tree.path.split('/').length - 1]}.html" target="_blank">
+                    <a href="./imgs/gallery/pages/${tree.path.split('/')[tree.path.split('/').length - 1]}.html">
                         <img src="${tree.path}"/>
                     </a>
                     </li>

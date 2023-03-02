@@ -46,7 +46,9 @@ f"""<!DOCTYPE html>
 <a href="../../../index.html"><div id="backbutton"><-</div></a>
 <main>
 <img id="img-bg" src="https://raw.githubusercontent.com/dual-shock/dual-shock.github.io/main/imgs/gallery/thumbs/{list_of_imgs[i]}" alt="why no here">   
+<div id="fg-container">
 <img id="img-fg" src="https://raw.githubusercontent.com/dual-shock/dual-shock.github.io/main/imgs/gallery/{list_of_imgs[i]}" alt="why no here">
+</div>
 <a href="{prev_img}.html" id="clickleft"><</a>        
 <a href="{next_img}.html" id="clickright">></a>
 </main>

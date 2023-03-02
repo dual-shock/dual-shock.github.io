@@ -1,10 +1,15 @@
-@font-face{font-family:"pixelfont";
-    src: url("../resources/fonts/VT323-Regular.ttf") format("truetype")}
-*{
-    box-sizing: border-box;
+@font-face{font-family:"pixelfont";src: url("../resources/fonts/VT323-Regular.ttf") format("truetype")}
+
+/*
+TODO change font sizes
+
+
+*/
+
+
+*{box-sizing: border-box;
     margin:0;
-    padding:0;
-}
+    padding:0;}
 html {
     -webkit-tap-highlight-color: transparent;
     -webkit-touch-callout: none;
@@ -12,20 +17,14 @@ html {
     -khtml-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
-    user-select: none;    
-}
+    user-select: none;    }
 html:focus{
-    outline: none !important;
-}
+    outline: none !important;}
 main {
     font-family: pixelfont;
     color:rgba(46, 240, 182, 0.849);
 }
-
-
-ul{
-    list-style-type: none;
-}
+ul{list-style-type: none;}
 
 @media only screen and (max-width: 43rem){
 

@@ -40,7 +40,7 @@ body{
     align-items: center;
     justify-content:center ;
     border:0px solid red;
-    font-size: 12vw;
+    font-size: 10vw;
 }
 
 .svg-cyan{
@@ -60,16 +60,27 @@ main{
     transform: scale(1.2);
     overflow:hidden;
 }
-#img-fg{
+#fg-container{
     position: fixed;
-    width: 78vw;
+    top:0;
+    width:80vw;
     height:100%;
-    left:10%;
-
+    left:10vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#img-fg{
+    position: absolute;
+    height:fit-content;
+    max-height: 100%;
+    height:fit-content;
+    max-width: 80vw;
     object-fit: contain;
+    box-shadow: rgba(14, 30, 37, 0.274) 0 3px 12px 0, rgba(14, 30, 37, 0.507) 0 6px 48px 0;
 } 
 #clickleft{
-    min-width: 12vw;
+    min-width: 10vw;
     max-width:20vw;
     height:100%;
     position: fixed;
@@ -84,7 +95,7 @@ main{
     font-size: 18vw;
 }
 #clickright{
-    min-width: 12vw;
+    min-width: 10vw;
     max-width:20vw;
     height:100%;
     position: fixed;
