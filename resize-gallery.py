@@ -23,10 +23,11 @@ list_of_imgs = [elm for elm in list_of_imgs if '.' in elm]
 
 for i in range(len(list_of_imgs)):
     if '.' in list_of_imgs[i]:
+        print(f"checking image ({i}/{len(list_of_imgs)})", end="\r")
         prev_img = list_of_imgs[i-1]
-        if i != len(list_of_imgs) - 1:
+        try:
             next_img = list_of_imgs[i+1]
-        else:
+        except IndexError:
             next_img = list_of_imgs[0]
 
         f = open(f'{cur_dir}\\imgs\\gallery\\pages\\{list_of_imgs[i]}.html', 'w')
