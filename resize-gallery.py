@@ -54,6 +54,9 @@ f"""<!DOCTYPE html>
 <a href="{next_img}.html" id="clickright">></a>
 </main>
 </body>
+<script>
+
+</script>
 </html>""")
 
         image = Image.open(f'{cur_dir}\\imgs\\gallery\\{list_of_imgs[i]}')
