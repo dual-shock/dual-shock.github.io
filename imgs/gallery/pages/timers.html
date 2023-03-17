@@ -25,7 +25,8 @@ html, body{
 }
 main{
     
-    min-height:100%;
+    height:100%;
+    
     overflow:auto;
     
     background: rgb(238,174,202);
@@ -33,28 +34,32 @@ main{
     background-size: 100%;
     background-repeat: repeat-y;
     padding:5%;
+    
 }
 test{
     color: 2;
     color:#714585ad;
 }
 .subject-item{
-    font-size: clamp(1rem, 7vmin, 32rem);
-    margin-bottom:2vmin;
+    max-width: 600px;
+    margin:auto;
+    font-size: 4vh;
 }
 .bar{
-    min-height: 4vh;
-    height:fit-content;
+    height: 4vh;
     width:100%;
     text-align: center;
     color: #55414ac2;
 }
 .item-name{
-    width:100%;
+    margin: auto;
+    max-width: 600px;
     position: relative;
+    height:4vh;
     left:0;
     padding-left:2vw;
-    margin-bottom:0.5vmin;
+    margin-bottom:1vh;
+
 }
 .item-name > p{
     max-width: 75%;
@@ -71,6 +76,7 @@ test{
 #main-title{
     font-size:3rem;
     padding-bottom:5%;
+    margin-bottom: 3vh;
 }
 
 
@@ -131,7 +137,7 @@ let frister = [
         subject: "RLE",
         name: "podcast",
         start:"february 28",
-        end:"march 15",
+        end:"march 17",
     }
 ]
 
@@ -149,7 +155,7 @@ for(let i = 0; i < finishedFrister.length; i++){addBar(finishedFrister[i])}
 
 function addData(frist){
     let unixStart = Math.floor(new Date(`${frist.start} 2023`).getTime() / 1000)
-    let unixEnd = Math.floor(new Date(`${frist.end} 2023`).getTime() / 1000)
+    let unixEnd = Math.floor(new Date(`${frist.end} 2023 23:59`).getTime() / 1000)
     let unixCurr = Math.floor(new Date().getTime() / 1000)
     let total = (unixEnd-unixStart) / 60 / 60
     let remaining = (unixEnd - unixCurr) / 60 / 60
