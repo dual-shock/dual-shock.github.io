@@ -12,8 +12,11 @@ environment you are running this script in.
 
 This file is not intended to be imported as a module.
 """
+import colorsys
+import math
 import os
 
+from imagedominantcolor import DominantColor
 from PIL import Image, ImageOps
 
 cur_dir = __file__.rpartition('\\')[0]
@@ -21,16 +24,43 @@ cur_dir = __file__.rpartition('\\')[0]
 list_of_imgs = os.listdir(f'{cur_dir}\\imgs\\gallery')
 list_of_imgs = [elm for elm in list_of_imgs if '.' in elm]
 
-for i in range(len(list_of_imgs)):
-    if '.' in list_of_imgs[i]:
-        print(f"checking image ({i}/{len(list_of_imgs)})", end="\r")
-        prev_img = list_of_imgs[i-1]
-        try:
-            next_img = list_of_imgs[i+1]
-        except IndexError:
-            next_img = list_of_imgs[0]
+def step(r,g,b, repetitions=1):
+    lum = math.sqrt( .241 * r + .691 * g + .068 * b )
 
-        f = open(f'{cur_dir}\\imgs\\gallery\\pages\\{list_of_imgs[i]}.html', 'w')
+    h, s, v = colorsys.rgb_to_hsv(r,g,b)
+
+    h2 = int(h * repetitions)
+    lum2 = int(lum * repetitions)
+    v2 = int(v * repetitions)
+    if h2 % 2 == 1:
+        v2 = repetitions - v2
+        lum = repetitions - lum
+    return (h2, lum, v2)
+
+sorted = []
+
+for img in list_of_imgs:
+    #print(DominantColor(f'{cur_dir}\\imgs\\gallery\\{img}').rgb)
+    #sorted.append([DominantColor(f'{cur_dir}\\imgs\\gallery\\{img}').rgb, img])
+    sorted.append((DominantColor(f'{cur_dir}\\imgs\\gallery\\{img}').rgb, img))
+
+
+sorted.sort(key=lambda  r_g_b: step(r_g_b[0][0], r_g_b[0][1], r_g_b[0][2], 8) )
+
+
+
+
+
+for i in range(len(sorted)):
+    if '.' in sorted[i][1]:  
+        print(f"checking image ({i}/{len(sorted[1])})", end="\r")
+        prev_img = sorted[i-1][1]
+        try:
+            next_img = sorted[i+1][1]
+        except IndexError:
+            next_img = sorted[0][1]
+
+        f = open(f'{cur_dir}\\imgs\\gallery\\pages\\{sorted[i][1]}.html', 'w')
         f.write(
 f"""<!DOCTYPE html>
 <html lang="en">
@@ -46,9 +76,9 @@ f"""<!DOCTYPE html>
 <body>
 <a href="../../../index.html"><div id="backbutton"><-</div></a>
 <main>
-<img id="img-bg" src="https://raw.githubusercontent.com/dual-shock/dual-shock.github.io/main/imgs/gallery/thumbs/{list_of_imgs[i]}" alt="why no here">   
+<img id="img-bg" src="https://raw.githubusercontent.com/dual-shock/dual-shock.github.io/main/imgs/gallery/thumbs/{sorted[i][1]}" alt="why no here">   
 <div id="fg-container">
-<img id="img-fg" src="https://raw.githubusercontent.com/dual-shock/dual-shock.github.io/main/imgs/gallery/{list_of_imgs[i]}" alt="why no here">
+<img id="img-fg" src="https://raw.githubusercontent.com/dual-shock/dual-shock.github.io/main/imgs/gallery/{sorted[i][1]}" alt="why no here">
 </div>
 <a href="{prev_img}.html" id="clickleft"><</a>        
 <a href="{next_img}.html" id="clickright">></a>
@@ -59,11 +89,11 @@ f"""<!DOCTYPE html>
 </script>
 </html>""")
 
-        image = Image.open(f'{cur_dir}\\imgs\\gallery\\{list_of_imgs[i]}')
+        image = Image.open(f'{cur_dir}\\imgs\\gallery\\{sorted[i][1]}')
         image = ImageOps.exif_transpose(image)  #correct quirk with images 
                                                 #not rotating correctly
         image.thumbnail((400,400))
-        image.save(f'{cur_dir}\\imgs\\gallery\\thumbs\\{list_of_imgs[i]}')
+        image.save(f'{cur_dir}\\imgs\\gallery\\thumbs\\{sorted[i][1]}')
 
 
 
