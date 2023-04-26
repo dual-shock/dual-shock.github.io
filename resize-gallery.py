@@ -87,9 +87,9 @@ for i in range(len(sorted)):
         print(f"checking image ({i}/{len(sorted)})", end="\r")
         prev_img = sorted[i-1][1]
         try:
-            next_img = sorted[i+1][1]
+            next_img = f'{i+1}_{sorted[i+1][1]}'
         except IndexError:
-            next_img = sorted[0][1]
+            next_img = f'{0}_{sorted[0][1]}'
 
         f = open(f'{cur_dir}\\imgs\\gallery\\pages\\{i}_{sorted[i][1]}.html', 'w')
         f.write(
