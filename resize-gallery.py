@@ -15,12 +15,25 @@ This file is not intended to be imported as a module.
 import colorsys
 import math
 import os
+import shutil
 
 from imagedominantcolor import DominantColor
 from PIL import Image, ImageOps
 
 cur_dir = __file__.rpartition('\\')[0]
             
+thumbs_folder = f'{cur_dir}\\imgs\\gallery\\thumbs\\'
+for filename in os.listdir(thumbs_folder):
+    file_path = os.path.join(thumbs_folder, filename)
+    try:
+        if os.path.isfile(file_path) or os.path.islink(file_path):
+            os.unlink(file_path)
+        elif os.path.isdir(file_path):
+            shutil.rmtree(file_path)
+    except Exception as e:
+        print('Failed to delete %s. Reason: %s' % (file_path, e))
+
+
 list_of_imgs = os.listdir(f'{cur_dir}\\imgs\\gallery')
 list_of_imgs = [elm for elm in list_of_imgs if '.' in elm]
 
@@ -53,7 +66,7 @@ sorted.sort(key=lambda  r_g_b: step(r_g_b[0][0], r_g_b[0][1], r_g_b[0][2], 8) )
 
 for i in range(len(sorted)):
     if '.' in sorted[i][1]:  
-        print(f"checking image ({i}/{len(sorted[1])})", end="\r")
+        print(f"checking image ({i}/{len(sorted)})", end="\r")
         prev_img = sorted[i-1][1]
         try:
             next_img = sorted[i+1][1]
