@@ -89,7 +89,7 @@ f"""<!DOCTYPE html>
 <body>
 <a href="../../../index.html"><div id="backbutton"><-</div></a>
 <main>
-<img id="img-bg" src="https://raw.githubusercontent.com/dual-shock/dual-shock.github.io/main/imgs/gallery/thumbs/{sorted[i][1]}" alt="why no here">   
+<img id="img-bg" src="https://raw.githubusercontent.com/dual-shock/dual-shock.github.io/main/imgs/gallery/thumbs/{i}_{sorted[i][1]}" alt="why no here">   
 <div id="fg-container">
 <img id="img-fg" src="https://raw.githubusercontent.com/dual-shock/dual-shock.github.io/main/imgs/gallery/{sorted[i][1]}" alt="why no here">
 </div>
