@@ -23,6 +23,8 @@ from PIL import Image, ImageOps
 cur_dir = __file__.rpartition('\\')[0]
             
 thumbs_folder = f'{cur_dir}\\imgs\\gallery\\thumbs\\'
+pages_folder = f'{cur_dir}\\imgs\\gallery\\pages\\'
+count = 0
 for filename in os.listdir(thumbs_folder):
     file_path = os.path.join(thumbs_folder, filename)
     try:
@@ -30,6 +32,20 @@ for filename in os.listdir(thumbs_folder):
             os.unlink(file_path)
         elif os.path.isdir(file_path):
             shutil.rmtree(file_path)
+        #print(f"removed {count}/{len(os.listdir(thumbs_folder))}  {filename} from {thumbs_folder})", end="\r")
+    except Exception as e:
+        print('Failed to delete %s. Reason: %s' % (file_path, e))
+
+count = 0
+for filename in os.listdir(pages_folder):
+    
+    file_path = os.path.join(pages_folder, filename)
+    try:
+        if os.path.isfile(file_path) or os.path.islink(file_path):
+            os.unlink(file_path)
+        elif os.path.isdir(file_path):
+            shutil.rmtree(file_path)
+        #print(f"removed {count}/{len(os.listdir(pages_folder))}  {filename} from {pages_folder})", end="\r")
     except Exception as e:
         print('Failed to delete %s. Reason: %s' % (file_path, e))
 
@@ -52,10 +68,12 @@ def step(r,g,b, repetitions=1):
 
 sorted = []
 
+count = 0
 for img in list_of_imgs:
     #print(DominantColor(f'{cur_dir}\\imgs\\gallery\\{img}').rgb)
     #sorted.append([DominantColor(f'{cur_dir}\\imgs\\gallery\\{img}').rgb, img])
     sorted.append((DominantColor(f'{cur_dir}\\imgs\\gallery\\{img}').rgb, img))
+    #print(f"detected main color of {count}/{list_of_imgs}  {img}", end="\r")
 
 
 sorted.sort(key=lambda  r_g_b: step(r_g_b[0][0], r_g_b[0][1], r_g_b[0][2], 8) )
