@@ -73,7 +73,7 @@ for i in range(len(sorted)):
         except IndexError:
             next_img = sorted[0][1]
 
-        f = open(f'{cur_dir}\\imgs\\gallery\\pages\\{sorted[i][1]}.html', 'w')
+        f = open(f'{cur_dir}\\imgs\\gallery\\pages\\{i}_{sorted[i][1]}.html', 'w')
         f.write(
 f"""<!DOCTYPE html>
 <html lang="en">
