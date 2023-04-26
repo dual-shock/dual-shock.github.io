@@ -93,7 +93,7 @@ f"""<!DOCTYPE html>
         image = ImageOps.exif_transpose(image)  #correct quirk with images 
                                                 #not rotating correctly
         image.thumbnail((400,400))
-        image.save(f'{cur_dir}\\imgs\\gallery\\thumbs\\{sorted[i][1]}')
+        image.save(f'{cur_dir}\\imgs\\gallery\\thumbs\\{i}_{sorted[i][1]}')
 
 
 
