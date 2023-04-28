@@ -62,7 +62,7 @@ main {
     display: flex;
     align-items: center;
     padding-left:3%;
-    font-size: 4vmax;
+    font-size: clamp(1rem, 4vmax, 4rem);
 }
 #dropdown-container{
     float:right;
@@ -92,11 +92,11 @@ main {
     display: block;
 }
 #jumpto{
-    font-size: 5vmax;
+    font-size: clamp(1rem, 5vmax, 4rem);
     padding-bottom: 1vmax;
 }
 .jumptoitem{
-    font-size: 4vmax;
+    font-size: clamp(1rem, 4vmax, 4rem);
     padding-top:1vmax;
     padding-right:2vmax;
     text-decoration: underline;
@@ -115,7 +115,7 @@ main {
     height:fit-content;
 }
 .content-title{
-    font-size: 4vmax;
+    font-size: clamp(1rem, 4vmax, 4rem);
     height:7vmax;
     padding-right:5%;
     width:100%;
@@ -126,7 +126,7 @@ main {
     padding-left:5vmax;
 }
 .content-subtitle{
-    font-size: 2vmax;
+    font-size: clamp(1rem, 2vmax, 4rem);
     height:5vmax;
     width:100%;
     padding-right:5%;
@@ -160,7 +160,7 @@ main {
 }
 .social-link > a{
     padding-right:5%;
-    font-size: 3vmax;
+    font-size: clamp(1rem, 3vmax, 4rem);
     display: flex;
     flex-grow: 100;
     justify-content: center;
@@ -214,7 +214,7 @@ main {
     margin-top:1.5vmax;
     height: fit-content;
     width:100%;
-    font-size: 3vmax;
+    font-size: clamp(1rem, 3vmax, 4rem);
 }
 .caret {
     cursor: pointer;
@@ -277,9 +277,274 @@ a > .portfolio-list{
     margin-top:0.4vmax;
     height:2.5vmax;   
 }
+#test{
+    position: absolute;
+    bottom:0;
+    height:45%;
+    width:100%;
+    background: linear-gradient(to top, black, black 30%, transparent);
+}
 
 }
 @media only screen and (min-width: 43rem){ /* 688 -> , (768x1024) tablets  */
+main {
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    perspective: 16px;
+}
+#prlx {
+    transform-style: preserve-3d;
+    position: relative;
+    height:fit-content;
+    margin-bottom:30vh;
+
+}
+#prlx-bg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width:100vw;
+    transform: translateZ(-8px) scale(1.5);
+    z-index: -999;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("../imgs/bgimg.png");
+    background-position: center top;
+    background-size: 100vw;
+
+}
+#header{
+    width:100vw;
+    height:7vmax;
+    display: flex;
+    align-items: center;
+    padding-left:3%;
+    font-size: clamp(1rem, 6.5vmax, 4rem);
+}
+#dropdown-container{
+    float:right;
+    position: relative;
+    width:15%;
+    height:7vmax;
+    margin-left: auto;
+    cursor:pointer;
+    flex-grow: 0;
+
+}
+
+.svg-cyan{
+    filter: invert(65%) sepia(20%) saturate(5120%) hue-rotate(123deg) brightness(96%) contrast(102%);
+}
+.dropdown{
+    display:none;
+    z-index: 1;
+    position: absolute;
+    top:7vmax;
+    width:100vw;
+    right:0;
+    padding-right:2vmax;
+    text-align: end;
+}
+.display-dropdown{
+    display: block;
+}
+#jumpto{
+    font-size: clamp(1rem, 5.5vmax, 4rem);
+    padding-bottom: 1vmax;
+}
+.jumptoitem{
+    font-size: clamp(1rem, 4.5vmax, 4rem);
+    padding-top:1vmax;
+    padding-right:2vmax;
+    text-decoration: underline;
+}
+
+#content{
+    margin-top: 2vmax;
+    height:fit-content;
+    padding:3vmin;
+}
+.content-item{
+    margin-bottom:5vmax;
+    width:100%;
+    display:flex;
+    flex-wrap: wrap;
+    height:fit-content;
+}
+.content-title{
+    font-size: clamp(1rem, 5vmax, 4rem);
+    height:7vmax;
+    padding-right:5%;
+    width:100%;
+    display: flex;
+    flex-grow: 100;
+    justify-content: center;
+    align-items:end;
+    padding-left:5vmax;
+}
+.content-subtitle{
+    font-size: clamp(1rem, 2.8vmax, 4rem);
+    min-height:5vmax;
+    max-height: fit-content;
+    width:100%;
+    padding-right:5%;
+    display:flex;
+    justify-content: center;
+    align-items: top;
+    padding-left:5vmax;
+    filter: brightness(75%);
+    text-align: center;
+}
+
+
+.social-link{
+    height:6vmax;
+    margin-top: 1vmax;
+    padding:0.5vmax;
+    flex: 0 0 100%;
+    display: flex;
+    align-items: center;
+}
+.social-link > img{
+    float:left;
+    height:5vmax;
+    box-shadow: rgb(46, 240, 182, 0.4) 0.2vmax 0.2vmax, 
+                rgba(46, 240, 182, 0.3) 0.4vmax 0.4vmax, 
+                rgba(46, 240, 182, 0.2) 0.6vmax 0.6vmax, 
+                rgba(46, 240, 182, 0.1) 0.8vmax 0.8vmax, 
+                rgba(46, 240, 182, 0.05) 1vmax 1vmax;
+    filter:brightness(80%);
+
+}
+.social-link > a{
+    padding-right:5%;
+    font-size: clamp(1rem, 3.5vmax, 4rem);
+    display: flex;
+    flex-grow: 100;
+    justify-content: center;
+    align-items: center;
+    height:100%;
+
+    text-decoration: none;
+    color:rgba(46, 240, 182, 0.712);
+
+}
+.social-link > a:active{
+
+}
+
+#gallery-container{
+    
+    min-height:7vmax;
+    max-height:29.5vmax;
+}
+#gallery{
+    margin-top:2vmax;
+    height:fit-content;
+    max-height:33.5vmax;
+    overflow-y: scroll;
+}
+.gallery-ul{
+    display:flex;
+    flex-wrap: wrap;
+    gap:0.5vmax;
+    list-style: none;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    padding-inline-start: 0;
+}
+.gallery-ul > li{
+    flex: 1 1 auto;
+    height: 11vmax;
+    cursor:pointer;
+    position: relative;
+}
+.gallery-ul li img{
+    object-fit: cover;
+    width:100%;
+    height:100%;
+    vertical-align: middle;
+}
+
+#portfolio{
+    margin-top:1.5vmax;
+    height: fit-content;
+    width:100%;
+    font-size: clamp(1rem, 4.2vmax, 4rem);
+}
+.caret {
+    cursor: pointer;
+    user-select: none;
+    display:flex;
+    width:100%;
+    min-height:4vmax;
+    align-items: center;
+}
+.display-caret{
+    display:flex;
+}
+.hide-caret{
+    display:none;
+}
+.arrow-svg{
+    transition: all 0.35s;
+}
+.caret:hover{
+    background-color: rgba(0, 0, 0, 0.2);
+}
+.caret-down > .arrow-svg{
+    transform: rotate(90deg);
+}
+.hide-folder{
+    display: none;
+}
+.active {
+    display: block;
+    padding-inline-start: 0vmax;
+    margin-inline-start: 2vmax;
+    border-left:
+    0px solid black;
+}
+.active > a{
+    text-decoration: none;
+    color:rgba(46, 240, 182, 0.712);
+}
+.active > a:active{
+
+}
+
+.portfolio-list{
+    min-height:4vmax;
+}
+a > .portfolio-list{
+    padding-left: 0.4vmax;
+}
+.arrow-svg{
+    height:3vmax;
+}
+.folder-svg{
+    height:4.2vmax;
+}
+.folder-link{
+    margin-left:auto;
+    margin-right:0.5vmax;
+}
+.new-tab-svg{
+    margin-top:0.4vmax;
+    height:2.5vmax;   
+}
+
+#test{
+    position: absolute;
+    bottom:0;
+    height:45%;
+    width:100%;
+    background: linear-gradient(to top, black, black 30%, transparent);
+}
 
 }
 @media only screen and (min-width: 62rem){ /* 992 ->, (1280x720) LAPTOPS, DESKTOPS   */
