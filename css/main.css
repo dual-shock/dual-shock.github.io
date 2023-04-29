@@ -300,6 +300,9 @@ main {
 .caret-down > .arrow-svg{
     transform: rotate(90deg);
 }
+.caret-down > a{
+    filter: brightness(100%);
+}
 .hide-folder{
     display: none;
 }
@@ -330,9 +333,15 @@ a > .portfolio-list{
 .folder-svg{
     height:3vmax;
 }
+.caret:hover > a{
+    filter: opacity(100%)
+}
 .folder-link{
     margin-left:auto;
     margin-right:0.5vmax;
+    text-decoration: none;
+    color:rgba(46, 240, 182, 0.712);
+    filter: opacity(0%)
 }
 .new-tab-svg{
     margin-top:0.4vmax;
@@ -341,9 +350,9 @@ a > .portfolio-list{
 #test{
     position: absolute;
     bottom:0;
-    height:45%;
+    height:55%;
     width:100%;
-    background: linear-gradient(to top, black, black 30%, transparent);
+    background: linear-gradient(to top, black, black 15%, transparent);
 }
 
 }
@@ -649,21 +658,28 @@ a > .portfolio-list{
 .folder-svg{
     height:4.2vmax;
 }
+.caret:hover > a{
+    filter: opacity(100%);
+}
 .folder-link{
     margin-left:auto;
     margin-right:0.5vmax;
+    text-decoration: none;
+    color:rgba(46, 240, 182, 0.712);
+    filter: opacity(0%)
+
 }
 .new-tab-svg{
     margin-top:0.4vmax;
-    height:2.5vmax;   
+    height:3vmax;   
 }
 
 #test{
     position: absolute;
     bottom:0;
-    height:45%;
+    height:55%;
     width:100%;
-    background: linear-gradient(to top, black, black 30%, transparent);
+    background: linear-gradient(to top, black, black 15%, transparent);
 }
 
 }

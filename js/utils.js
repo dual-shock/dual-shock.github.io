@@ -63,6 +63,9 @@ function hierarchy(listOfPaths){
             let folderCopy = folderSvg.cloneNode(true)
             folderCopy.classList.remove("hide-caret")
 
+            let newtabCopy = newtabSvg.cloneNode(true)
+            newtabCopy.classList.remove("hide-caret")
+
             titleSpan.appendChild(arrowCopy)
             titleSpan.appendChild(folderCopy)
             titleSpan.innerHTML += filePath[filePath.length - 1] + "&nbsp"
@@ -71,10 +74,10 @@ function hierarchy(listOfPaths){
             githubLink.href = "https://github.com/dual-shock/dual-shock.github.io/tree/main/"+filePath.join('/')
             githubLink.target = "_blank"
             githubLink.innerHTML = "github"
-            githubLink.classList.add("folder-link", "hide-caret")
+            githubLink.classList.add("folder-link")
 
-            let newtabCopy = newtabSvg.cloneNode(true)
-            newtabCopy.className = "new-tab-svg"
+
+            
             newtabCopy.children[0].href = "https://github.com/dual-shock/dual-shock.github.io/tree/main/"+filePath.join('/')
             newtabCopy.children[0].target = "_blank"
 

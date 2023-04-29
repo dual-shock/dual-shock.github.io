@@ -1,4 +1,4 @@
-let main = document.querySelector("#main"),
+    let main = document.querySelector("#main"),
     prlx = document.querySelector("#prlx"),
     dropdown = document.querySelector(".dropdown")
 
