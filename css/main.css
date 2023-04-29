@@ -397,6 +397,60 @@ main {
     filter: brightness(75%);
     text-align: center;
 }
+.friend-imgs{
+    width:100%;
+    height: fit-content;
+    border:0px solid red;
+    align-items: center;
+    justify-content: center;
+
+    display: flex;
+}
+.friend-pfp{
+
+    float: left;
+    width:20%;  
+    height:100%;
+    box-shadow: rgb(46, 240, 182, 0.4) 0.2vmax 0.2vmax, 
+                rgba(46, 240, 182, 0.3) 0.4vmax 0.4vmax, 
+                rgba(46, 240, 182, 0.2) 0.6vmax 0.6vmax, 
+                rgba(46, 240, 182, 0.1) 0.8vmax 0.8vmax, 
+                rgba(46, 240, 182, 0.05) 1vmax 1vmax;
+    filter:brightness(80%);
+    margin-right: 8%;
+    margin-top: 2vmax;
+    border:0px solid red;
+}
+
+.friend-pic{
+    width: 20%;
+    float: left;
+    margin-top: 2vmax;
+    margin-left: 3%;
+    border:0px solid red;
+    
+
+}
+.friend-pic > img{
+    max-width:100%;
+    
+
+    box-shadow: rgb(46, 240, 182, 0.4) 0.2vmax 0.2vmax, 
+                rgba(46, 240, 182, 0.3) 0.4vmax 0.4vmax, 
+                rgba(46, 240, 182, 0.2) 0.6vmax 0.6vmax, 
+                rgba(46, 240, 182, 0.1) 0.8vmax 0.8vmax, 
+                rgba(46, 240, 182, 0.05) 1vmax 1vmax;
+    filter:brightness(60%);
+
+}
+.friend-title{
+    font-size: clamp(1rem, 2.8vmax, 4rem);
+    width:100%;
+    height:fit-content; 
+    margin-top: 0.8vmax;
+    float: left;
+    padding-left: 2.2%;
+}
 
 
 .social-link{
