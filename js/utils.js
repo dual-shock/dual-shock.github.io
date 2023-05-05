@@ -11,6 +11,9 @@ function toggleDropdownShow(){
         document.querySelector(".dropdown").classList.toggle("display-dropdown")         
     }
 }
+function convertRemToPixels(rem) {    
+    return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
+}
 function calcLimit(){
     return Math.abs(1.5 * main.offsetHeight - main.scrollHeight)
 }
@@ -161,18 +164,7 @@ function loadGithubSources(){
         })
     
 }
-const height_ob = new ResizeObserver((entries) => {
-    for(const entry of entries){
-        
-        let height = entry.contentRect.height
 
-        //console.log(`Height change: ${oldHeight} -> ${height}`)
-
-        oldHeight = entry.contentRect.height
-
-        limit = calcLimit()
-    }
-})
 
 
 
