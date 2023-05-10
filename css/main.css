@@ -1,12 +1,4 @@
 @font-face{font-family:"pixelfont";src: url("../resources/fonts/VT323-Regular.ttf") format("truetype")}
-
-/*
-TODO change font sizes
-
-
-*/
-
-
 *{box-sizing: border-box;
     margin:0;
     padding:0;}
@@ -22,8 +14,7 @@ html:focus{
     outline: none !important;}
 main {
     font-family: pixelfont;
-    color:rgba(46, 240, 182, 0.849);
-}
+    color:rgba(46, 240, 182, 0.849);}
 ul{list-style-type: none;}
 
 @media only screen and (max-width: 43rem){
@@ -195,10 +186,6 @@ main {
     padding-left: 2.2%;
 }
 
-
-
-
-
 .social-link{
     height:6vmax;
     margin-top: 1vmax;
@@ -269,7 +256,6 @@ main {
     height:100%;
     vertical-align: middle;
 }
-
 
 #portfolio{
     margin-top:1.5vmax;
@@ -468,7 +454,6 @@ main {
     text-align: center;
 }
 
-
 .friend-imgs-container{
 
     margin-top: 1.6vmax;
@@ -526,7 +511,6 @@ main {
     float: left;
     padding-left: 2.2%;
 }
-
 
 .social-link{
     height:6vmax;
@@ -682,78 +666,95 @@ a > .portfolio-list{
     background: linear-gradient(to top, black, black 15%, transparent);
 }
 
-}
+} 
 @media only screen and (min-width: 62rem){ /* 992 ->, (1280x720) LAPTOPS, DESKTOPS   */
-    #main{
-
-        background-color: rgba(140, 255, 0, 0.509);} 
+    html, body{
+        height:100%; width:100%;
     }
-    #prlx-bg{
+    #main{
+        background-color: rgba(140, 255, 0, 0.509);
+        height: 100%;
+        width:100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        perspective:none;
+    }
+
+
+    #prlx-bg, #bottom-fill{
         display: none;
     }
 
-    #prlx {
 
+    #prlx { /* #main container*/
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url("../imgs/desktopbg.jpg");
+        background-position:center bottom;
+        background-repeat: no-repeat;
+        background-color: #708080;
+        background-size: 100%;
+        height:100%;
+        width:100%;
+        margin-bottom: 0;
+        transform-style:unset;
         
     }
 
     #header{
-        width:100vw;
-        height:7vmax;
-        display: flex;
-        align-items: center;
-        padding-left:3%;
+        width:100%;
+        height:fit-content;
+        display:block;
+        padding-left:0%;
         font-size: clamp(1rem, 6.5vmax, 4rem);
     }
     #dropdown-container{
-        float:right;
-        position: relative;
-        width:15%;
-        height:7vmax;
-        margin-left: auto;
-        cursor:pointer;
-        flex-grow: 0;
-    
+        display:none;    
     }
+    #title{
+        display: flex;
+        align-items: center;
+        padding-left:3%;
+        width: 100%;
+        text-align: left;
+        height:7vmax;
+    }
+    #navbar{
+        width: 100%;
+        height:7vmax;
+        padding-left: 5%;
+        margin-top: 6vmax;
+    }
+    .navbar-item{
+        font-size: clamp(1rem, 4vmax, 4rem);
+        border:1px solid red;
+        min-width: fit-content;
+        width:20%;
+        float:left;
+        opacity: 0.2;
+        transition: opacity 0.2s;
+    }
+    .navbar-item:hover{
+        opacity: 1;
+    }
+
     
     .svg-cyan{
         filter: invert(65%) sepia(20%) saturate(5120%) hue-rotate(123deg) brightness(96%) contrast(102%);
     }
-    .dropdown{
-        display:none;
-        z-index: 1;
-        position: absolute;
-        top:7vmax;
-        width:100vw;
-        right:0;
-        padding-right:2vmax;
-        text-align: end;
-    }
-    .display-dropdown{
-        display: block;
-    }
-    #jumpto{
-        font-size: clamp(1rem, 5.5vmax, 4rem);
-        padding-bottom: 1vmax;
-    }
-    .jumptoitem{
-        font-size: clamp(1rem, 4.5vmax, 4rem);
-        padding-top:1vmax;
-        padding-right:2vmax;
-        text-decoration: underline;
-    }
-    
     #content{
-        margin-top: 2vmax;
-        height:fit-content;
+        max-width:100%;
+        margin-top: 0vmax;
+        height:calc(100vh - 20vmax);
         padding:3vmin;
+        
     }
     .content-item{
-        margin-bottom:5vmax;
+
         width:100%;
-        display:flex;
         flex-wrap: wrap;
         height:fit-content;
+        max-height:100%;
+        display:none;
     }
     .content-title{
         font-size: clamp(1rem, 5vmax, 4rem);
@@ -839,7 +840,8 @@ a > .portfolio-list{
         padding-left: 2.2%;
     }
     
-    
+
+
     .social-link{
         height:6vmax;
         margin-top: 1vmax;
@@ -993,6 +995,7 @@ a > .portfolio-list{
         width:100%;
         background: linear-gradient(to top, black, black 15%, transparent);
     }
+}
 @media only screen and (min-width: 82rem){ /* 1312w ->, (1920x1080) ULTRAWIDES   */
     #main{background-color: rgba(70, 128, 0, 0.634);} }   
     

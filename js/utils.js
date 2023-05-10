@@ -134,7 +134,7 @@ function loadGithubSources(){
             for(let i=0;i<trees.length;i++){
                 let tree = trees[i]
                 if(tree.path.substring(0,'imgs/gallery/thumbs/'.length)=='imgs/gallery/thumbs/' && tree.type == "blob"){
-                    console.log(tree.path)
+                    //console.log(tree.path)
                     let galleryImage = `
                     <li>
                     <a href="./imgs/gallery/pages/${tree.path.split('/')[tree.path.split('/').length - 1]}.html">
