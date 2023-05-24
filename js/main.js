@@ -2,7 +2,7 @@ let main = document.querySelector("#main"),
 prlx = document.querySelector("#prlx"),
 dropdown = document.querySelector(".dropdown")
 
-let limit, oldContentElm, oldHeight, oldWidth, desktop = false, loadGitSources = true, mediaQuery = convertRemToPixels(62)
+let limit, oldContentElm, oldNavItem, oldHeight, oldWidth, desktop = false, loadGitSources = true, mediaQuery = convertRemToPixels(62)
 
 
 const height_ob = new ResizeObserver((entries) => {
@@ -23,12 +23,11 @@ const height_ob = new ResizeObserver((entries) => {
                     console.log("window changed to desktop, desktop:", desktop)
                     if(oldContentElm != undefined){
                         console.log("removing display from old visible cont. elm: ", oldContentElm)
-                        oldContentElm.classList.remove("display-caret")   
+                        oldContentElm.classList.remove("display-block")  
+                        oldNavItem.style.opacity = "0.2"
                         oldContentElm = undefined
-
+                        oldNavItem = undefined
                     }
-
-
                 }
             }
             else{
@@ -74,20 +73,31 @@ function clickHandler(e){
  
         if(e.target.matches(".navbar-item")){
             console.log("navbar item clicked")
+            
 
             let newContentElm = document.querySelector(e.target.dataset.open)
+            let newNavItem = e.target
             if(newContentElm != oldContentElm){
-                newContentElm.classList.add("display-caret")
-                if(oldContentElm!=undefined){oldContentElm.classList.remove("display-caret")}
+                newContentElm.classList.add("display-block")
+                newNavItem.style.opacity = "1"
+                
+                if(oldContentElm!=undefined){
+                    oldContentElm.classList.remove("display-block")
+                    oldNavItem.style.opacity = "0.2"
+                }
             }
             oldContentElm = document.querySelector(e.target.dataset.open)
+            oldNavItem = e.target
             console.log("curr cont. elm: ", newContentElm, "\nold cont. elm: ", oldContentElm)
         }
 
         if(e.target.matches("#header, #navbar, #title") && oldContentElm != undefined){
             console.log("non cont. elm clicked: ", e.target, "\nremoving display form old cont. elm: ", oldContentElm)
-            oldContentElm.classList.remove("display-caret")
+            oldContentElm.classList.remove("display-block")
+            oldNavItem.style.opacity = "0.2"
+            
             oldContentElm = undefined
+            oldNavItem = undefined
         }
     }
 
