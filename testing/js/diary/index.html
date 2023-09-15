@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nora's Diary</title>
+    <link type="image/png" sizes="120x120" rel="icon" href="imgs/nokkenlogo.png">
+    <meta http-equiv="ScreenOrientation" content="autoRotate:disabled">
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <div id="pre-sign-in">
+        <div id="login">
+            <div id="email-input">
+                <input type="text" placeholder="email">
+            </div>
+            <div id="pass-input">
+                <input type="text" placeholder="password">
+            </div>
+            <div id="confirm-pass-input" style="display:none;">
+                <input type="text" placeholder="confirm password">
+            </div>
+            <div id="signin-input">
+                <button id="sign-in-button">log in</button>
+            </div>
+            <div id="newuser-input" >
+                <button id="newuser-button" data-registering="false">New user?</button>
+            </div>
+            <div id="error-output" style="display:none;">
+                <button id="error-button">Invalid:</button>
+            </div>
+        </div>
+    </div>
+    <main style="display:none;">
+        <div id="title">Nora</div>
+        <div id="dreams" class="cat-selector" data-category="dream">Dreams</div>
+        <div id="diary" class="cat-selector" data-category="diary" class="selected-category">Diary</div>
+        <div id="thoughts" class="cat-selector" data-category="thought">Thoughts</div>
+        <div id="add-bar" style="display:none;">+ New</div>
+        <div id="add-input" style="display:none;"> 
+            <div id="add-info">
+                <div id="add-time-title">Date:</div>
+                <input type="datetime-local" id="time-input">
+                <div id="load-draft">
+                    Load draft
+                </div>
+            </div>
+
+            <div id="add-text">
+                <div id="add-text-title">Text:</div>
+                <textarea name="textinput" id="text-input" ></textarea>
+            </div>
+            <div id="action-buttons">
+                <div id="cancel">Cancel</div>
+                <div id="add-draft">Draft</div>
+                <div id="submit-entry"></div>
+            </div>
+        </div> 
+        <div id="content">
+            <div id="sidebar">
+                <!-- gets filled by js -->
+
+            </div>
+            <div id="entries">
+                <!-- gets filled by js -->
+            </div>      
+        </div>
+    </main>
+</body>
+<script src="./utils.js"></script>
+
+<script type="module">
+
+import { 
+    initializeApp 
+} from "https://www.gstatic.com/firebasejs/10.2.0/firebase-app.js";
+
+import { 
+    getFirestore, 
+    collection, 
+    getDocs, 
+    setDoc, 
+    orderBy, 
+    doc, 
+    query 
+} from "https://www.gstatic.com/firebasejs/10.2.0/firebase-firestore.js";
+
+import { 
+    getAuth, 
+    createUserWithEmailAndPassword, 
+    signInWithEmailAndPassword, 
+    onAuthStateChanged 
+} from "https://www.gstatic.com/firebasejs/10.2.0/firebase-auth.js"
+
+
+const firebaseConfig = {
+// CONFIG HERE
+}
+const app = initializeApp(firebaseConfig);
+const auth = getAuth();
+
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    // User is signed in, see docs for a list of available properties
+    // https://firebase.google.com/docs/reference/js/auth.user
+    const uid = user.uid;
+    console.log("load data now")
+    // ...
+  } else {
+    // User is signed out
+    // ...
+    console.log("UNload data now")
+  }
+});
+
+grab("sign-in-button").addEventListener("click", e => {
+
+})
+
+grab("newuser-button").addEventListener("click", e => {
+    console.log(e.target.dataset.registering)
+    if(e.target.dataset.registering == "false"){
+
+    }
+    grab("signin-input").style.display = "none"
+    grab("confirm-pass-input").style.display = "flex"
+
+})
+
+
+const db = getFirestore(app)
+const sortQuery = query(collection(db, "entries"), orderBy("date", "desc"))
+const querySnapshot = await getDocs(sortQuery)
+
+let yearMonthPairs = []
+let selectedCategory = "diary"
+let exampleTimestamp = querySnapshot.docs[0].data().date
+
+function snapshotEntryElm(snapData, currentCategory){
+    let entryElm = document.createElement("div")
+    let docDate = new Date(snapData.date.seconds * 1000)
+    entryElm.classList.add("entry")
+    entryElm.dataset.category = snapData.category
+    entryElm.dataset.year = docDate.getFullYear()
+    entryElm.dataset.month = months[docDate.getMonth()].substring(0, 3) 
+    
+    entryElm.innerHTML = `
+        <div class="entry-info">
+        <div class="entry-date">${formatDateForEntry(snapData.date.seconds)}</div>
+        <div class="entry-words">${snapData.content.split(" ").length} words</div>
+        </div>
+        <div class="entry-content">
+        ${snapData.content}
+        </div>`
+    if(snapData.category != currentCategory){
+        entryElm.style.display = "none"
+    }
+    let year = `${docDate.getFullYear()}`
+    if(!yearMonthPairs.includes(year)){
+        yearMonthPairs.push(year)
+    }
+    let yearMonthPair = `${docDate.getFullYear()}_${docDate.getMonth()}`
+    if(!yearMonthPairs.includes(yearMonthPair)){
+        yearMonthPairs.push(yearMonthPair)
+    }
+    return entryElm
+}
+function addAllEntries(currentCategory){
+    querySnapshot.forEach((doc) => {
+        snapshotEntryElm(doc.data())
+        grab("entries").append(snapshotEntryElm(doc.data(), currentCategory))
+    })
+    return [...grab(".entry", "all")]
+}
+function createSidebar(){
+    let sidebarElm = grab("sidebar")
+    sidebarElm.innerHTML = ""
+    yearMonthPairs.forEach((pair) => {
+        if(pair.length == 4){
+            let yearElm = document.createElement("div")
+            yearElm.classList.add("sidebar-year")
+            yearElm.innerText = pair
+            sidebarElm.append(yearElm) 
+        }
+        else{
+            let monthElm = document.createElement("div")
+            monthElm.classList.add("sidebar-month")
+            monthElm.innerText = months[parseInt(pair.split("_")[1])].substring(0, 3)
+            monthElm.dataset.year = pair.split("_")[0]
+            monthElm.dataset.month = months[parseInt(pair.split("_")[1])].substring(0, 3)
+            monthElm.addEventListener("click", e => {timeframeEntries(e.target.dataset.year, e.target.dataset.month)})
+            sidebarElm.append(monthElm)    
+        }
+    })
+    document.body.addEventListener("click", e => {if(!e.target.matches(".sidebar-month")){unTimeframeEntries()}})
+}
+function unTimeframeEntries(){
+    allEntries.filter(entry => entry.dataset.category == selectedCategory).forEach((elm =>{elm.style.display = "block"}))
+}
+function timeframeEntries(year, month){
+    unTimeframeEntries()
+    allEntries.filter(entry => entry.dataset.category == selectedCategory).forEach((elm =>{
+        if(elm.dataset.year != year || elm.dataset.month != month){
+            elm.style.display = "none"
+        }
+        
+    }))
+}
+function changeCategory(currentCategory, newCategory){
+    if(newCategory!=currentCategory){
+        
+
+        if(newCategory == "diary"){
+            document.body.style.backgroundColor = "#CDC392"
+        }
+        if(newCategory == "dream"){
+            document.body.style.backgroundColor = "#c692cd"
+        }
+        if(newCategory == "thought"){
+            document.body.style.backgroundColor = "#bbcd92"
+        }
+         
+        allEntries.filter(entry => entry.dataset.category == currentCategory).forEach((elm =>{
+            elm.style.display = "none"
+        }))
+        allEntries.filter(entry => entry.dataset.category == newCategory).forEach((elm =>{
+            elm.style.display = "block"
+        }))
+    }
+    selectedCategory = newCategory
+    grab("submit-entry").innerText = `Add ${selectedCategory} entry`
+    //TODO highlight category changers
+}
+function addAddbar(){
+    let currTime = new Date()
+    grab("add-bar").style.display = "block"
+    grab("add-bar").addEventListener("click", e => {
+        grab("content").style.display = "none"
+        grab("add-bar").style.display = "none"
+        grab("add-input").style.display = "block"
+        grab("submit-entry").innerText = `Add ${selectedCategory} entry`
+        grab("time-input").value =
+        `${currTime.getFullYear()}-${addZero(currTime.getMonth()+1)}-${addZero(currTime.getDate())}T${addZero(currTime.getHours())}:${addZero(currTime.getMinutes())}`
+    })  
+    grab("cancel").addEventListener("click", e =>{
+        grab("content").style.display = "block"
+        grab("add-bar").style.display = "block"
+        grab("add-input").style.display = "none"
+    })
+    grab("submit-entry").addEventListener("click", e =>{
+
+        let newDocId = `${currTime.getDate()}${addZero(currTime.getMonth()+1)}${currTime.getFullYear().toString().substring(2,4)}${addZero(currTime.getHours())}${addZero(currTime.getMinutes())}`
+        
+        let newDocTimestamp = exampleTimestamp
+        newDocTimestamp.seconds = Math.round(currTime.getTime()/1000)
+        newDocTimestamp.nanoseconds = Math.round(((currTime.getTime() / 1000) % 1) * 100000000)
+        
+        let newDocObj = {
+            content: grab("text-input").value,
+            category: selectedCategory, 
+            date: newDocTimestamp
+        } 
+
+        try {
+            let docRef = setDoc(doc(db, "entries", newDocId), newDocObj);
+        } 
+        catch (e) {
+            console.error("Error adding document: ", e);
+        }
+
+        let newestElm = snapshotEntryElm(newDocObj, selectedCategory)
+        grab("entries").prepend(newestElm)
+        allEntries.unshift(newestElm)
+
+        grab("content").style.display = "block"
+        grab("add-bar").style.display = "block"
+        grab("add-input").style.display = "none"
+    })
+    grab("load-draft").addEventListener("click", e =>{
+        //TODO add draft functionality
+        console.log("draft functionality to be added!")
+        //dim whole screen, add selector on top of everything in list
+        //list can be similar to entry list, show date, first few words
+
+        //pull from document collection "drafts"
+    })
+    grab("add-draft").addEventListener("click", e =>{
+        //TODO add draft functionality
+        console.log("draft functionality to be added!")
+
+        //push to document collection "drafts"
+    })
+}
+
+for (let i = 0; i < document.getElementsByClassName("cat-selector").length; i++) {
+    document.getElementsByClassName("cat-selector")[i].addEventListener("click", e => {
+        changeCategory(selectedCategory, e.target.dataset.category)})}
+
+let allEntries = addAllEntries(selectedCategory)
+createSidebar()
+addAddbar()
+
+
+</script>
+</html>
