@@ -27,3 +27,10 @@ function addZero(num){
     }
     return num
 }
+function emailValid(emailString) {
+    var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    if (emailString.match(validRegex)) {
+        return true;
+    } 
+    else {return false;}
+}

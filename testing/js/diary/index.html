@@ -13,13 +13,13 @@
     <div id="pre-sign-in">
         <div id="login">
             <div id="email-input">
-                <input type="text" placeholder="email">
+                <input id="email-input-input" type="text" placeholder="email">
             </div>
             <div id="pass-input">
-                <input type="text" placeholder="password">
+                <input id="pass-input-input" type="text" placeholder="password">
             </div>
             <div id="confirm-pass-input" style="display:none;">
-                <input type="text" placeholder="confirm password">
+                <input id="confirm-pass-input-input" type="text" placeholder="confirm password">
             </div>
             <div id="signin-input">
                 <button id="sign-in-button">log in</button>
@@ -32,7 +32,7 @@
             </div>
         </div>
     </div>
-    <main style="display:none;">
+    <main id="main" style="display:none;">
         <div id="title">Nora</div>
         <div id="dreams" class="cat-selector" data-category="dream">Dreams</div>
         <div id="diary" class="cat-selector" data-category="diary" class="selected-category">Diary</div>
@@ -49,7 +49,7 @@
 
             <div id="add-text">
                 <div id="add-text-title">Text:</div>
-                <textarea name="textinput" id="text-input" ></textarea>
+                <textarea name="textinput" id="text-input" placeholder="type here..."></textarea>
             </div>
             <div id="action-buttons">
                 <div id="cancel">Cancel</div>
@@ -93,9 +93,8 @@ import {
     onAuthStateChanged 
 } from "https://www.gstatic.com/firebasejs/10.2.0/firebase-auth.js"
 
-
 const firebaseConfig = {
-// CONFIG HERE
+    //CONFIG HERE
 }
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
@@ -106,36 +105,90 @@ onAuthStateChanged(auth, (user) => {
     // https://firebase.google.com/docs/reference/js/auth.user
     const uid = user.uid;
     console.log("load data now")
-    // ...
-  } else {
+    loadContent()
+    
+  } 
+  else {
     // User is signed out
-    // ...
     console.log("UNload data now")
   }
 });
 
 grab("sign-in-button").addEventListener("click", e => {
-
+    signInWithEmailAndPassword(auth, grab("email-input-input").value, grab("pass-input-input").value)
+        .then((userCredential) => {
+            // Signed in 
+            const user = userCredential.user;
+            // ...
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log(errorCode.split("/")[1].replaceAll("-"," "))
+        });
 })
-
 grab("newuser-button").addEventListener("click", e => {
     console.log(e.target.dataset.registering)
-    if(e.target.dataset.registering == "false"){
-
+    if(e.target.dataset.registering == "true"){
+        let valid = true
+        if(!emailValid(grab("email-input-input").value)){
+            console.log("email invalid!")
+            valid = false
+        }
+        if(grab("confirm-pass-input-input").value != grab("pass-input-input").value){
+            console.log("passwords not matching!")
+            valid = false
+        }
+        if(valid){
+            createUserWithEmailAndPassword(auth, grab("email-input-input").value, grab("confirm-pass-input-input").value)
+                .then((userCredential) => {
+                    // Signed in 
+                    const user = userCredential.user;
+                    e.target.dataset.registering = "false"
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    console.log(errorCode.split("/")[1].replaceAll("-"," "))
+                });
+        }
     }
-    grab("signin-input").style.display = "none"
-    grab("confirm-pass-input").style.display = "flex"
-
+    if(e.target.dataset.registering == "false"){
+        grab("signin-input").style.display = "none"
+        grab("confirm-pass-input").style.display = "flex"
+        e.target.innerText = "Register"
+        e.target.dataset.registering = "true"
+    }
 })
 
+function loadContent(){
+    grab("pre-sign-in").style.display = "none"
+    grab("main").style.display = "block"
 
-const db = getFirestore(app)
-const sortQuery = query(collection(db, "entries"), orderBy("date", "desc"))
-const querySnapshot = await getDocs(sortQuery)
+    const db = getFirestore(app)
+    const sortQuery = query(collection(db, "entries"), orderBy("date", "desc"))
+    const querySnapshot = getDocs(sortQuery)    
+    let yearMonthPairs = []
+    let selectedCategory = "diary"
+    let exampleTimestamp = querySnapshot.docs[0].data().date
+    
+    for (let i = 0; i < document.getElementsByClassName("cat-selector").length; i++) {
+        document.getElementsByClassName("cat-selector")[i].addEventListener("click", e => {
+            changeCategory(selectedCategory, e.target.dataset.category)})}
 
-let yearMonthPairs = []
-let selectedCategory = "diary"
-let exampleTimestamp = querySnapshot.docs[0].data().date
+
+    let allEntries = addAllEntries(selectedCategory)
+    createSidebar()
+    addAddbar()
+}
+function unLoadContent(){
+    grab("pre-sign-in").style.display = "flex"
+    grab("main").style.display = "none"
+
+    grab("sidebar").innerHTML = ""
+    grab("entries").innerHTML = ""
+}
+
 
 function snapshotEntryElm(snapData, currentCategory){
     let entryElm = document.createElement("div")
@@ -293,13 +346,7 @@ function addAddbar(){
     })
 }
 
-for (let i = 0; i < document.getElementsByClassName("cat-selector").length; i++) {
-    document.getElementsByClassName("cat-selector")[i].addEventListener("click", e => {
-        changeCategory(selectedCategory, e.target.dataset.category)})}
 
-let allEntries = addAllEntries(selectedCategory)
-createSidebar()
-addAddbar()
 
 
 </script>
