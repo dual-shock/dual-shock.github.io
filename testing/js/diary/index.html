@@ -28,7 +28,7 @@
                 <button id="newuser-button" data-registering="false">New user?</button>
             </div>
             <div id="error-output" style="display:none;">
-                <button id="error-button">Invalid:</button>
+                <button id="error-button">Invalid :   </button>
             </div>
         </div>
     </div>
@@ -66,6 +66,7 @@
                 <!-- gets filled by js -->
             </div>      
         </div>
+        <div id="sign-out-link">Sign out</div>
     </main>
 </body>
 <script src="./utils.js"></script>
@@ -94,64 +95,116 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.2.0/firebase-auth.js"
 
 const firebaseConfig = {
-    //CONFIG HERE
+//config here
 }
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
+let db, sortQuery, querySnapshot, 
+    yearMonthPairs, exampleTimestamp, allEntries
+let selectedCategory = "diary"
 
-onAuthStateChanged(auth, (user) => {
+onAuthStateChanged(auth, async (user) => {
   if (user) {
     // User is signed in, see docs for a list of available properties
     // https://firebase.google.com/docs/reference/js/auth.user
-    const uid = user.uid;
+    console.log(user.uid)
     console.log("load data now")
-    loadContent()
-    
+
+    await loadContent(user.uid)
+
   } 
   else {
     // User is signed out
-    console.log("UNload data now")
+    
+
   }
-});
+})
 
 grab("sign-in-button").addEventListener("click", e => {
-    signInWithEmailAndPassword(auth, grab("email-input-input").value, grab("pass-input-input").value)
-        .then((userCredential) => {
-            // Signed in 
-            const user = userCredential.user;
-            // ...
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.log(errorCode.split("/")[1].replaceAll("-"," "))
-        });
+    let valid = true
+    let errors = []
+    if(!emailValid(grab("email-input-input").value)){
+        valid = false
+        errors.append("email invalid")
+    }
+    if(grab("pass-input-input").value == ""){
+        valid = false
+        errors.append("password cant be empty")
+    }
+    if(valid){
+        signInWithEmailAndPassword(auth, grab("email-input-input").value, grab("pass-input-input").value)
+            .then((userCredential) => {
+                let user = userCredential.user;
+                grab("error-output").style.display = "none"
+                grab("error-output").innerHTML = ""
+                //Throws to observer
+            })
+            .catch((error) => {
+                let errorCode = error.code;
+                let errorMessage = error.message;
+                valid = false
+                errors.append(errorCode.split("/")[1].replaceAll("-"," "))
+            });        
+    }
+    if(!valid){
+        grab("error-output").style.display = "flex"
+        grab("error-output").innerHTML = errors[0].charAt(0).toUpperCase() + errors[0].slice(1)
+
+        for (let i = 1; i < errors.length-2; i++){
+            grab("error-output").innerHTML += `, ${errors[i]}`      
+        }
+        grab("error-output").innerHTML += errors[-1] + "."
+    }
 })
 grab("newuser-button").addEventListener("click", e => {
-    console.log(e.target.dataset.registering)
     if(e.target.dataset.registering == "true"){
         let valid = true
+        let errors = []
         if(!emailValid(grab("email-input-input").value)){
-            console.log("email invalid!")
             valid = false
+            errors.append("email invalid")
         }
         if(grab("confirm-pass-input-input").value != grab("pass-input-input").value){
-            console.log("passwords not matching!")
             valid = false
+            errors.append("passwords not matching")
+        }
+        if(grab("pass-input-input").value == ""){
+            valid = false
+            errors.append("password cant be empty")
         }
         if(valid){
             createUserWithEmailAndPassword(auth, grab("email-input-input").value, grab("confirm-pass-input-input").value)
                 .then((userCredential) => {
-                    // Signed in 
-                    const user = userCredential.user;
+                    console.log(userCredential.user)
                     e.target.dataset.registering = "false"
+                    e.target.innerText = "New user?"
+                    grab("confirm-pass-input").style.display = "none"
+                    grab("signin-input").style.display = "flex"
+                    grab("error-output").style.display = "none"
+                    grab("error-output").innerHTML = ""
+                    //Throws to observer
                 })
                 .catch((error) => {
-                    const errorCode = error.code;
-                    const errorMessage = error.message;
+                    let errorCode = error.code;
+                    let errorMessage = error.message;
                     console.log(errorCode.split("/")[1].replaceAll("-"," "))
+                    grab("error-output").style.display = "flex"
+                    grab("error-button").innerHTML += errorCode.split("/")[1].replaceAll("-"," ")
+                    errors.append(errorCode.split("/")[1].replaceAll("-"," "))
+                    valid = false
                 });
         }
+        if(!valid){
+            grab("error-output").style.display = "flex"
+            grab("error-output").innerHTML = errors[0].charAt(0).toUpperCase() + errors[0].slice(1)
+
+            for (let i = 1; i < errors.length-2; i++){
+                grab("error-output").innerHTML += `, ${errors[i]}`      
+            }
+            grab("error-output").innerHTML += errors[-1] + "."
+        }
+
+
     }
     if(e.target.dataset.registering == "false"){
         grab("signin-input").style.display = "none"
@@ -160,26 +213,33 @@ grab("newuser-button").addEventListener("click", e => {
         e.target.dataset.registering = "true"
     }
 })
+grab("sign-out-link").addEventListener("click", e => {
+    signOut(auth).then(() => {
+        //throws to observer
+    }).catch((error) => {
+        //handle error
+    });
+})
 
-function loadContent(){
+async function loadContent(userId){
     grab("pre-sign-in").style.display = "none"
     grab("main").style.display = "block"
 
-    const db = getFirestore(app)
-    const sortQuery = query(collection(db, "entries"), orderBy("date", "desc"))
-    const querySnapshot = getDocs(sortQuery)    
-    let yearMonthPairs = []
-    let selectedCategory = "diary"
-    let exampleTimestamp = querySnapshot.docs[0].data().date
+    db = getFirestore(app)
+    sortQuery = query(collection(db, `users/${userId}/entries`), orderBy("date", "desc"))
+    querySnapshot = await getDocs(sortQuery)
+
+    yearMonthPairs = []
+    exampleTimestamp = querySnapshot.docs[0].data().date
     
     for (let i = 0; i < document.getElementsByClassName("cat-selector").length; i++) {
         document.getElementsByClassName("cat-selector")[i].addEventListener("click", e => {
             changeCategory(selectedCategory, e.target.dataset.category)})}
 
 
-    let allEntries = addAllEntries(selectedCategory)
+    allEntries = addAllEntries(selectedCategory)
     createSidebar()
-    addAddbar()
+    addAddbar(userId)
 }
 function unLoadContent(){
     grab("pre-sign-in").style.display = "flex"
@@ -187,6 +247,12 @@ function unLoadContent(){
 
     grab("sidebar").innerHTML = ""
     grab("entries").innerHTML = ""
+
+    querySnapshot = undefined
+    yearMonthPairs = undefined
+    exampleTimestamp = undefined
+    allEntries = undefined
+    sortQuery = undefined
 }
 
 
@@ -285,7 +351,7 @@ function changeCategory(currentCategory, newCategory){
     grab("submit-entry").innerText = `Add ${selectedCategory} entry`
     //TODO highlight category changers
 }
-function addAddbar(){
+function addAddbar(userId){
     let currTime = new Date()
     grab("add-bar").style.display = "block"
     grab("add-bar").addEventListener("click", e => {
@@ -304,7 +370,9 @@ function addAddbar(){
     grab("submit-entry").addEventListener("click", e =>{
 
         let newDocId = `${currTime.getDate()}${addZero(currTime.getMonth()+1)}${currTime.getFullYear().toString().substring(2,4)}${addZero(currTime.getHours())}${addZero(currTime.getMinutes())}`
-        
+        //TODO Add warning, only 1 document per minute
+
+
         let newDocTimestamp = exampleTimestamp
         newDocTimestamp.seconds = Math.round(currTime.getTime()/1000)
         newDocTimestamp.nanoseconds = Math.round(((currTime.getTime() / 1000) % 1) * 100000000)
@@ -316,7 +384,7 @@ function addAddbar(){
         } 
 
         try {
-            let docRef = setDoc(doc(db, "entries", newDocId), newDocObj);
+            let docRef = setDoc(doc(db, `users/${userId}/entries`, newDocId), newDocObj);
         } 
         catch (e) {
             console.error("Error adding document: ", e);
@@ -329,6 +397,7 @@ function addAddbar(){
         grab("content").style.display = "block"
         grab("add-bar").style.display = "block"
         grab("add-input").style.display = "none"
+        grab("text-input").value = ""
     })
     grab("load-draft").addEventListener("click", e =>{
         //TODO add draft functionality
