@@ -20,7 +20,8 @@ import {
     getAuth, 
     createUserWithEmailAndPassword, 
     signInWithEmailAndPassword, 
-    onAuthStateChanged 
+    onAuthStateChanged,
+    signOut 
 } from "https://www.gstatic.com/firebasejs/10.2.0/firebase-auth.js"
 
 export {
@@ -35,5 +36,6 @@ export {
     getAuth, 
     createUserWithEmailAndPassword, 
     signInWithEmailAndPassword, 
-    onAuthStateChanged 
+    onAuthStateChanged,
+    signOut 
 }
