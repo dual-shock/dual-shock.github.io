@@ -16,91 +16,96 @@ import {
 from "./js/firebaseUtils.js"
 
 // * Months, formatDateForEntry(), addZero(), emailValid()
+// * hide(), showFlex(), showBlock()
 // * Added to namespace from js/utils.js in index.html
 
 //TODO MAKE VAR FOR GLOBAL VARS
 
 const firebaseConfig = {
- // ? Config here
+    apiKey: "AIzaSyBXiMzyl3Q5IwCMFSoLYVQBdRiWTVq7ChI",
+    authDomain: "diary-f575d.firebaseapp.com",
+    projectId: "diary-f575d",
+    storageBucket: "diary-f575d.appspot.com",
+    messagingSenderId: "22289005998",
+    appId: "1:22289005998:web:4a539cd0d2b8c0c92b5c3f"
 }
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 
 const inputElms =  [...grab('.login-element > input', "all")]
 
+
+
 function switchToSignup(){
 
 // * LogIn
-    grab("login-container").style.display = "block"
-    resetLoginInputs()
+    showBlock("login-container")
 
 // * SignIn
-    grab("signin-container").style.display = "none"
+    hide("signin-container")
 
 // * SignUp
-    grab("signup-container").style.display = "flex"
+    showFlex("signup-container")
 
 // * Content
-    grab("content-container").style.display = "none"
-    grab("entries-content-container").style.display = "none"
-    grab("new-entry-container").style.display = "none"
-    
-    //TODO Remove data from session in observer
+    hide("content-container")
+    hide("entries-content-container")
+    hide("new-entry-container")
 }
 
 function switchToSignin(){
 
 // * LogIn
-    grab("login-container").style.display = "block"
-    resetLoginInputs()
+    showBlock("login-container")
 
 // * SignIn
-    grab("signin-container").style.display = "flex"
+    showFlex("signin-container")
 
 // * SignUp
-    grab("signup-container").style.display = "none"
+    hide("signup-container")
 
 // * Content
-    grab("content-container").style.display = "none"
-    grab("entries-content-container").style.display = "none"
-    grab("new-entry-container").style.display = "none"
-    
-    //TODO Remove data from session in observer
+    hide("content-container")
+    hide("entries-content-container")
+    hide("new-entry-container")
 }
 
 function switchToShowEntries(){
-// * LogIn
-    grab("login-container").style.display = "none"
-    resetLoginInputs()
 
+// * LogIn
+    hide("login-container")
+    
 // * SignIn
-    grab("signin-container").style.display = "none"
+    hide("signin-container")
 
 // * SignUp
-    grab("signup-container").style.display = "none"
+    hide("signup-container")
 
 // * Content
-    grab("content-container").style.display = "flex"
-    grab("entries-content-container").style.display = "flex"
-    grab("new-entry-container").style.display = "none"
+    showFlex("content-container")
+    showFlex("entries-content-container")
+    hide("new-entry-container")
 }
 
 function switchToAddEntry(){
-// * LogIn
-    grab("login-container").style.display = "none"
-    resetLoginInputs()
 
+// * LogIn
+    hide("login-container")
+    
 // * SignIn
-    grab("signin-container").style.display = "none"
+    hide("signin-container")
 
 // * SignUp
-    grab("signup-container").style.display = "none"
+    hide("signup-container")
 
 // * Content
-    grab("content-container").style.display = "flex"
-    grab("entries-content-container").style.display = "none"
-    grab("new-entry-container").style.display = "flex"
+    resetAddEntryInputs()
+    showFlex("content-container")
+    hide("entries-content-container")
+    showFlex("new-entry-container")
 }
+
+
 
 function resetLoginInputs(){
 
@@ -115,10 +120,13 @@ function resetLoginInputs(){
     })    
 }
 
-function addEventListenersToElements(){
+function resetAddEntryInputs(){
+    //TODO 
+}
 
-// ? Login inputs
-    resetLoginInputs()
+
+
+function addEventListenersToElements(){
 
 // ? Signin buttons
     grab("signin-button").addEventListener("click", signInUser)
@@ -135,6 +143,8 @@ function addEventListenersToElements(){
     grab("cancel-entry-button").addEventListener("click", switchToShowEntries)
 
 }
+
+
 
 async function signInUser(){
     
@@ -215,19 +225,19 @@ function signOutUser(){
 onAuthStateChanged(auth, async (user) => {
     if (user) {
         console.log("show content and hide signin")
-        // * Show content!
-        // * Hide signin
-        console.log(user)
+
         switchToShowEntries()
     }
     else {
         console.log("hide content and show signin")
-        // * Hide content!
-        // * Show signin
+
+        //TODO Remove data from session in observer
+        resetLoginInputs()
         switchToSignin()
 
         // ? lets say someone logs in on an account at a library, how to make the logout button remove the data from lets say the cookies
     }
 })
+
 addEventListenersToElements()
 

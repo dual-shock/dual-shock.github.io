@@ -67,26 +67,35 @@
         </div>
 
         <div id="entries-content-container" style="display: flex;">
-            <div id="entries-and-sidebar-container">
-                <div id="sidebar-container">
-                    <div id="sidebar-toggle-button" class="entry-button"> X </div>
-                    <div id="sidebar"> <!-- ? Gets filled by JS --> aasddftftfadasdr </div>  
-                </div>                
-                <div id="entries-container">
-                    <div id="add-entry-button" class="entry-button"> Add entry</div>
-                    <div id="entries"> <!-- ? Gets filled by JS --> entries </div>
-                </div>
+
+            <div id="entries-and-sidebar-buttons"> 
+                <div id="sidebar-toggle-button" class="entry-button"> X </div>
+                <div id="add-entry-button" class="entry-button"> Add entry</div>
             </div>
+
+            <div id="entries-and-sidebar-container">
+                <div id="sidebar"> <!-- ? Gets filled by JS --> aasddftftfadasdr </div>  
+                <div id="entries"> <!-- ? Gets filled by JS --> entries </div>
+            </div>
+
             <div id="logout-button" class="entry-button"> Log out </div>
+
         </div>
 
         <div id="new-entry-container" style="display: none;">
-            <div id="pick-draft-button" class="entry-button"></div>
-            <div id="time-input-container" class="entry-button">    <input type="datetime-local" id="time-input">    </div>
+            <div id="add-entry-pick-buttons">
+                <div id="pick-draft-button" class="entry-button"> Drafts </div>
+                <div id="time-input-container" class="entry-button">    <input type="datetime-local" id="time-input">    </div>
+            </div>
+
             <div id="text-input-container">    <textarea id="text-input" placeholder="type here..."></textarea>    </div>
-            <div id="cancel-entry-button" class="entry-button"> Cancel </div>
-            <div id="draft-entry-button" class="entry-button"> + Draft </div>
-            <div id="submit-entry-button" class="entry-button"> Submit </div>
+
+            <div id="add-entry-action-buttons">
+                <div id="cancel-entry-button" class="entry-button"> Cancel </div>
+                <div id="draft-entry-button" class="entry-button"> + Draft </div>
+                <div id="submit-entry-button" class="entry-button"> Submit </div>                
+            </div>
+
         </div>
 
     </div>

@@ -36,3 +36,12 @@ function emailValid(emailString) {
     } 
     else {return false;}
 }
+function hide(id){
+    grab(id).style.display = "none"
+}
+function showFlex(id){
+    grab(id).style.display = "flex"
+}
+function showBlock(id){
+    grab(id).style.display = "block"
+}
