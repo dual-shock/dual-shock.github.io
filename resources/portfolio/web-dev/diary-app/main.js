@@ -80,6 +80,9 @@ function switchToShowEntries(){
     showFlex("content-container")
     showFlex("entries-content-container")
     hide("new-entry-container")
+
+    
+    loadContent(query)
 }
 
 function switchToAddEntry(){
