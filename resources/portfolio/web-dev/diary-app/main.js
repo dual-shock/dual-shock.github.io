@@ -21,7 +21,7 @@ from "./js/firebaseUtils.js"
 //TODO MAKE VAR FOR GLOBAL VARS
 
 const firebaseConfig = {
-    // ? Config here !
+ // ? Config here
 }
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
@@ -42,6 +42,8 @@ function switchToSignup(){
 
 // * Content
     grab("content-container").style.display = "none"
+    grab("entries-content-container").style.display = "none"
+    grab("new-entry-container").style.display = "none"
     
     //TODO Remove data from session in observer
 }
@@ -60,12 +62,13 @@ function switchToSignin(){
 
 // * Content
     grab("content-container").style.display = "none"
+    grab("entries-content-container").style.display = "none"
+    grab("new-entry-container").style.display = "none"
     
     //TODO Remove data from session in observer
 }
 
-function switchToContent(){
-
+function switchToShowEntries(){
 // * LogIn
     grab("login-container").style.display = "none"
     resetLoginInputs()
@@ -78,6 +81,25 @@ function switchToContent(){
 
 // * Content
     grab("content-container").style.display = "flex"
+    grab("entries-content-container").style.display = "flex"
+    grab("new-entry-container").style.display = "none"
+}
+
+function switchToAddEntry(){
+// * LogIn
+    grab("login-container").style.display = "none"
+    resetLoginInputs()
+
+// * SignIn
+    grab("signin-container").style.display = "none"
+
+// * SignUp
+    grab("signup-container").style.display = "none"
+
+// * Content
+    grab("content-container").style.display = "flex"
+    grab("entries-content-container").style.display = "none"
+    grab("new-entry-container").style.display = "flex"
 }
 
 function resetLoginInputs(){
@@ -108,7 +130,9 @@ function addEventListenersToElements(){
 
 // ? Content buttons
     grab("logout-button").addEventListener("click", signOutUser)
-    
+    grab("add-entry-button").addEventListener("click", switchToAddEntry)
+
+    grab("cancel-entry-button").addEventListener("click", switchToShowEntries)
 
 }
 
@@ -194,7 +218,7 @@ onAuthStateChanged(auth, async (user) => {
         // * Show content!
         // * Hide signin
         console.log(user)
-        switchToContent()
+        switchToShowEntries()
     }
     else {
         console.log("hide content and show signin")
