@@ -22,12 +22,7 @@ from "./js/firebaseUtils.js"
 //TODO MAKE VAR FOR GLOBAL VARS
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBXiMzyl3Q5IwCMFSoLYVQBdRiWTVq7ChI",
-    authDomain: "diary-f575d.firebaseapp.com",
-    projectId: "diary-f575d",
-    storageBucket: "diary-f575d.appspot.com",
-    messagingSenderId: "22289005998",
-    appId: "1:22289005998:web:4a539cd0d2b8c0c92b5c3f"
+    // ? Config here
 }
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
