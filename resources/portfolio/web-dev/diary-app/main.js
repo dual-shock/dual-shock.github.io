@@ -15,7 +15,7 @@ import {
 }
 from "./js/firebaseUtils.js"
 
-// * Months, formatDateForEntry(), addZero(), emailValid()
+// * formatDateForEntry(), addZero(), emailValid()
 // * hide(), showFlex(), showBlock()
 // * Added to namespace from js/utils.js in index.html
 
@@ -25,10 +25,30 @@ const firebaseConfig = {
     // ? Config here
 }
 const app = initializeApp(firebaseConfig);
+const db = getFirestore(app)
 const auth = getAuth();
 
 const inputElms =  [...grab('.login-element > input', "all")]
 
+const categories = {
+    dream : {
+        name : "dream",
+        bgColor: "#c692cd"
+    },
+    diary : {
+        name : "diary",
+        bgColor: "#CDC392"
+    },
+    thought : {
+        name : "thought",
+        bgColor: "#bbcd92"
+    },
+}
+
+const months = [ 
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December" 
+]
 
 
 function switchToSignup(){
@@ -80,9 +100,7 @@ function switchToShowEntries(){
     showFlex("content-container")
     showFlex("entries-content-container")
     hide("new-entry-container")
-
-    
-    loadContent(query)
+    loadEntries()
 }
 
 function switchToAddEntry(){
@@ -121,8 +139,13 @@ function resetLoginInputs(){
 function resetAddEntryInputs(){
     //TODO 
 }
+function switchCategory(category){
+    console.log(category)
+}
 
-
+async function loadEntries(query){
+    console.log("load data with query")
+}
 
 function addEventListenersToElements(){
 
@@ -135,10 +158,16 @@ function addEventListenersToElements(){
     grab("signin-redirect-button").addEventListener("click", switchToSignin)
 
 // ? Content buttons
+    grab("dream-selector-button").addEventListener("click", () => switchCategory(categories.dream))
+    grab("diary-selector-button").addEventListener("click", () => switchCategory(categories.diary))
+    grab("thought-selector-button").addEventListener("click", () => switchCategory(categories.thought))
+
     grab("logout-button").addEventListener("click", signOutUser)
     grab("add-entry-button").addEventListener("click", switchToAddEntry)
 
     grab("cancel-entry-button").addEventListener("click", switchToShowEntries)
+
+    
 
 }
 
@@ -223,6 +252,20 @@ function signOutUser(){
 onAuthStateChanged(auth, async (user) => {
     if (user) {
         console.log("show content and hide signin")
+        console.log(user.uid)
+
+        var querySnapshot = await getDocs(query(collection(db, `users/${user.uid}/entries`)))
+
+        // TODO PLAN
+        
+        // Add querysnapshot listener
+
+
+        console.log(querySnapshot.docs)
+    
+        console.log( doc(db, `users/${user.uid}/entries`, "9999999999"))
+
+        console.log(querySnapshot.docs)
 
         switchToShowEntries()
     }

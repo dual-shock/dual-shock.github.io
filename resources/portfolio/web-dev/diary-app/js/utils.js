@@ -1,5 +1,3 @@
-const months = [ "January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December" ]
 function formatDateForEntry(timestamp){
     let formattedDate = new Date(timestamp*1000).toLocaleString("en-GB", {
         month:"short",

@@ -154,6 +154,8 @@ async function loadContent(userId){
     sortQuery = query(collection(db, `users/${userId}/entries`), orderBy("date", "desc"))
     querySnapshot = await getDocs(sortQuery)
 
+    // querySnapshot = await getDocs(query(collection(db, `users/${userId}/entries`), orderBy("date", "desc")))
+
     yearMonthPairs = []
     exampleTimestamp = querySnapshot.docs[0].data().date
     
