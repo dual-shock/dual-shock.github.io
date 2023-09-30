@@ -52,6 +52,10 @@ const categories = {
     },
 }
 
+var timeframe = {
+    start:
+}
+
 class Category {
     constructor(current){
         this.current = current
@@ -74,20 +78,7 @@ class Category {
             console.log("Failed to switch current category")
             console.log(e)
         }
-    }
-    // set current(category) {
-    //     try{
-    //         if(!categories.hasOwnProperty(category.name))
-    //             throw new Error("Method param. is not a category")
-    //         console.log(this._current)
-    //         this._current = category
-    //     }
-    //     catch(e){
-    //         console.log("Failed to switch category")
-    //         console.log(e)
-    //     }
-    // }
-    
+    }    
 }
 
 const category = new Category(categories.diary)
@@ -191,7 +182,10 @@ function resetAddEntryInputs(){
 }
 
 async function loadEntries(){
-    console.log("Load data with",category.current)
+    console.log("Load data")
+}
+function filterEntries(){
+    console.log("filter entries",category.current, timeframe)
 }
 function unloadEntries(){
     console.log("Unload data")
@@ -208,9 +202,9 @@ function addEventListenersToElements(){
     grab("signin-redirect-button").addEventListener("click", switchToSignin)
 
 // ? Content buttons
-    grab("dream-selector-button").addEventListener("click", () => {category.current = categories.dream; loadEntries()})
-    grab("diary-selector-button").addEventListener("click", () => {category.current = categories.diary; loadEntries()})
-    grab("thought-selector-button").addEventListener("click", () => {category.current = categories.thought; loadEntries()})
+    grab("dream-selector-button").addEventListener("click", () => category.current = categories.dream)
+    grab("diary-selector-button").addEventListener("click", () => category.current = categories.diary)
+    grab("thought-selector-button").addEventListener("click", () => category.current = categories.thought)
 
     grab("logout-button").addEventListener("click", signOutUser)
     grab("add-entry-button").addEventListener("click", switchToAddEntry)
