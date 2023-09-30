@@ -3,10 +3,12 @@
 //TODO I just loooove CDN's tho
 
 import { 
-    initializeApp 
+    initializeApp, 
+    
 } from "https://www.gstatic.com/firebasejs/10.2.0/firebase-app.js";
 
 import { 
+    initializeFirestore,
     getFirestore, 
     collection, 
     getDocs, 
@@ -25,7 +27,8 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.2.0/firebase-auth.js"
 
 export {
-    initializeApp,     
+    initializeApp, 
+    initializeFirestore,    
     getFirestore, 
     collection, 
     getDocs, 

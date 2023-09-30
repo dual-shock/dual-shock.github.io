@@ -4,6 +4,7 @@ import {
 
     // * Firestore
     getFirestore, collection, 
+    initializeFirestore,
     getDocs, setDoc, doc,
     orderBy, query, 
 
@@ -21,11 +22,17 @@ from "./js/firebaseUtils.js"
 
 //TODO MAKE VAR FOR GLOBAL VARS
 
+
 const firebaseConfig = {
-    // ? Config here
+    apiKey: "AIzaSyBXiMzyl3Q5IwCMFSoLYVQBdRiWTVq7ChI",
+    authDomain: "diary-f575d.firebaseapp.com",
+    projectId: "diary-f575d",
+    storageBucket: "diary-f575d.appspot.com",
+    messagingSenderId: "22289005998",
+    appId: "1:22289005998:web:4a539cd0d2b8c0c92b5c3f"
 }
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app)
+const db = getFirestore (app)
 const auth = getAuth();
 
 const inputElms =  [...grab('.login-element > input', "all")]
@@ -44,6 +51,49 @@ const categories = {
         bgColor: "#bbcd92"
     },
 }
+
+class Category {
+    constructor(current){
+        this.current = current
+        
+    }
+
+    get current() {
+        return this._current
+    }
+    set current(categoryObject) {
+        
+        try{
+            if(!categories.hasOwnProperty(categoryObject.name)){
+                throw new Error("Method param. is not a category")
+            }
+            this._current = categoryObject
+            console.log("successfully switched to category",this._current)
+        }
+        catch(e){
+            console.log("Failed to switch current category")
+            console.log(e)
+        }
+    }
+    // set current(category) {
+    //     try{
+    //         if(!categories.hasOwnProperty(category.name))
+    //             throw new Error("Method param. is not a category")
+    //         console.log(this._current)
+    //         this._current = category
+    //     }
+    //     catch(e){
+    //         console.log("Failed to switch category")
+    //         console.log(e)
+    //     }
+    // }
+    
+}
+
+const category = new Category(categories.diary)
+
+category.current = categories.dream
+category.current = categories.thought
 
 const months = [ 
     "January", "February", "March", "April", "May", "June",
@@ -139,12 +189,12 @@ function resetLoginInputs(){
 function resetAddEntryInputs(){
     //TODO 
 }
-function switchCategory(category){
-    console.log(category)
-}
 
-async function loadEntries(query){
-    console.log("load data with query")
+async function loadEntries(){
+    console.log("Load data with",category.current)
+}
+function unloadEntries(){
+    console.log("Unload data")
 }
 
 function addEventListenersToElements(){
@@ -158,9 +208,9 @@ function addEventListenersToElements(){
     grab("signin-redirect-button").addEventListener("click", switchToSignin)
 
 // ? Content buttons
-    grab("dream-selector-button").addEventListener("click", () => switchCategory(categories.dream))
-    grab("diary-selector-button").addEventListener("click", () => switchCategory(categories.diary))
-    grab("thought-selector-button").addEventListener("click", () => switchCategory(categories.thought))
+    grab("dream-selector-button").addEventListener("click", () => {category.current = categories.dream; loadEntries()})
+    grab("diary-selector-button").addEventListener("click", () => {category.current = categories.diary; loadEntries()})
+    grab("thought-selector-button").addEventListener("click", () => {category.current = categories.thought; loadEntries()})
 
     grab("logout-button").addEventListener("click", signOutUser)
     grab("add-entry-button").addEventListener("click", switchToAddEntry)
@@ -241,7 +291,7 @@ function signOutUser(){
     }).catch((error) => {
         let errorMessage = error.code.split("/")[1].replaceAll("-"," ")
         console.log(errorMessage)
-        // ! Handle error, retry 
+        // TODO Handle error, retry 
     });
 }
 
@@ -252,27 +302,30 @@ function signOutUser(){
 onAuthStateChanged(auth, async (user) => {
     if (user) {
         console.log("show content and hide signin")
-        console.log(user.uid)
+
+        // ? FOR NOW: 
+        // * A simple database snapshot is GET'd everytime a user logs on, 
+        // * New entries get POST'd to the databse then added to the local cache (not GET'd, to save read calls)
+        // * i.e: 
+        // * Reads per session: X amount of documents already in database
+        // * Writes per session: X amount of new documents created
+        // * No offline access except if the whole thing has already been loaded once and the variable is in cache
+
+        // TODO PLAN
+        // * Only get a certain amt of entries and udate as user scrolls (less reads)
+        // * Do the whole local cache and offline persistence thing isjk 
+        // * Offline support
 
         var querySnapshot = await getDocs(query(collection(db, `users/${user.uid}/entries`)))
 
-        // TODO PLAN
-        
-        // Add querysnapshot listener
-
-
-        console.log(querySnapshot.docs)
-    
-        console.log( doc(db, `users/${user.uid}/entries`, "9999999999"))
-
-        console.log(querySnapshot.docs)
-
+        resetAddEntryInputs()
         switchToShowEntries()
     }
     else {
         console.log("hide content and show signin")
 
         //TODO Remove data from session in observer
+        unloadEntries()
         resetLoginInputs()
         switchToSignin()
 
