@@ -53,26 +53,28 @@ const categories = {
 }
 
 var timeframe = {
-    start:
+    use:false,
+    start:0,
+    end:0,
 }
 
 class Category {
     constructor(current){
-        this.current = current
-        
+        this.current = current   
     }
-
     get current() {
         return this._current
     }
     set current(categoryObject) {
-        
         try{
             if(!categories.hasOwnProperty(categoryObject.name)){
                 throw new Error("Method param. is not a category")
             }
             this._current = categoryObject
-            console.log("successfully switched to category",this._current)
+            
+            filterEntries(this)
+            
+            
         }
         catch(e){
             console.log("Failed to switch current category")
@@ -183,9 +185,16 @@ function resetAddEntryInputs(){
 
 async function loadEntries(){
     console.log("Load data")
+    
 }
-function filterEntries(){
-    console.log("filter entries",category.current, timeframe)
+function filterEntries(categoryObj){
+    console.log(grab("entries").childNodes)
+    if(grab("entries").children.length){
+        console.log("filter entries",categoryObj.current, timeframe)
+    }
+    else{
+        console.log("no content to filter")
+    }
 }
 function unloadEntries(){
     console.log("Unload data")
@@ -211,7 +220,7 @@ function addEventListenersToElements(){
 
     grab("cancel-entry-button").addEventListener("click", switchToShowEntries)
 
-    
+    //TODO On add entry button, add a one time click event listener for loading drafts, so that theyre only read if theyre needed, and after that theyre saved in a variable
 
 }
 
@@ -295,7 +304,7 @@ function signOutUser(){
 
 onAuthStateChanged(auth, async (user) => {
     if (user) {
-        console.log("show content and hide signin")
+        console.log("show content and hide signin", user.uid)
 
         // ? FOR NOW: 
         // * A simple database snapshot is GET'd everytime a user logs on, 
