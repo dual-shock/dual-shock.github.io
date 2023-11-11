@@ -70,7 +70,7 @@ main {
     filter: invert(65%) sepia(20%) saturate(5120%) hue-rotate(123deg) brightness(96%) contrast(102%);
 }
 .dropdown{
-    display:none;
+    display:none;   
     z-index: 1;
     position: absolute;
     top:7vmax;
@@ -92,6 +92,10 @@ main {
     padding-right:2vmax;
     text-decoration: underline;
 }
+#navbar{
+    display:none;
+}
+
 
 #content{
     margin-top: 2vmax;
@@ -421,7 +425,9 @@ main {
     padding-right:2vmax;
     text-decoration: underline;
 }
-
+#navbar{
+    display:none;
+}
 #content{
     margin-top: 2vmax;
     height:fit-content;
