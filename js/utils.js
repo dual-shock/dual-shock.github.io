@@ -24,8 +24,6 @@ function smoothScroll(selector){
     });
 }
 function hierarchy(listOfPaths){
-    
-    //TODO Change Portfolio source from dual-shock to nøkkenrepo
 
     let folderSvg = document.getElementsByClassName("folder-svg")[0]
     let arrowSvg = document.getElementsByClassName("arrow-svg")[0]
@@ -42,9 +40,11 @@ function hierarchy(listOfPaths){
         let child
         let file = listOfPaths[i]
         let filePath = file.path.split('/')
+        console.log(filePath)
 
         let id = filePath.slice(0,filePath.length).join('')
         let parentId = filePath.slice(0,filePath.length-1).join('')
+        let urlEnd = filePath.join("/").replace("resources/portfolio/","")
 
         if(file.type=="tree"){
             child = {
@@ -74,14 +74,14 @@ function hierarchy(listOfPaths){
             titleSpan.innerHTML += filePath[filePath.length - 1] + "&nbsp"
 
             let githubLink = document.createElement('a')
-            githubLink.href = "https://github.com/dual-shock/dual-shock.github.io/tree/main/"+filePath.join('/')
+            githubLink.href = `${file.url}tree/main/`+urlEnd
             githubLink.target = "_blank"
             githubLink.innerHTML = "github"
             githubLink.classList.add("folder-link")
 
 
             
-            newtabCopy.children[0].href = "https://github.com/dual-shock/dual-shock.github.io/tree/main/"+filePath.join('/')
+            newtabCopy.children[0].href = `${file.url}tree/main/`+urlEnd
             newtabCopy.children[0].target = "_blank"
 
             titleSpan.appendChild(githubLink)
@@ -103,7 +103,7 @@ function hierarchy(listOfPaths){
                 parentId: parentId
             }   
 
-            child.elm.href = "https://github.com/dual-shock/dual-shock.github.io/blob/main/"+filePath.join('/')
+            child.elm.href = `${file.url}blob/main/`+urlEnd
             child.elm.target = "_blank"
             child.elm.appendChild(document.createElement('li'))
             child.elm.children[0].innerHTML = filePath[filePath.length - 1] 
@@ -121,15 +121,16 @@ function hierarchy(listOfPaths){
     
     return containerList
 }
-function loadGithubSources(){
+
+
+function loadGalleryLinks(link){
     
-    fetch("https://api.github.com/repos/dual-shock/dual-shock.github.io/git/trees/main?recursive=1")
+    fetch(link)
         .then((response) => response.json()).then(data => {
-            trees = data.tree
-    
+            
+            let trees = data.tree
+            
             let gallery = document.getElementsByClassName("gallery-ul")[0]
-            let portfolio = document.getElementById("portfolio")
-            let listOfPaths = []
     
             for(let i=0;i<trees.length;i++){
                 let tree = trees[i]
@@ -144,25 +145,8 @@ function loadGithubSources(){
                     `
                     gallery.innerHTML += galleryImage
                 }
-                if(tree.path.split('/')[1]=="portfolio" && tree.path.split('/').length > 2 ){
-                    listOfPaths.push({
-                        path: tree.path,
-                        type: tree.type
-                    })
-                }
-            }
-            portfolio.appendChild(hierarchy(listOfPaths))
-            let toggler = document.getElementsByClassName("caret")
-            
-            for (let i = 0; i < toggler.length; i++) {
-              toggler[i].addEventListener("click", function() {
-                this.parentElement.querySelector(".hide-folder").classList.toggle("active");
-                this.classList.toggle("caret-down");
-              });
-            }
-            
+            }            
         })
-    
 }
 
 

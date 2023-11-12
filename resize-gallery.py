@@ -84,8 +84,11 @@ sorted.sort(key=lambda  r_g_b: step(r_g_b[0][0], r_g_b[0][1], r_g_b[0][2], 8) )
 
 for i in range(len(sorted)):
     if '.' in sorted[i][1]:  
-        print(f"checking image ({i}/{len(sorted)})", end="\r")
-        prev_img = sorted[i-1][1]
+        print(f"checking image ({i+1}/{len(sorted)})", end="\r")
+        if(i==0):
+            prev_img = f'{len(sorted) - 1}_{sorted[i-1][1]}'
+        else:
+            prev_img = f'{i-1}_{sorted[i-1][1]}'
         try:
             next_img = f'{i+1}_{sorted[i+1][1]}'
         except IndexError:

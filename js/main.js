@@ -1,3 +1,4 @@
+
 let main = document.querySelector("#main"),
 prlx = document.querySelector("#prlx"),
 dropdown = document.querySelector(".dropdown")
@@ -135,10 +136,72 @@ function parallaxHandler(){
 }
 
 
-if(loadGitSources){
-    
-    loadGithubSources()
+
+
+
+let promises = []
+let reposToInclude = [
+    "journal",
+    "jadepage",
+    "dual-shock.github.io"
+]
+
+
+async function loadPortfolioLinks(){
+    for(let i=0;i<reposToInclude.length;i++){
+        promises.push(
+            fetch(`https://api.github.com/repos/dual-shock/${reposToInclude[i]}/git/trees/main?recursive=1`)
+            .then((response) => response.json())
+        )
+    }
 }
+
+try {
+    loadPortfolioLinks();
+
+    let data = await Promise.all(promises)
+    let listOfPaths = []
+    for(let i = 0; i < data.length; i++){
+        let trees = data[i].tree
+        listOfPaths.push({
+            path: `resources/portfolio/${trees[0].url.split("/")[5]}`,
+            type: 'tree'
+        })
+        for(let i=0;i<trees.length;i++){
+            let tree = trees[i]
+            tree.path = `resources/portfolio/${tree.url.split("/")[5]}/${tree.path}`
+            if(tree.path.split('/')[1]=="portfolio" && tree.path.split('/').length > 2 ){
+                listOfPaths.push({
+                    path: tree.path,
+                    type: tree.type,
+                    url: `https://github.com/dual-shock/${trees[0].url.split("/")[5]}/`
+                })
+            }
+        }
+    }
+    console.log(listOfPaths)
+    document.getElementById("portfolio").appendChild(hierarchy(listOfPaths))
+    let toggler = document.getElementsByClassName("caret")
+    
+    for (let i = 0; i < toggler.length; i++) {
+    toggler[i].addEventListener("click", function() {
+        this.parentElement.querySelector(".hide-folder").classList.toggle("active");
+        this.classList.toggle("caret-down");
+    });
+    }    
+}
+
+catch(error){
+    console.error(error)
+}
+
+
+ 
+console.log("test")
+if(loadGitSources){
+    loadGalleryLinks("https://api.github.com/repos/dual-shock/dual-shock.github.io/git/trees/main?recursive=1")
+}
+
 else{
     let toggler = document.getElementsByClassName("caret")
 
