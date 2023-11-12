@@ -744,7 +744,7 @@ a > .portfolio-list{
     }
     .navbar-item{
         font-size: clamp(1rem, 4vmax, 4rem);
-        border:1px solid red;
+        border:0px solid red;
         min-width: fit-content;
         width:20%;
         float:left;
