@@ -74,14 +74,14 @@ function hierarchy(listOfPaths){
             titleSpan.innerHTML += filePath[filePath.length - 1] + "&nbsp"
 
             let githubLink = document.createElement('a')
-            githubLink.href = `${file.url}tree/main/`+urlEnd
+            githubLink.href = `${file.url}tree/main/`+file.urlEnd
             githubLink.target = "_blank"
             githubLink.innerHTML = "github"
             githubLink.classList.add("folder-link")
 
 
             
-            newtabCopy.children[0].href = `${file.url}tree/main/`+urlEnd
+            newtabCopy.children[0].href = `${file.url}tree/main/`+file.urlEnd
             newtabCopy.children[0].target = "_blank"
 
             titleSpan.appendChild(githubLink)
@@ -103,7 +103,7 @@ function hierarchy(listOfPaths){
                 parentId: parentId
             }   
 
-            child.elm.href = `${file.url}blob/main/`+urlEnd
+            child.elm.href = `${file.url}blob/main/`+file.urlEnd
             child.elm.target = "_blank"
             child.elm.appendChild(document.createElement('li'))
             child.elm.children[0].innerHTML = filePath[filePath.length - 1] 

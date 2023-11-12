@@ -165,7 +165,9 @@ try {
         let trees = data[i].tree
         listOfPaths.push({
             path: `resources/portfolio/${trees[0].url.split("/")[5]}`,
-            type: 'tree'
+            type: 'tree',
+            url: `https://github.com/dual-shock/${trees[0].url.split("/")[5]}/`,
+            urlEnd: ""
         })
         for(let i=0;i<trees.length;i++){
             let tree = trees[i]
@@ -174,7 +176,8 @@ try {
                 listOfPaths.push({
                     path: tree.path,
                     type: tree.type,
-                    url: `https://github.com/dual-shock/${trees[0].url.split("/")[5]}/`
+                    url: `https://github.com/dual-shock/${trees[0].url.split("/")[5]}/`,
+                    urlEnd: tree.path.replace(`resources/portfolio/${tree.url.split("/")[5]}/`,"")
                 })
             }
         }
