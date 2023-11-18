@@ -79,11 +79,11 @@ function clickHandler(e){
             let newContentElm = document.querySelector(e.target.dataset.open)
             let newNavItem = e.target
             if(newContentElm != oldContentElm){
-                newContentElm.classList.add("display-block")
+                newContentElm.classList.add("display-flex")
                 newNavItem.style.opacity = "1"
                 
                 if(oldContentElm!=undefined){
-                    oldContentElm.classList.remove("display-block")
+                    oldContentElm.classList.remove("display-flex")
                     oldNavItem.style.opacity = "0.2"
                 }
             }
@@ -94,7 +94,7 @@ function clickHandler(e){
 
         if(e.target.matches("#header, #navbar, #title") && oldContentElm != undefined){
             console.log("non cont. elm clicked: ", e.target, "\nremoving display form old cont. elm: ", oldContentElm)
-            oldContentElm.classList.remove("display-block")
+            oldContentElm.classList.remove("display-flex")
             oldNavItem.style.opacity = "0.2"
             
             oldContentElm = undefined
