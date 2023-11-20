@@ -1091,7 +1091,7 @@ a > .portfolio-list{
                                 filter:brightness(60%);
                             }
                     .friend-title{
-                        font-size: clamp(1rem, 3.2vmax, 4rem);
+                        font-size: clamp(1rem, 2.5vmax, 4rem);
                         width:100%;
                         height:fit-content; 
                         height:6vh;
@@ -1103,7 +1103,7 @@ a > .portfolio-list{
                     }
                     .friend-title > a {
                         
-                        color:rgba(46, 240, 182, 0.712);
+                        color:#2ef0b6b6;
                     }
 
 
