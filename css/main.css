@@ -102,6 +102,25 @@ main {
     height:fit-content;
     padding:3vmin;
 }
+#bottom-fill{
+    display:flex;
+    align-items: start;
+    padding-top:30vh;
+    justify-content: center;
+}
+#credit{
+    font-size: clamp(1rem, 2vmax, 2rem);
+}
+#credit-desc{
+    float:left;
+    color: #70808054;
+}
+#credit-link{
+    float:left;
+}
+#credit-link > a{
+    color: #70808073;
+}
 .content-item{
     margin-bottom:4vmax;
     width:100%;
@@ -436,6 +455,25 @@ main {
     margin-top: 2vmax;
     height:fit-content;
     padding:3vmin;
+}
+#bottom-fill{
+    display:flex;
+    align-items: start;
+    padding-top:30vh;
+    justify-content: center;
+}
+#credit{
+    font-size: clamp(1rem, 2vmax, 2rem);
+}
+#credit-desc{
+    float:left;
+    color: #70808054;
+}
+#credit-link{
+    float:left;
+}
+#credit-link > a{
+    color: #70808073;
 }
 .content-item{
     margin-bottom:5vmax;
@@ -919,7 +957,7 @@ a > .portfolio-list{
                     all:unset;
                     
                     flex:4;
-                    max-height:74vh;
+                    max-height:73vh;
                     scrollbar-color: rgba(46, 240, 182, 0.849) rgba(0, 0, 0, 0);
                     scrollbar-width:1vmax;
                     overflow-y:scroll ;
@@ -928,13 +966,13 @@ a > .portfolio-list{
                     margin-top:4vh;
                     margin-right:0%;
                     font-size: clamp(1rem, 3.5vmax, 4.5rem);
-                    padding-top:2vh;
+                    padding-top:3vh;
                     padding-left:0vh;
                 }#portfolio::-webkit-scrollbar{width:1vmax;height:30px;}
                 #portfolio::-webkit-scrollbar-thumb{
                     background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.44, rgba(46, 240, 204, 0.8)),color-stop(0.72, rgba(46, 240, 204, 0.6)), color-stop(0.86, rgba(46, 240, 204, 0.4))); ;}
                     #myUL{
-                        
+                        padding-left: 3vh;
                     }
                         .portfolio-list{
                             min-height:4vmax;
@@ -1033,7 +1071,7 @@ a > .portfolio-list{
                     margin-top:4vh;
                     margin-left:2vh;    
                     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-                    padding-top:4vh;
+                    padding-top:3vh;
                     padding-left:0vh;
                 }
                     .friend-imgs{
@@ -1044,7 +1082,7 @@ a > .portfolio-list{
                         display: flex;
                         align-items: center;
                         justify-content: start;
-                        padding-left: 2.2%;
+                        padding-left: 3vh;
                     }
                         .friend-pfp{
                             float: left;
@@ -1099,7 +1137,7 @@ a > .portfolio-list{
                         margin-top: 0vmax;
                         margin-bottom: 0vmax;
                         float: left;
-                        padding-left: 2.2%;
+                        padding-left: 2.5vh;
                     }
                     .friend-title > a {
                         
@@ -1152,6 +1190,8 @@ a > .portfolio-list{
                         margin-inline-start: 0;
                         margin-inline-end: 0;
                         padding-inline-start: 0;
+                        padding-left:3vh;
+                        padding-top:3vh;
                     }
                         .gallery-ul > li{
                             flex: 1 1 auto;
@@ -1165,6 +1205,7 @@ a > .portfolio-list{
                                 height:100%;
                                 vertical-align: middle;
                             }
+        
 }
 @media only screen and (min-width: 82rem){ /* 1312w ->, (1920x1080) ULTRAWIDES   */
     #main{background-color: rgba(70, 128, 0, 0.634);} }   

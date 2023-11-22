@@ -9,10 +9,4 @@
 
 ## i think mby bg img is too high res
 
-## Give creds for bg img
-
-## make all imgs locale
-
-## make logo work
-
 ## Give links to jadepage and journal

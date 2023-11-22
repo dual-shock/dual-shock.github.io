@@ -71,7 +71,14 @@ function hierarchy(listOfPaths){
 
             titleSpan.appendChild(arrowCopy)
             titleSpan.appendChild(folderCopy)
-            titleSpan.innerHTML += filePath[filePath.length - 1] + "&nbsp"
+            if(filePath[filePath.length - 1] == "dual-shock.github.io"){
+                titleSpan.innerHTML += "nøkken.online" + "&nbsp"
+            }
+            else{
+                titleSpan.innerHTML += filePath[filePath.length - 1] + "&nbsp"
+            }
+
+            
 
             let githubLink = document.createElement('a')
             githubLink.href = `${file.url}tree/main/`+file.urlEnd
