@@ -12,3 +12,5 @@ https://nøkken.online
 - Try diff parallax method cause wtf
 - i think mby bg img is too high res
 - Give links to jadepage and journal
+- check the mozilla like test website and fix the stuff
+- run it through website testers

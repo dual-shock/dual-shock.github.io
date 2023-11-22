@@ -71,8 +71,11 @@ function hierarchy(listOfPaths){
 
             titleSpan.appendChild(arrowCopy)
             titleSpan.appendChild(folderCopy)
-            if(filePath[filePath.length - 1] == "dual-shock.github.io"){
-                titleSpan.innerHTML += "nøkken.online" + "&nbsp"
+            if(filePath[filePath.length - 1] == "journal"){
+                titleSpan.innerHTML += "<a style='color:rgba(46, 240, 182, 0.712);' href='https://nøkken.online/journal'>journal<a>"
+            }
+            else if(filePath[filePath.length - 1] == "dual-shock.github.io"){
+                titleSpan.innerHTML += "<a style='color:rgba(46, 240, 182, 0.712);' href='https://nøkken.online'>nøkken.online<a>"
             }
             else{
                 titleSpan.innerHTML += filePath[filePath.length - 1] + "&nbsp"
