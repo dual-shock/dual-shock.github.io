@@ -141,7 +141,7 @@ main {
 }
 .content-subtitle{
     font-size: clamp(1rem, 2vmax, 4rem);
-    height:5vmax;
+    min-height:5vmax;
     width:100%;
     padding-right:5%;
     display:flex;
