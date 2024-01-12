@@ -867,6 +867,7 @@ a > .portfolio-list{
                     max-height: unset;
                     align-items: unset;
                     height:100%;
+                    margin-top:4vh;
                 }
 
 
@@ -1064,10 +1065,9 @@ a > .portfolio-list{
                 }
                 #friend-imgs-container{
                     all:unset;
-                    margin-top:0;   
                     flex:4;
-                    height:72vh;
-                    max-height:72vh;
+                    height:73vh;
+                    max-height:73vh;
                     margin-top:4vh;
                     margin-left:2vh;    
                     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
@@ -1083,6 +1083,7 @@ a > .portfolio-list{
                         align-items: center;
                         justify-content: start;
                         padding-left: 3vh;
+                        
                     }
                         .friend-pfp{
                             float: left;
@@ -1129,7 +1130,7 @@ a > .portfolio-list{
                                 filter:brightness(60%);
                             }
                     .friend-title{
-                        font-size: clamp(1rem, 2.5vmax, 4rem);
+                        font-size: clamp(1rem, 3vmax, 4rem);
                         width:100%;
                         height:fit-content; 
                         height:6vh;
@@ -1138,6 +1139,8 @@ a > .portfolio-list{
                         margin-bottom: 0vmax;
                         float: left;
                         padding-left: 2.5vh;
+                        display:flex;
+                        align-items: center;
                     }
                     .friend-title > a {
                         
@@ -1171,7 +1174,7 @@ a > .portfolio-list{
                     padding-top:0vh;
                     padding-left:0vh;
                     height:fit-content;
-                    max-height:74vh;
+                    max-height:76vh;
                     scrollbar-color: rgba(46, 240, 182, 0.849) rgba(0, 0, 0, 0);
                     scrollbar-width:1vmax;
                     overflow-y: scroll;
