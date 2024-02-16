@@ -67,29 +67,25 @@ test{
 
 }
 .item-name > p{
-    max-width: 75%;
-@@ -71,6 +76,7 @@
+    max-width: 75%;}
+
 #main-title{
     font-size:3rem;
     padding-bottom:5%;
     margin-bottom: 3vh;
 }
 
+</style>
+</head>
 
-@@ -131,7 +137,7 @@
-        subject: "RLE",
-        name: "podcast",
-        start:"february 28",
-        end:"march 15",
-        end:"march 17",
-    }
-]
+<body>
+    
+</body>
+<script>
 
-@@ -149,7 +155,7 @@
 
 function addData(frist){
     let unixStart = Math.floor(new Date(`${frist.start} 2023`).getTime() / 1000)
-    let unixEnd = Math.floor(new Date(`${frist.end} 2023`).getTime() / 1000)
     let unixEnd = Math.floor(new Date(`${frist.end} 2023 23:59`).getTime() / 1000)
     let unixCurr = Math.floor(new Date().getTime() / 1000)
     let total = (unixEnd-unixStart) / 60 / 60
