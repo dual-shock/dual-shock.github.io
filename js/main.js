@@ -143,7 +143,8 @@ let promises = []
 let reposToInclude = [
     "journal",
     "jadepage",
-    "dual-shock.github.io"
+    "dual-shock.github.io",
+    "uni.todo"
 ]
 
 
