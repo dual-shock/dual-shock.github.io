@@ -4,6 +4,8 @@ lake of nøkken
 https://nøkken.online
 
 ## TODO
+- Make music thing
+  - Have minecraft fox sleeping icon for when no music, headphone icon when music
 - remake the functions to get portfolio, cause im moving all web projects to own repos
 - Make resize-gallery.py sort images by color / "vibe"
 - get avg color of img and sort img list by that, 
