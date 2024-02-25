@@ -78,7 +78,7 @@ function hierarchy(listOfPaths){
                 titleSpan.innerHTML += "<a style='color:rgba(46, 240, 182, 0.712);' href='https://nøkken.online'>nøkken.online<a>"
             }
             else if(filePath[filePath.length - 1] == "uni.todo"){
-                titleSpan.innerHTML += "<a style='color:rgba(46, 240, 182, 0.712);' href='https://nøkken.online'>nøkken.online<a>"
+                titleSpan.innerHTML += "<a style='color:rgba(46, 240, 182, 0.712);' href='https://nøkken.online/uni.todo'>uni.todo<a>"
             }
             else{
                 titleSpan.innerHTML += filePath[filePath.length - 1] + "&nbsp"
