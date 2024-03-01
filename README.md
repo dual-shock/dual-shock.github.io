@@ -1,6 +1,6 @@
 # nokken.github.io
 
-https://nøkken.online
+https://nixie.digital
 
 ## TODO
 - Make music thing
