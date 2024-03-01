@@ -173,7 +173,7 @@ function relativeTime(time, time_text) {
     console.log(time_text)
         return time_text
 }
-
+let lastSongName = ""
 function updateLastFmData(){
     var json = JSON.parse(httpGet(url));
     var last_track = json.recenttracks.track[0]
@@ -190,7 +190,9 @@ function updateLastFmData(){
     var now_playing = (last_track["@attr"] == undefined) ? false : true
     var imageLink = last_track.image[1]["#text"]
     document.getElementById("listening-img").src = imageLink
-    document.getElementById("listening-title").innerHTML = `<p>${track}</p>`
+    if(lastSongName !== track){
+        document.getElementsByClassName("marquee")[0].innerHTML = `<div>${track}</div>`
+    }
 
     document.getElementById("listening-artist").innerHTML = artist
     console.log(now_playing, last_track.date)
@@ -213,6 +215,7 @@ function updateLastFmData(){
         "Track: " + track + "\n" +
         "Date: " + relative_time + "\n" +
         "Now playing: " + now_playing)
+    lastSongName = track
 }
 updateLastFmData()
 let checkSong = setInterval(updateLastFmData,10000);
@@ -227,7 +230,7 @@ let checkSong = setInterval(updateLastFmData,10000);
 
 
 
-if(false){
+
 let promises = []
 let reposToInclude = [
     "journal",
@@ -307,5 +310,4 @@ else{
         this.classList.toggle("caret-down");
         });
     }
-}
 }
