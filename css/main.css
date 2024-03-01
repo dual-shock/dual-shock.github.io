@@ -95,7 +95,9 @@ main {
 #navbar{
     display:none;
 }
-
+#listening-desktop{
+    display:none;
+}
 
 #content{
     margin-top: 2vmax;
@@ -434,6 +436,9 @@ main {
     right:0;
     padding-right:2vmax;
     text-align: end;
+}
+#listening-desktop{
+    display:none;
 }
 .display-dropdown{
     display: block;
@@ -786,14 +791,73 @@ a > .portfolio-list{
             padding-left: 0;
             
         }
-            #title{
-                display: flex;
-                align-items: center;
-                padding-left: 0;
-                text-align: left;
+            #first-row{
                 flex:4;
-                padding-left:5%;
-            }    
+
+                width: 100vw;
+            }
+                #title{
+                    display: flex;
+                    align-items: center;
+                    
+                    text-align: left;
+                    width:80%;
+                    padding-left:5%;
+                    float:left;
+                }    
+                #listening-desktop{
+                    
+                    display:flex;
+                    align-items: center;
+                    width: 20%;;
+                    flex-direction: row;
+                    column-gap:10px;
+                    float:left;
+                }
+                    #listening-img-container{
+                        flex:1;
+                        display:flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                        #listening-img{
+                            width: 60px;
+                            height:60px;
+                        }
+                    #listening-text{
+                        flex:3;
+                        display: flex;
+                        flex-direction: column;
+                        overflow: hidden;
+                    }
+                        #listening-title{
+                            font-size: 1.3rem;
+                           
+                            white-space: nowrap;
+                            text-align: center;
+                            overflow: hidden;
+                            box-sizing: border-box;
+                        }
+                        #listening-title > p{
+                            max-width: 100%;
+                            overflow: hidden;
+                        }
+                        #listening-artist{
+                            font-size:1rem;
+                            
+                            opacity: 70%;
+                        }
+                    #listening-time{
+                        display:flex;
+                        flex-direction: column;
+                    }
+                        #listening-gif{
+                            flex:5;
+                        }
+                        #listening-now{
+                            flex:1;
+                            font-size:0.8rem;
+                        }
             #dropdown-container{
                 display:none;    
             }
