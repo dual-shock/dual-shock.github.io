@@ -153,6 +153,68 @@ main {
     filter: brightness(75%);
     text-align: center;
 }
+#listening-mobile{
+    margin-bottom:3vmax;
+    width:100%;
+    display:flex; 
+    align-items: center;
+    justify-content:baseline;
+    height:7vmax;
+}
+    #listening-time-mobile{
+        display:flex;
+        flex-direction: column;
+        width: fit-content;
+        max-width: 20%;
+        align-items: center;
+        justify-content: center;
+    }
+        #listening-gif-mobile{
+            max-height: 6vmax;
+            
+        }
+        #listening-now-mobile{
+            flex:1;
+            font-size: 0.7rem;
+            text-align: center;
+        }
+    #listening-img-container-mobile{
+        width: fit-content;
+        max-width: 20%;
+        padding:1%;
+    }
+        #listening-img-mobile{
+            height: 7.5vmax;
+            box-shadow: rgb(46, 240, 182, 0.4) 0.2vmax 0.2vmax, 
+            rgba(46, 240, 182, 0.3) 0.4vmax 0.4vmax, 
+            rgba(46, 240, 182, 0.2) 0.6vmax 0.6vmax, 
+            rgba(46, 240, 182, 0.1) 0.8vmax 0.8vmax, 
+            rgba(46, 240, 182, 0.05) 1vmax 1vmax;
+            filter:brightness(70%);
+        }
+    #listening-text-mobile{
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        width: fit-content;
+        max-width: 60%;
+        padding-left:2%;
+    }
+        #listening-title-mobile{
+            font-size: 1.4rem;
+            flex:2;
+            white-space: right;
+            text-align: start;
+            overflow: hidden;
+            box-sizing: border-box;
+            text-overflow: ellipsis;
+        }
+        #listening-artist-mobile{
+            font-size:1.1rem;
+            flex:1;
+            text-align: start;
+            opacity: 60%;
+        }
 #friend-imgs-container{
 
     margin-top: 1.6vmax;
@@ -512,6 +574,70 @@ main {
     text-align: center;
 }
 
+#listening-mobile{
+    margin-bottom:3vmax;
+    width:100%;
+    display:flex; 
+    align-items: center;
+    justify-content:baseline;
+    height:7vmax;
+}
+    #listening-time-mobile{
+        display:flex;
+        flex-direction: column;
+        width: fit-content;
+        max-width: 20%;
+        align-items: center;
+        justify-content: center;
+    }
+        #listening-gif-mobile{
+            max-height: 6vmax;
+            
+        }
+        #listening-now-mobile{
+            flex:1;
+            font-size: 1rem;
+            text-align: center;
+        }
+    #listening-img-container-mobile{
+        width: fit-content;
+        max-width: 20%;
+        padding:1%;
+    }
+        #listening-img-mobile{
+            height: 7.5vmax;
+            box-shadow: rgb(46, 240, 182, 0.4) 0.2vmax 0.2vmax, 
+            rgba(46, 240, 182, 0.3) 0.4vmax 0.4vmax, 
+            rgba(46, 240, 182, 0.2) 0.6vmax 0.6vmax, 
+            rgba(46, 240, 182, 0.1) 0.8vmax 0.8vmax, 
+            rgba(46, 240, 182, 0.05) 1vmax 1vmax;
+            filter:brightness(70%);
+        }
+    #listening-text-mobile{
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        width: fit-content;
+        max-width: 60%;
+        padding-left:2%;
+    }
+        #listening-title-mobile{
+            font-size: 1.8rem;
+            flex:2;
+            white-space: right;
+            text-align: start;
+            overflow: hidden;
+            box-sizing: border-box;
+            text-overflow: ellipsis;
+        }
+        #listening-artist-mobile{
+            font-size:1.4rem;
+            flex:1;
+            text-align: start;
+            opacity: 60%;
+        }
+
+
 #friend-imgs-container{
 
     margin-top: 1.6vmax;
@@ -801,85 +927,76 @@ a > .portfolio-list{
                     align-items: center;
                     
                     text-align: left;
-                    width:80%;
+                    width:60%;
                     padding-left:5%;
                     float:left;
                 }    
+                #listening-mobile{
+                    display:none;
+                }
                 #listening-desktop{
                     
                     display:flex;
                     align-items: center;
-                    width: 20%;;
-                    flex-direction: row;
-                    column-gap:10px;
-                    float:left;
+                    justify-content: end;
+                    width: 40%;
+                    margin-left:auto;
+                    float:right;
                 }
-                    #listening-img-container{
-                        flex:1;
-                        display:flex;
-                        align-items: center;
-                        justify-content: center;
-                    }
-                        #listening-img{
-                            width: 60px;
-                            height:60px;
-                        }
+
                     #listening-text{
-                        flex:3;
                         display: flex;
                         flex-direction: column;
                         overflow: hidden;
+                        width: fit-content;
+                        max-width: 60%;
                     }
-                        #marquee{
-                            display:block;
-                            min-height:80px;
-                            width: 80%;
-                            background: violet;
-                            text-transform: uppercase;
-                            white-space: nowrap;
-                            overflow: hidden;
-                        }
-                        .marquee div {
-                            text-wrap: nowrap;
-                            font-size: 5rem;
-                            font-family: verdana;
-                            padding-left: 0;
-                            display: inline-block;
-                            animation: animate 15s linear infinite;
-                          }
-                          
-                          @keyframes animate {
-
-                            100% {
-                              transform: translate(-100%, 0);
-                              padding-left: 100%;
-                            }
-
-                          }
-
                         #listening-title{
-                            /* font-size: 1.3rem;
-                           
-                            white-space: nowrap;
-                            text-align: center;
+                            font-size: 1.3rem;
+                            flex:2;
+                            white-space: right;
+                            text-align: end;
                             overflow: hidden;
-                            box-sizing: border-box; */
-                        }
-                        #listening-title > p{
-                            max-width: 100%;
-                            overflow: hidden;
+                            box-sizing: border-box;
+                            text-overflow: ellipsis;
                         }
                         #listening-artist{
                             font-size:1rem;
-                            
-                            opacity: 70%;
+                            flex:1;
+                            text-align: end;
+                            opacity: 60%;
+                        }
+                    #listening-img-container{
+
+                        display:flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 20%;
+                        max-width: 20%;
+                        padding:1%;
+                    }
+                        #listening-img{
+                            height:100%;
+                            max-width: 80%;
+                            align-self: center;
+                            box-shadow: rgb(46, 240, 182, 0.4) 0.2vmax 0.2vmax, 
+                                        rgba(46, 240, 182, 0.3) 0.4vmax 0.4vmax, 
+                                        rgba(46, 240, 182, 0.2) 0.6vmax 0.6vmax, 
+                                        rgba(46, 240, 182, 0.1) 0.8vmax 0.8vmax, 
+                                        rgba(46, 240, 182, 0.05) 1vmax 1vmax;
+                            filter:brightness(70%);
                         }
                     #listening-time{
                         display:flex;
                         flex-direction: column;
+                        width: 20%;
+                        max-width: 20%;
+                        align-items: center;
                     }
                         #listening-gif{
-                            flex:5;
+                            flex:4;
+                            
+                            object-fit: contain;
                         }
                         #listening-now{
                             flex:1;

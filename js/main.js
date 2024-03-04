@@ -17,6 +17,7 @@ const height_ob = new ResizeObserver((entries) => {
         }
         if(entry.target.id == "main"){
             let mainWidth = entry.contentRect.width
+            console.log(mainWidth)
             if(mainWidth>mediaQuery){
                 if(!desktop){
                     desktop = true
@@ -29,6 +30,8 @@ const height_ob = new ResizeObserver((entries) => {
                         oldContentElm = undefined
                         oldNavItem = undefined
                     }
+                    document.getElementById("listening-mobile").style.display = "none"
+                    document.getElementById("listening-desktop").style.display = "flex"
                 }
             }
             else{
@@ -36,7 +39,8 @@ const height_ob = new ResizeObserver((entries) => {
                     desktop = false
 
                     console.log("window changed to mobile, desktop:", desktop)
-
+                    document.getElementById("listening-mobile").style.display = "flex"
+                    document.getElementById("listening-desktop").style.display = "none"
                 }   
             }
             console.log("removing and adding click listener, desktop: ", desktop)
@@ -174,6 +178,7 @@ function relativeTime(time, time_text) {
         return time_text
 }
 let lastSongName = ""
+
 function updateLastFmData(){
     var json = JSON.parse(httpGet(url));
     var last_track = json.recenttracks.track[0]
@@ -189,36 +194,46 @@ function updateLastFmData(){
     }
     var now_playing = (last_track["@attr"] == undefined) ? false : true
     var imageLink = last_track.image[1]["#text"]
-    document.getElementById("listening-img").src = imageLink
-    if(lastSongName !== track){
-        document.getElementsByClassName("marquee")[0].innerHTML = `<div>${track}</div>`
-    }
+    
+      
+        if(lastSongName !== track){
+            document.getElementById("listening-img").src = imageLink.replace("64s","128s")
+            document.getElementById("listening-title").innerHTML = `${track}`
+            document.getElementById("listening-artist").innerHTML = artist
+            
+            document.getElementById("listening-img-mobile").src = imageLink.replace("64s","128s")
+            document.getElementById("listening-title-mobile").innerHTML = `${track}`
+            document.getElementById("listening-artist-mobile").innerHTML = artist
+        }
+        
+        if(now_playing){
+            document.getElementById("listening-time").innerHTML = `
+            <img id="listening-gif" width="50px" height="50px" src="./imgs/kirbyheadphone.gif" alt="">
+            <div id="listening-now">Listening now! </div>
+            `
 
-    document.getElementById("listening-artist").innerHTML = artist
-    console.log(now_playing, last_track.date)
-    console.log(now_playing)
-    if(now_playing){
-        document.getElementById("listening-time").innerHTML = `
-        <img width="60px" height="60px" src="./imgs/headset.gif" alt="">
-        <div id="listening-now">Listening now! </div>
-        `
-    }
-    else{
-        document.getElementById("listening-time").innerHTML = `
-        <img width="60px" height="60px" src="./imgs/sleeping.gif" alt="">
-        <div id="listening-now">${relative_time} </div>
-        `
-    }
-    console.log(imageLink)
-    console.log(
-        "Artist: " + artist + "\n" +
-        "Track: " + track + "\n" +
-        "Date: " + relative_time + "\n" +
-        "Now playing: " + now_playing)
+            document.getElementById("listening-time-mobile").innerHTML = `
+            <img id="listening-gif-mobile"  src="./imgs/kirbyheadphone.gif" alt="">
+            <div id="listening-now-mobile">Listening now! </div>
+            `
+        }
+        
+        else{
+            document.getElementById("listening-time").innerHTML = `
+            <img id="listening-gif" width="80px" height="80px" src="./imgs/sleeping.gif" alt="">
+            <div id="listening-now">${relative_time} </div>
+            `
+
+            document.getElementById("listening-time-mobile").innerHTML = `
+            <img id="listening-gif-mobile"  src="./imgs/sleeping.gif" alt="">
+            <div id="listening-now-mobile">${relative_time} </div>
+            `
+        }        
+    
     lastSongName = track
 }
 updateLastFmData()
-let checkSong = setInterval(updateLastFmData,10000);
+let checkSong = setInterval(updateLastFmData,3000);
 
 
 
@@ -229,7 +244,7 @@ let checkSong = setInterval(updateLastFmData,10000);
 
 
 
-
+if(false){
 
 let promises = []
 let reposToInclude = [
@@ -310,4 +325,7 @@ else{
         this.classList.toggle("caret-down");
         });
     }
+}
+
+
 }
