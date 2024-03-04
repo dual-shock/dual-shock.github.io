@@ -244,7 +244,7 @@ let checkSong = setInterval(updateLastFmData,3000);
 
 
 
-if(false){
+
 
 let promises = []
 let reposToInclude = [
@@ -328,4 +328,4 @@ else{
 }
 
 
-}
+
