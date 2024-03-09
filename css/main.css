@@ -117,7 +117,7 @@ main {
                 width:100%;
                 display:flex; 
                 align-items: center;
-                
+                font-size: 1.1rem;
                 height:fit-content;
                 text-align: center;
                 padding-left: 5%;
@@ -572,7 +572,7 @@ main {
                 width:100%;
                 display:flex; 
                 align-items: center;
-                
+                font-size:1.4rem;
                 height:fit-content;
                 text-align: center;
                 padding-left: 5%;
