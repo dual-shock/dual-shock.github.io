@@ -112,6 +112,26 @@ main {
             height:fit-content;
             padding:3vmin;
         }
+            #desktop-desc{
+                margin-bottom:4vmax;
+                width:100%;
+                display:flex; 
+                align-items: center;
+                justify-content:baseline;
+                height:fit-content;
+                text-align: center;
+                padding-left: 5%;
+                padding-right:5%;
+            }
+            
+                #desktop-desc-text{
+                    
+                }
+            
+                .desc-quote{
+                    font-style: italic;
+                }
+
             #listening-mobile{
                 margin-bottom:3vmax;
                 width:100%;
@@ -547,6 +567,25 @@ main {
     height:fit-content;
     padding:3vmin;
 }
+            #desktop-desc{
+                margin-bottom:4vmax;
+                width:100%;
+                display:flex; 
+                align-items: center;
+                justify-content:baseline;
+                height:fit-content;
+                text-align: center;
+                padding-left: 5%;
+                padding-right:5%;
+            }
+            
+                #desktop-desc-text{
+                    
+                }
+            
+                .desc-quote{
+                    font-style: italic;
+                }
 #bottom-fill{
     display:flex;
     align-items: start;
@@ -1064,6 +1103,9 @@ a > .portfolio-list{
             display: flex;
             flex:4;
         }
+            #desktop-desc{
+                display:none;
+            }
             .content-item{
                 all:unset;
                 width:100%;
