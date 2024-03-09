@@ -117,7 +117,7 @@ main {
                 width:100%;
                 display:flex; 
                 align-items: center;
-                justify-content:baseline;
+                
                 height:fit-content;
                 text-align: center;
                 padding-left: 5%;
@@ -125,7 +125,7 @@ main {
             }
             
                 #desktop-desc-text{
-                    
+                    text-align: center;
                 }
             
                 .desc-quote{
@@ -572,7 +572,7 @@ main {
                 width:100%;
                 display:flex; 
                 align-items: center;
-                justify-content:baseline;
+                
                 height:fit-content;
                 text-align: center;
                 padding-left: 5%;
@@ -580,7 +580,7 @@ main {
             }
             
                 #desktop-desc-text{
-                    
+                    text-align: center;
                 }
             
                 .desc-quote{
