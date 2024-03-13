@@ -815,7 +815,7 @@ main {
     height:fit-content;
     max-height:33.5vmax;
     overflow-y: scroll;
-    width:50%;
+    
 }
 .gallery-ul{
     display:flex;
