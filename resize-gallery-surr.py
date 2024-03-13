@@ -7,8 +7,8 @@ be run every time images are added to the gallery.
 
 This tool accepts .png and .jpeg files. 
 
-This script requires that `Pillow` be installed within the Python
-environment you are running this script in.
+This script requires that `Pillow` version 9.5.0 be installed within the Python
+environment you are running this script in. ( pip install Pillow==9.5.0 )
 
 This file is not intended to be imported as a module.
 """
@@ -50,7 +50,7 @@ for filename in os.listdir(pages_folder):
         print('Failed to delete %s. Reason: %s' % (file_path, e))
 
 
-list_of_imgs = os.listdir(f'{cur_dir}\\imgs\\gallery')
+list_of_imgs = os.listdir(f'{cur_dir}\\imgs\\gallery-surr')
 list_of_imgs = [elm for elm in list_of_imgs if '.' in elm]
 
 def step(r,g,b, repetitions=1):
