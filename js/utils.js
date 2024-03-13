@@ -147,11 +147,11 @@ function loadGalleryLinks(link){
     
             for(let i=0;i<trees.length;i++){
                 let tree = trees[i]
-                if(tree.path.substring(0,'imgs/gallery/thumbs/'.length)=='imgs/gallery/thumbs/' && tree.type == "blob"){
+                if(tree.path.substring(0,'imgs/gallery-surr/thumbs/'.length)=='imgs/gallery-surr/thumbs/' && tree.type == "blob"){
                     //console.log(tree.path)
                     let galleryImage = `
                     <li>
-                    <a href="./imgs/gallery/pages/${tree.path.split('/')[tree.path.split('/').length - 1]}.html">
+                    <a href="./imgs/gallery-surr/pages/${tree.path.split('/')[tree.path.split('/').length - 1]}.html">
                         <img src="${tree.path}"/>
                     </a>
                     </li>

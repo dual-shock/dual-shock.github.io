@@ -1,7 +1,7 @@
 """Gallery thumbnail creator
 
 Simple script to take the images from the gallery on the website and 
-create a set of thumbnail images that are pushed to the gallery/thumbs
+create a set of thumbnail images that are pushed to the gallery-surr/thumbs
 folder, in a max 200px resolution to optimize load times. Is meant to 
 be run every time images are added to the gallery.
 
@@ -22,8 +22,8 @@ from PIL import Image, ImageOps
 
 cur_dir = __file__.rpartition('\\')[0]
             
-thumbs_folder = f'{cur_dir}\\imgs\\gallery\\thumbs\\'
-pages_folder = f'{cur_dir}\\imgs\\gallery\\pages\\'
+thumbs_folder = f'{cur_dir}\\imgs\\gallery-surr\\thumbs\\'
+pages_folder = f'{cur_dir}\\imgs\\gallery-surr\\pages\\'
 count = 0
 for filename in os.listdir(thumbs_folder):
     file_path = os.path.join(thumbs_folder, filename)
@@ -70,9 +70,9 @@ sorted = []
 
 count = 0
 for img in list_of_imgs:
-    #print(DominantColor(f'{cur_dir}\\imgs\\gallery\\{img}').rgb)
-    #sorted.append([DominantColor(f'{cur_dir}\\imgs\\gallery\\{img}').rgb, img])
-    sorted.append((DominantColor(f'{cur_dir}\\imgs\\gallery\\{img}').rgb, img))
+    #print(DominantColor(f'{cur_dir}\\imgs\\gallery-surr\\{img}').rgb)
+    #sorted.append([DominantColor(f'{cur_dir}\\imgs\\gallery-surr\\{img}').rgb, img])
+    sorted.append((DominantColor(f'{cur_dir}\\imgs\\gallery-surr\\{img}').rgb, img))
     #print(f"detected main color of {count}/{list_of_imgs}  {img}", end="\r")
 
 
@@ -94,7 +94,7 @@ for i in range(len(sorted)):
         except IndexError:
             next_img = f'{0}_{sorted[0][1]}'
 
-        f = open(f'{cur_dir}\\imgs\\gallery\\pages\\{i}_{sorted[i][1]}.html', 'w')
+        f = open(f'{cur_dir}\\imgs\\gallery-surr\\pages\\{i}_{sorted[i][1]}.html', 'w')
         f.write(
 f"""<!DOCTYPE html>
 <html lang="en">
@@ -110,9 +110,9 @@ f"""<!DOCTYPE html>
 <body>
 <a href="../../../index.html"><div id="backbutton"><-</div></a>
 <main>
-<img id="img-bg" src="https://raw.githubusercontent.com/dual-shock/dual-shock.github.io/main/imgs/gallery/thumbs/{i}_{sorted[i][1]}" alt="why no here">   
+<img id="img-bg" src="https://raw.githubusercontent.com/dual-shock/dual-shock.github.io/main/imgs/gallery-surr/thumbs/{i}_{sorted[i][1]}" alt="why no here">   
 <div id="fg-container">
-<img id="img-fg" src="https://raw.githubusercontent.com/dual-shock/dual-shock.github.io/main/imgs/gallery/{sorted[i][1]}" alt="why no here">
+<img id="img-fg" src="https://raw.githubusercontent.com/dual-shock/dual-shock.github.io/main/imgs/gallery-surr/{sorted[i][1]}" alt="why no here">
 </div>
 <a href="{prev_img}.html" id="clickleft"><</a>        
 <a href="{next_img}.html" id="clickright">></a>
@@ -123,11 +123,11 @@ f"""<!DOCTYPE html>
 </script>
 </html>""")
 
-        image = Image.open(f'{cur_dir}\\imgs\\gallery\\{sorted[i][1]}')
+        image = Image.open(f'{cur_dir}\\imgs\\gallery-surr\\{sorted[i][1]}')
         image = ImageOps.exif_transpose(image)  #correct quirk with images 
                                                 #not rotating correctly
         image.thumbnail((400,400))
-        image.save(f'{cur_dir}\\imgs\\gallery\\thumbs\\{i}_{sorted[i][1]}')
+        image.save(f'{cur_dir}\\imgs\\gallery-surr\\thumbs\\{i}_{sorted[i][1]}')
 
 
 
