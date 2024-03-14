@@ -283,12 +283,7 @@ async function loadPortfolioLinks(){
     for(let i=0;i<reposToInclude.length;i++){
         promises.push(
             fetch(
-                `https://api.github.com/repos/dual-shock/${reposToInclude[i]}/git/trees/main?recursive=1`,
-                {headers: {
-                    'Authorization':'token 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'
-                }}  // ! Yes this is a personal access token, should be hidden static site WHATEVER its read only
-                    // ! just pretty please dont read my own 4 repos 5000 times an hours :sob: 
-                )
+                `https://api.github.com/repos/dual-shock/${reposToInclude[i]}/git/trees/main?recursive=1`)
             .then((response) => response.json())
         )
     }
