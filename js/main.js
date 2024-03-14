@@ -17,8 +17,9 @@ const height_ob = new ResizeObserver((entries) => {
         }
         if(entry.target.id == "main"){
             let mainWidth = entry.contentRect.width
-            console.log(mainWidth)
-            if(mainWidth>mediaQuery){
+            console.log(mainWidth, mediaQuery)
+            if(mainWidth>=mediaQuery){
+
                 if(!desktop){
                     desktop = true
                     //change to desktop action
@@ -32,6 +33,10 @@ const height_ob = new ResizeObserver((entries) => {
                     }
                     document.getElementById("listening-mobile").style.display = "none"
                     document.getElementById("listening-desktop").style.display = "flex"
+                    document.getElementById("gallery-1").style.display = "flex"
+                    document.getElementById("gallery-2").style.display = "none"
+                    document.getElementById("desktop-gallery-filter-surr").style.opacity = "1"
+                    document.getElementById("desktop-gallery-filter-self").style.opacity = "0.2"
                 }
             }
             else{
@@ -41,6 +46,8 @@ const height_ob = new ResizeObserver((entries) => {
                     console.log("window changed to mobile, desktop:", desktop)
                     document.getElementById("listening-mobile").style.display = "flex"
                     document.getElementById("listening-desktop").style.display = "none"
+                    document.getElementById("gallery-1").style.display = "flex"
+                    document.getElementById("gallery-2").style.display = "flex"
                 }   
             }
             console.log("removing and adding click listener, desktop: ", desktop)
@@ -60,7 +67,7 @@ height_ob.observe(document.querySelector("#main"))
 
 
 function clickHandler(e){
-
+    console.log(desktop)
     if(!desktop){
         if (!e.target.matches(".burger, #dropdown-container, " + 
                                     "#burger-svg-path, #burger-svg")){
@@ -123,6 +130,22 @@ function clickHandler(e){
         
         oldElm = e.target
     }
+    if(e.target.matches("#desktop-gallery-filter-surr")){
+        console.log("surr filter button clicked")
+        document.getElementById("desktop-gallery-filter-surr").style.opacity = "1"
+        document.getElementById("desktop-gallery-filter-self").style.opacity = "0.2"
+        document.getElementById("gallery-1").style.display = "flex"
+        document.getElementById("gallery-2").style.display = "none"
+    }
+    if(e.target.matches("#desktop-gallery-filter-self")){
+        console.log("self filter button clicked")
+        document.getElementById("desktop-gallery-filter-surr").style.opacity = "0.2"
+        document.getElementById("desktop-gallery-filter-self").style.opacity = "1"
+        document.getElementById("gallery-1").style.display = "none"
+        document.getElementById("gallery-2").style.display = "flex"
+
+    }
+    console.log(e.target)
 }
 function parallaxHandler(){
     
@@ -259,7 +282,13 @@ let reposToInclude = [
 async function loadPortfolioLinks(){
     for(let i=0;i<reposToInclude.length;i++){
         promises.push(
-            fetch(`https://api.github.com/repos/dual-shock/${reposToInclude[i]}/git/trees/main?recursive=1`)
+            fetch(
+                `https://api.github.com/repos/dual-shock/${reposToInclude[i]}/git/trees/main?recursive=1`,
+                {headers: {
+                    'Authorization':'token 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'
+                }}  // ! Yes this is a personal access token, should be hidden static site WHATEVER its read only
+                    // ! just pretty please dont read my own 4 repos 5000 times an hours :sob: 
+                )
             .then((response) => response.json())
         )
     }
@@ -271,6 +300,7 @@ try {
     loadPortfolioLinks();
 
     let data = await Promise.all(promises)
+    console.log(data)
     let listOfPaths = []
     for(let i = 0; i < data.length; i++){
         let trees = data[i].tree

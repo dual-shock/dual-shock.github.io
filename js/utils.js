@@ -138,17 +138,22 @@ function hierarchy(listOfPaths){
 
 function loadGalleryLinks(link){
     
-    fetch(link)
+    fetch(link, {headers: {
+        'Authorization':'token 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'
+    }}  // ! Yes this is a personal access token, should be hidden static site WHATEVER its read only
+        // ! just pretty please dont read my own 4 repos 5000 times an hours :sob: 
+    )
         .then((response) => response.json()).then(data => {
             
             let trees = data.tree
             
-            let gallery = document.getElementsByClassName("gallery-ul")[0]
-    
+            let gallerySurr = document.getElementsByClassName("gallery-surr")[0]
+            let gallerySelf = document.getElementsByClassName("gallery-self")[0]
+
             for(let i=0;i<trees.length;i++){
                 let tree = trees[i]
                 if(tree.path.substring(0,'imgs/gallery-surr/thumbs/'.length)=='imgs/gallery-surr/thumbs/' && tree.type == "blob"){
-                    //console.log(tree.path)
+                    console.log("SURR IMGS",tree.path)
                     let galleryImage = `
                     <li>
                     <a href="./imgs/gallery-surr/pages/${tree.path.split('/')[tree.path.split('/').length - 1]}.html">
@@ -156,7 +161,18 @@ function loadGalleryLinks(link){
                     </a>
                     </li>
                     `
-                    gallery.innerHTML += galleryImage
+                    gallerySurr.innerHTML += galleryImage
+                }
+                else if(tree.path.substring(0,'imgs/gallery-self/thumbs/'.length)=='imgs/gallery-self/thumbs/' && tree.type == "blob"){
+                    console.log("SELF IMGS",tree.path)
+                    let galleryImage = `
+                    <li>
+                    <a href="./imgs/gallery-self/pages/${tree.path.split('/')[tree.path.split('/').length - 1]}.html">
+                        <img src="${tree.path}"/>
+                    </a>
+                    </li>
+                    `
+                    gallerySelf.innerHTML += galleryImage
                 }
             }            
         })
