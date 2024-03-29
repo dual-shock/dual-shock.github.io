@@ -21,6 +21,7 @@ main {
 ul{list-style-type: none;}
 
 @media only screen and (max-width: 43rem){
+    
 /* ? Universal styling for this media query */
 .svg-cyan{
     filter: invert(65%) sepia(20%) saturate(5120%) hue-rotate(123deg) brightness(96%) contrast(102%);
