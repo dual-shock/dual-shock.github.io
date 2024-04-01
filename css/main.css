@@ -427,8 +427,6 @@ main {
     margin-top:2vmax;
     font-size: clamp(1rem, 2.8vmax, 4rem);
 
-    /* ! REMOVE  */
-    display:none;
 }
 #surroundings-subtitle{
     width:50%;
@@ -451,8 +449,7 @@ main {
     width:calc(50% - 0.25vmax);
     float:left;
 
-    /* ! REMOVE  */
-    width:100%;
+
 }
 .gallery-surr{
     display:flex;
@@ -488,8 +485,6 @@ main {
     float:left;
     filter:opacity(75%);
 
-    /* ! REMOVE  */
-    display:none;
 }
 .gallery-self{
     display:flex;
@@ -885,8 +880,7 @@ main {
     margin-top:2vmax;
     font-size: clamp(1rem, 3.4vmax, 4rem);
 
-    /* ! REMOVE  */
-    display:none;
+
 }
 #desktop-gallery-filter{
     display:none;
@@ -909,8 +903,6 @@ main {
     width:calc(50% - 0.25vmax);
     float:left;
 
-    /* ! REMOVE */
-    width:100%;
 }
 .gallery-surr{
     display:flex;
@@ -1598,8 +1590,7 @@ a > .portfolio-list{
                     filter: brightness(100%);
 
                     transition: opacity 0.2s;
-                    /* ! REMOVE! */
-                    display:none;
+
                 }
                 #desktop-gallery-filter-self{
                     margin-top:2vh;
@@ -1608,8 +1599,7 @@ a > .portfolio-list{
                     filter: brightness(100%);
                     opacity: 0.2;
                     transition: opacity 0.2s;
-                    /* ! REMOVE! */
-                    display:none;
+
                 }
                 .gallery-subtitle{
                     display:none;
