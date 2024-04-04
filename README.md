@@ -3,8 +3,7 @@
 https://nixie.digital
 
 ## TODO
-- Make music thing
-  - Have minecraft fox sleeping icon for when no music, headphone icon when music
+- Check mobile why height increasing when tabbing out P:\ROJECTS
 - remake the functions to get portfolio, cause im moving all web projects to own repos
 - Make resize-gallery.py sort images by color / "vibe"
 - get avg color of img and sort img list by that, 
