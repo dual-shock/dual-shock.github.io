@@ -8,12 +8,14 @@ let limit, oldContentElm, oldNavItem, oldHeight, oldWidth, desktop = false, load
 
 const height_ob = new ResizeObserver((entries) => {
     for(const entry of entries){
+        
         if(entry.target.id=="prlx"){
             let prlxheight = entry.contentRect.height
     
             oldHeight = entry.contentRect.height
     
             limit = calcLimit()
+            console.log("SOMETHING HAPPENING")
         }
         if(entry.target.id == "main"){
             let mainWidth = entry.contentRect.width
@@ -148,7 +150,7 @@ function clickHandler(e){
     console.log(e.target)
 }
 function parallaxHandler(){
-    
+    console.log("HANDLING")
     if(main.scrollTop > limit){
         main.style.overflowY = "hidden"
         sleep(0.1)
@@ -318,7 +320,7 @@ try {
             }
         }
     }
-    console.log(listOfPaths)
+    //console.log(listOfPaths)
     document.getElementById("portfolio").appendChild(hierarchy(listOfPaths))
     let toggler = document.getElementsByClassName("caret")
     

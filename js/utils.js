@@ -40,7 +40,7 @@ function hierarchy(listOfPaths){
         let child
         let file = listOfPaths[i]
         let filePath = file.path.split('/')
-        console.log(filePath)
+        //console.log(filePath)
 
         let id = filePath.slice(0,filePath.length).join('')
         let parentId = filePath.slice(0,filePath.length-1).join('')
@@ -149,7 +149,7 @@ function loadGalleryLinks(link){
             for(let i=0;i<trees.length;i++){
                 let tree = trees[i]
                 if(tree.path.substring(0,'imgs/gallery-surr/thumbs/'.length)=='imgs/gallery-surr/thumbs/' && tree.type == "blob"){
-                    console.log("SURR IMGS",tree.path)
+                    //console.log("SURR IMGS",tree.path)
                     let galleryImage = `
                     <li>
                     <a href="./imgs/gallery-surr/pages/${tree.path.split('/')[tree.path.split('/').length - 1]}.html">
@@ -160,7 +160,7 @@ function loadGalleryLinks(link){
                     gallerySurr.innerHTML += galleryImage
                 }
                 else if(tree.path.substring(0,'imgs/gallery-self/thumbs/'.length)=='imgs/gallery-self/thumbs/' && tree.type == "blob"){
-                    console.log("SELF IMGS",tree.path)
+                    //console.log("SELF IMGS",tree.path)
                     let galleryImage = `
                     <li>
                     <a href="./imgs/gallery-self/pages/${tree.path.split('/')[tree.path.split('/').length - 1]}.html">
