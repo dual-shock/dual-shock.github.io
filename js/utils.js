@@ -144,7 +144,7 @@ function loadGalleryLinks(link){
             let trees = data.tree
             
             let gallerySurr = document.getElementsByClassName("gallery-surr")[0]
-            let gallerySelf = document.getElementsByClassName("gallery-self")[0]
+            //let gallerySelf = document.getElementsByClassName("gallery-self")[0]
 
             for(let i=0;i<trees.length;i++){
                 let tree = trees[i]
@@ -159,17 +159,17 @@ function loadGalleryLinks(link){
                     `
                     gallerySurr.innerHTML += galleryImage
                 }
-                else if(tree.path.substring(0,'imgs/gallery-self/thumbs/'.length)=='imgs/gallery-self/thumbs/' && tree.type == "blob"){
-                    //console.log("SELF IMGS",tree.path)
-                    let galleryImage = `
-                    <li>
-                    <a href="./imgs/gallery-self/pages/${tree.path.split('/')[tree.path.split('/').length - 1]}.html">
-                        <img src="${tree.path}"/>
-                    </a>
-                    </li>
-                    `
-                    gallerySelf.innerHTML += galleryImage
-                }
+                // else if(tree.path.substring(0,'imgs/gallery-self/thumbs/'.length)=='imgs/gallery-self/thumbs/' && tree.type == "blob"){
+                //     //console.log("SELF IMGS",tree.path)
+                //     let galleryImage = `
+                //     <li>
+                //     <a href="./imgs/gallery-self/pages/${tree.path.split('/')[tree.path.split('/').length - 1]}.html">
+                //         <img src="${tree.path}"/>
+                //     </a>
+                //     </li>
+                //     `
+                //     gallerySelf.innerHTML += galleryImage
+                // }
             }            
         })
 }

@@ -36,9 +36,9 @@ const height_ob = new ResizeObserver((entries) => {
                     document.getElementById("listening-mobile").style.display = "none"
                     document.getElementById("listening-desktop").style.display = "flex"
                     document.getElementById("gallery-1").style.display = "flex"
-                    document.getElementById("gallery-2").style.display = "none"
-                    document.getElementById("desktop-gallery-filter-surr").style.opacity = "1"
-                    document.getElementById("desktop-gallery-filter-self").style.opacity = "0.2"
+                    //document.getElementById("gallery-2").style.display = "none"
+                    //document.getElementById("desktop-gallery-filter-surr").style.opacity = "1"
+                    //document.getElementById("desktop-gallery-filter-self").style.opacity = "0.2"
                 }
             }
             else{
@@ -49,7 +49,7 @@ const height_ob = new ResizeObserver((entries) => {
                     document.getElementById("listening-mobile").style.display = "flex"
                     document.getElementById("listening-desktop").style.display = "none"
                     document.getElementById("gallery-1").style.display = "flex"
-                    document.getElementById("gallery-2").style.display = "flex"
+                    //document.getElementById("gallery-2").style.display = "flex"
                 }   
             }
             console.log("removing and adding click listener, desktop: ", desktop)
@@ -137,14 +137,14 @@ function clickHandler(e){
         document.getElementById("desktop-gallery-filter-surr").style.opacity = "1"
         document.getElementById("desktop-gallery-filter-self").style.opacity = "0.2"
         document.getElementById("gallery-1").style.display = "flex"
-        document.getElementById("gallery-2").style.display = "none"
+        //document.getElementById("gallery-2").style.display = "none"
     }
     if(e.target.matches("#desktop-gallery-filter-self")){
         console.log("self filter button clicked")
         document.getElementById("desktop-gallery-filter-surr").style.opacity = "0.2"
         document.getElementById("desktop-gallery-filter-self").style.opacity = "1"
         document.getElementById("gallery-1").style.display = "none"
-        document.getElementById("gallery-2").style.display = "flex"
+        //document.getElementById("gallery-2").style.display = "flex"
 
     }
     console.log(e.target)
