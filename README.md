@@ -1,6 +1,6 @@
 # nokken.github.io
 
-https://nixie.digital
+https://nixi.digital
 
 ## TODO
 - Check mobile why height increasing when tabbing out P:\ROJECTS
