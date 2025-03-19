@@ -72,13 +72,13 @@ function hierarchy(listOfPaths){
             titleSpan.appendChild(arrowCopy)
             titleSpan.appendChild(folderCopy)
             if(filePath[filePath.length - 1] == "journal"){
-                titleSpan.innerHTML += "<a style='color:rgba(46, 240, 182, 0.712);' href='https://nixie.digital/journal'>journal<a>"
+                titleSpan.innerHTML += "<a style='color:rgba(46, 240, 182, 0.712);' href='https://nixi.digital/journal'>journal<a>"
             }
             else if(filePath[filePath.length - 1] == "dual-shock.github.io"){
-                titleSpan.innerHTML += "<a style='color:rgba(46, 240, 182, 0.712);' href='https://nixie.digital'>nixie.digital<a>"
+                titleSpan.innerHTML += "<a style='color:rgba(46, 240, 182, 0.712);' href='https://nixi.digital'>nixi.digital<a>"
             }
             else if(filePath[filePath.length - 1] == "uni.todo"){
-                titleSpan.innerHTML += "<a style='color:rgba(46, 240, 182, 0.712);' href='https://nixie.digital/uni.todo'>uni.todo<a>"
+                titleSpan.innerHTML += "<a style='color:rgba(46, 240, 182, 0.712);' href='https://nixi.digital/uni.todo'>uni.todo<a>"
             }
             else{
                 titleSpan.innerHTML += filePath[filePath.length - 1] + "&nbsp"
