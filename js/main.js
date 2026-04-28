@@ -273,9 +273,11 @@ let checkSong = setInterval(updateLastFmData,3000);
 
 let promises = []
 let reposToInclude = [
-    "journal",
+    "lidbrainz",
     "dual-shock.github.io",
-    "uni.todo"
+    "journal",
+	"girloffs.com",
+	"uni.todo",
 ]
 
 
